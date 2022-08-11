@@ -1,0 +1,19 @@
+```{=html}
+<div class="dataviz-page">
+
+<div class="dataviz-title">
+<h1>DATA VIZ</h1>
+<p>Showcase of some of my data visualizations made in both R and JavaScript</p>
+</div>
+
+<div class="gallery">
+<% for (const item of items) { %>
+<div class="thumbnails">
+<img src=<%- item.img %> alt=<%- item.name %>>
+<div class="black"></div>
+<div class="title"><%- item.name %></div>
+</div>
+<% } %>
+</div>
+</div>
+```

@@ -1,0 +1,11 @@
+---
+listing:
+  contents: posts
+  sort: "date desc"
+  template: templates/bloghome.ejs
+page-layout: full
+format:
+  html:
+    css: inst/css/bloghome.css
+---
+

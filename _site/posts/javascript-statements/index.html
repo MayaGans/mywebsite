@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Maya Gans">
+<meta name="dcterms.date" content="2019-08-02">
+<meta name="description" content="Statements aren’t functions? Explaining the different and walking through some different JavaScript statements.">
+
+<title>Maya Gans</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../inst/css/styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">maya<br>gans</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dataviz.html">dataviz</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html">projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html">resume</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">JavaScript Statements</h1>
+                  <div>
+        <div class="description">
+          Statements aren’t functions? Explaining the different and walking through some different JavaScript statements.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">JavaScript</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Maya Gans </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 2, 2019</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#if" id="toc-if" class="nav-link active" data-scroll-target="#if">If</a></li>
+  <li><a href="#then" id="toc-then" class="nav-link" data-scroll-target="#then">Then</a></li>
+  <li><a href="#else" id="toc-else" class="nav-link" data-scroll-target="#else">Else</a></li>
+  <li><a href="#switch---case---break" id="toc-switch---case---break" class="nav-link" data-scroll-target="#switch---case---break">Switch - Case - Break</a></li>
+  <li><a href="#for" id="toc-for" class="nav-link" data-scroll-target="#for">For</a></li>
+  <li><a href="#while" id="toc-while" class="nav-link" data-scroll-target="#while">While</a></li>
+  <li><a href="#do" id="toc-do" class="nav-link" data-scroll-target="#do">Do</a></li>
+  <li><a href="#return" id="toc-return" class="nav-link" data-scroll-target="#return">Return</a></li>
+  <li><a href="#throw" id="toc-throw" class="nav-link" data-scroll-target="#throw">Throw</a></li>
+  <li><a href="#try---catch" id="toc-try---catch" class="nav-link" data-scroll-target="#try---catch">Try - Catch</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Computers are awesome for their ability to execute instructions. I mean, do you want to perform repetitive, error prone, menial tasks? Personally, I don’t want to spend time processing data, I just want to analyze it and eventually make pretty graphs. To do this though, the computer needs instructions, and these instructions come in the form of a list of <strong>statements</strong>. In this post I want to go over the grammar of JavaScript statements. Only by familiarizing ourselves with the entire toolbox of statement options can we efficiently boss the computer around exactly how we intend to.</p>
+<section id="if" class="level2">
+<h2 class="anchored" data-anchor-id="if">If</h2>
+<p>We can use the <code>if</code> statement to run a function when an argument is true</p>
+<pre><code>var happy = TRUE
+var knowIt = TRUE
+
+if (happy == TRUE &amp;&amp; knowIt == TRUE) {
+  clapYourHands = TRUE
+}
+
+console.log(clapYourHands)</code></pre>
+<pre><code>TRUE</code></pre>
+<p>If you’re Happy AND you know it, clapYourHands == TRUE.</p>
+</section>
+<section id="then" class="level2">
+<h2 class="anchored" data-anchor-id="then">Then</h2>
+<p>In the code block above the curly brackets could be understood as <code>then</code>. Translating the block above into plain English: if <code>happy</code> and <code>knowIt</code> are both true <code>then</code> set clapYourHands to true.</p>
+</section>
+<section id="else" class="level2">
+<h2 class="anchored" data-anchor-id="else">Else</h2>
+<p>But what if I want to set clapYourHands to <code>false</code> if you’re not happy? <code>else</code> gives us the ability to assign a different argument to <code>clapYourHands</code> if it fails the <code>then</code> test [here <code>(happy == TRUE &amp;&amp; knowIt == TRUE)</code>]</p>
+<pre><code>var happy = false
+var knowIt = true
+
+if (happy === true &amp;&amp; knowIt === true) {
+  clapYourHands = true
+} else {
+  clapYourHands = false
+}
+
+console.log(clapYourHands)</code></pre>
+<pre><code>TRUE</code></pre>
+</section>
+<section id="switch---case---break" class="level2">
+<h2 class="anchored" data-anchor-id="switch---case---break">Switch - Case - Break</h2>
+<p>In the example above <code>happy</code> and <code>knowIt</code> are binary, but the human gamut of emotions is far more complex than happy or not. This is where <code>switch</code> comes in. Rather than writing a long chain of {<code>if</code> this <code>else if</code> this other thing <code>else if</code> even more stuff <code>else</code> the default} we can just invoke a <code>switch</code> statement with multiple <code>cases</code>!</p>
+<pre><code>var emotion = "disinterested"
+var clapYourHands = []
+
+switch(emotion) {
+  case 'happy':
+    clapYourHands = true
+    break;
+  case 'sad':
+    clapYourHands = false
+    break;
+    // default = what to do when no cases match
+  default:
+    clapYourHands = "Can't be sure"
+}
+
+console.log(clapYourHands)</code></pre>
+<pre><code>"Can't be sure"</code></pre>
+<p>The <code>switch</code> statement goes through all the cases, trying to find a match for <code>emotion</code>. Once it finds a matching <code>case</code>, it applies the associated argument [here <code>case = default</code>;<code>clapYourHands = "Can't be sure"</code>].</p>
+<p>I also snuck in the <code>break</code> keyword because this is what gets us out of the <code>switch</code> block. By using <code>break</code> we’re saying - <em>if this <code>case</code> is a match just use it, be done with the <code>switch</code> and move on with your life</em>. Note that we don’t need to <code>break</code> the last statement in a <code>switch</code>, the computer knows it’s exhausted all options at that point.</p>
+</section>
+<section id="for" class="level2">
+<h2 class="anchored" data-anchor-id="for">For</h2>
+<p>No one ever wanted to be that solitary person clapping. Instead of using <code>switch</code> to evaluate a single <code>emotion</code>, we can use a <code>for</code> loop to assess all the emotions of our friends in the room, then gauge how many people are clapping.</p>
+<pre><code>// create an array to capture the emotions in the room
+var emotions = ["disinterested", "happy", "sad", "happy", "dispondent", "happy"]
+
+// this empty array will store the loop values
+var whosClapping = []
+
+for (i = 0; i &lt; emotions.length; i++) { 
+
+  switch(emotions[i]) {
+    case 'happy':
+      var clapYourHands = true
+      break;
+    case 'sad':
+      clapYourHands = false
+      break;
+    default:
+      clapYourHands = "Can't be sure"
+    }
+
+  whosClapping[i] = clapYourHands
+
+}
+
+console.log(whosClapping)
+console.log(whosClapping == true)</code></pre>
+<pre><code>[ 'Can't be sure', true, false, true, 'Can't be sure', true ]</code></pre>
+<p>a <code>for</code> loop begins with a counter, we’re calling it <code>i</code> and setting it to zero. The next argument is how many times you want the computer to run through the loop. Rather than count up the number of elements in our array in our heads and provide <code>6</code>, we make the computer do the work for us! <code>array.length</code> gives back the number of elements in an array. <code>i++</code> is shorthand to increment <code>i</code> by 1 as we progress through the loop.</p>
+<p>The only difference in our switch within the loop is rather than reference <code>emotion</code>, we reference <code>emotions[i]</code>. For each turn through the loop the computer will evaluate the switch on the <code>i</code>th value within <code>emotions</code></p>
+<p>Before we let the computer move onto the next loop, we store the current iteration’s value for <code>clapYourHands</code> within the <code>whosClapping</code> array. <code>whosClapping[0]</code> will be the <code>clapYourHands</code> value for <code>emotions[0]</code> until the computer makes it through all 6 values within <code>emotion</code>.</p>
+</section>
+<section id="while" class="level2">
+<h2 class="anchored" data-anchor-id="while">While</h2>
+<p>If your friends aren’t responding when you ask them if you’re happy, we can make all 6 of them clap using a <code>while</code> loop.</p>
+<p>Like the <code>for</code> loop, a <code>while</code> loop also repeats until a condition changes. Unlike a <code>for</code> loop, we set a condition and loop through until the condition is no longer met [the opposite is true of a <code>for</code> loop where each time it runs the condition is looked for.]</p>
+<pre><code>var happy = 0
+
+while(happy &lt; 6) {
+  console.log("clap your hands")
+  i++
+}</code></pre>
+<pre><code>clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands</code></pre>
+<p>We set our iterator to zero outside of the loop, then use the condition <code>happy &lt; 6</code> to run our loop 6 times.</p>
+</section>
+<section id="do" class="level2">
+<h2 class="anchored" data-anchor-id="do">Do</h2>
+<p>The <code>do</code> loop is like the <code>while</code> loop but backwards. First the loop is executed, and the condition comes after the body</p>
+<pre><code>var happy = 0
+
+do { 
+  console.log("clap your hands")
+  happy ++
+} while(happy &lt; 6);</code></pre>
+<pre><code>clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands</code></pre>
+<p>Within our <code>do</code> statement which gets everyone to clap, we also increment happy. The loop is executed until we reach happy == 6</p>
+</section>
+<section id="return" class="level2">
+<h2 class="anchored" data-anchor-id="return">Return</h2>
+<p>When you write a function, <code>return</code> stops the function execution and returns the value</p>
+<pre><code>function clapping(name) {
+  return name + " is happy, and knows it";
+}
+
+var maya = clapping("Maya")
+console.log(maya)</code></pre>
+<pre><code>Maya is happy, and knows it</code></pre>
+<p>We save the results of the function <code>clapping('Maya')</code> within a new variable, <code>maya</code> which is stored in memory, then use <code>console.log</code> to print the new variable. <em>If we didn’t print <code>maya</code> to the console we’d only know the code ran because we didn’t get an error (silence is golden).</em></p>
+</section>
+<section id="throw" class="level2">
+<h2 class="anchored" data-anchor-id="throw">Throw</h2>
+<p>The <code>throw</code> statement looks at an input and if it is wrong, creates a custom error message.</p>
+<pre><code>function getClappers(i) {
+
+  if (i &gt; 0) {
+    return "Someone is happy";
+  } else {
+    throw 'No one is happy';
+  }
+}
+
+console.log(getClappers(0))</code></pre>
+<pre><code>No one is happy</code></pre>
+</section>
+<section id="try---catch" class="level2">
+<h2 class="anchored" data-anchor-id="try---catch">Try - Catch</h2>
+<p><code>try...catch</code> statements are used to catch errors, an inevitable part of programming that should be embraced early. We’ll demonstrate this using our <code>getClappers</code> function where rather than have the code stop running because no one is clapping, we’ll use <code>catch</code> to create a string stored in the variable <code>happy</code>.</p>
+<pre><code>var happy = []
+try {
+  happy = getClappers(0)
+}
+ catch {
+ happy = 'No one is clapping'
+}
+
+console.log(happy)</code></pre>
+<pre><code>No one is clapping</code></pre>
+<p>By setting our clapper number to zero, our <code>try...catch</code> statement returned the exception. When a script stops running due to an error we can leverage the code do something more than just dying.</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>We can use JavaScript statements to write programs to boss around the computer. We’ve covered some foundational statements here and I encourage you to play with them beyond our silly example. Beginning to grasp these statements makes me happy though, and we all deserve some claps for that.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

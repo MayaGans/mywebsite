@@ -1,0 +1,206 @@
+/* css styles */
+@import url('https://fonts.googleapis.com/css2?family=Nixie+One&family=Raleway:wght@100&display=swap');
+
+@font-face {
+    font-family: 'briarbold';
+    src: url('../fonts/briar-webfont.woff2') format('woff2'),
+         url('../fonts/briar-webfont.woff') format('woff'),
+         url('../fonts/briar-webfont.svg#briarbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+  font-family: 'briarbold', 'Nixie One';
+  font-size: 3rem;
+}
+
+h2,h3,h4,h5,h6 {
+  font-family: 'Nixie One', sans-serif;
+}
+
+h2, .h2 {
+  border-bottom: 0px solid #dee2e6;
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+}
+
+p {
+  fony-family: Raleway !important;
+}
+
+::-moz-selection {
+  background: #ffb7b7; /* Gecko Browsers */
+}
+
+::selection {
+  background-color: #fffff7;
+}
+
+/**** navbar overrides *****/
+
+.navbar-title {
+    text-decoration: none;
+    background-size: 80% 100% !important;
+    transition: background .35s !important;
+    background-image: linear-gradient(transparent 60%, #fadadd 60%) !important;
+    background-size: 60% 100% !important;
+    background-repeat: no-repeat !important;
+    background-position: top center !important;
+}
+
+.navbar-title:hover {
+    background-size: 100% 100% !important;
+}
+
+header nav {
+    height: 120px;
+}
+
+.navbar {
+    background-color: #fffff7;
+    box-shadow: 0 0 50px rgb(252 252 252 / 76%);
+    text-transform: lowercase;
+    background-image: linear-gradient(to bottom,#fffff7,#fffff7,#fffff7,#fffff7ed,#fffff7ba,#fffff7)!important;
+    min-height: 100px!important;
+    position: fixed;
+    width: 100%;
+}
+
+.quarto-container {
+  margin-top: 100px !important;
+}
+
+.navbar-dark .navbar-brand {
+   color: gray !important;
+   height: inherit;
+   line-height: 30px!important !important;
+   padding-top: 7px !important;
+   padding-bottom: 5px !important;
+   margin-left: 50px;
+   font-weight: 500;
+   font-size: 2rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: gray !important;
+}
+
+.navbar #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon {
+  display: none;
+}
+
+.navbar {
+    background-color: #fffff7;
+    box-shadow: 0 0 50px rgba(252, 252, 252, 0.76);
+    text-transform: lowercase;
+    background-image: linear-gradient(to bottom,  #fffff7,  #fffff7,  #fffff7,  #fffff7ed,  #fffff7ba,  #fffff7) !important;  
+    min-height: 100px !important;
+}
+
+li.nav-item {
+  text-align: center !important;
+}
+
+.navbar-brand{
+  color: grey !important;
+}
+
+a.nav-link {
+  font-weight: 200 !important;
+}
+
+.navbar .navbar-nav .nav-link.active {
+    font-weight: 700 !important;
+    color: #ee5863 !important;
+}
+
+.navbar-brand, .navbar-nav li.nav-item a.nav-link {
+    height: inherit;
+    line-height: 30px !important;
+    padding-top: 7px !important;
+    padding-bottom: 5px !important;
+}
+
+a.nav-link,
+a.nav-link:after,
+a.nav-link:before {
+  transition: all .5s;
+}
+
+a.nav-link {
+  position: relative;
+}
+
+a.nav-link:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.'; /* make invisible, dot beneath links */
+  color: transparent;
+  background: #EE5863;
+  height: 2px;
+}
+
+a.nav-link:hover:after {
+  width: 70%;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #EE5863 !important;
+}
+
+body {
+  background: #fadadd !important;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='gray' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    margin-right: 50px;
+}
+
+p > a:hover {
+  color: #e14675;
+  text-decoration: none;
+}
+
+p > a {
+  position: relative;
+  color: #e14675;
+  text-decoration: none;
+}
+
+ul.share li a {
+    background-color: #ee5863;
+}
+
+p > a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #e14675;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+a {
+  color: #e14675;
+}
+
+a:hover {
+  color: #e14675;
+}
+
+p > a:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
+}

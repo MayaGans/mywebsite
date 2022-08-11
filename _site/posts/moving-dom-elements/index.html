@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Maya Gans">
+<meta name="dcterms.date" content="2022-02-15">
+<meta name="description" content="A datatable case study to move around DOM elements in Shiny.">
+
+<title>Maya Gans</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../inst/css/styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">maya<br>gans</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dataviz.html">dataviz</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html">projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html">resume</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Moving DOM Elements in Shiny</h1>
+                  <div>
+        <div class="description">
+          A datatable case study to move around DOM elements in Shiny.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">HTML</div>
+                <div class="quarto-category">JavaScript</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Maya Gans </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 15, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-plan" id="toc-the-plan" class="nav-link active" data-scroll-target="#the-plan">The Plan</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation">Implementation</a>
+  <ul class="collapse">
+  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
+  <li><a href="#step-2-3" id="toc-step-2-3" class="nav-link" data-scroll-target="#step-2-3">Step 2 &amp; 3</a></li>
+  <li><a href="#step-4" id="toc-step-4" class="nav-link" data-scroll-target="#step-4">Step 4</a></li>
+  <li><a href="#step-5-6" id="toc-step-5-6" class="nav-link" data-scroll-target="#step-5-6">Step 5 &amp; 6</a></li>
+  <li><a href="#step-7" id="toc-step-7" class="nav-link" data-scroll-target="#step-7">Step 7</a></li>
+  <li><a href="#step-8" id="toc-step-8" class="nav-link" data-scroll-target="#step-8">Step 8</a></li>
+  <li><a href="#step-9" id="toc-step-9" class="nav-link" data-scroll-target="#step-9">Step 9</a></li>
+  </ul></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together">Putting it All Together</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>As a Shiny web developer it’s really common to leverage existing packages to create your HTML. But what if a package gets you 90% of where you want to go, and you want to customize it a little?</p>
+<p>In this tutorial I give a default <code>DT</code> table a small makeover by combining the datatable’s <code>dataTables_length</code> element and the datatables `dataTables_info element. <em>How did I find the names of these elements? The inspector!</em></p>
+<p><img src="before.png" class="img-fluid"></p>
+<p>My goal is to combine these into a single element at the bottom of the table:</p>
+<p><img src="after.png" class="img-fluid"></p>
+<section id="the-plan" class="level2">
+<h2 class="anchored" data-anchor-id="the-plan">The Plan</h2>
+<p>Given the following Shiny app:</p>
+<pre id="r"><code>library(shiny)
+
+ui &lt;- fluidPage(
+  DT::dataTableOutput("table")
+)
+
+server &lt;- function(input, output, session) {
+  output$table &lt;- DT::renderDataTable(
+    data.frame(cars),
+    rownames = FALSE,
+    # I want to scroll the y-axis 
+    # so the table is always the same height
+    options = list(
+      scrollY = '50vh'
+    )
+  )
+}
+
+shinyApp(ui, server)</code></pre>
+<p>We need to:</p>
+<ol type="1">
+<li>Store the select within <code>dataTables_length</code> as an object</li>
+<li>Create a new HTML element, <code>new_bottom</code> that we will use for our revamped <code>dataTables_info</code></li>
+<li>Add the preamble text <code>Showing</code></li>
+<li>Append the select dropdown from <code>dataTables_length</code> to the new element</li>
+<li>Add the total number of rows information in R</li>
+<li>Add the suffix text <code>entries</code></li>
+<li>Replace <code>dataTables_info</code> with our new element</li>
+<li>Give the new element the <code>dataTables_info</code> class for styling</li>
+<li>Remove the <code>dataTables_length</code> node from the DOM</li>
+</ol>
+</section>
+<section id="implementation" class="level2">
+<h2 class="anchored" data-anchor-id="implementation">Implementation</h2>
+<p>My general workflow for applying JS to Shiny apps is to run the application and then actually do my manipulation in the browser’s console.</p>
+<section id="step-1" class="level3">
+<h3 class="anchored" data-anchor-id="step-1">Step 1</h3>
+<p>Using jQuery I stored the select dropdown to the object dropdown by finding the element of class <code>dataTables_length</code>, and then finding the <code>select</code> element inside it</p>
+<pre><code>const dropdown = $('.dataTables_length')
+                         .find('label')
+                         .find('select')
+</code></pre>
+</section>
+<section id="step-2-3" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-3">Step 2 &amp; 3</h3>
+<p>Next I created a new DOM element, added the class <code>custom_dropdown</code> to make selecting the node easier, and added the prefix text <code>Showing</code></p>
+<pre><code>let new_bottom = document.createElement('div')
+new_bottom.classList.add('custom_dropdown')
+new_bottom.innerHTML = 'Showing '</code></pre>
+</section>
+<section id="step-4" class="level3">
+<h3 class="anchored" data-anchor-id="step-4">Step 4</h3>
+<p>Using jQuery’s append function, we can add the isolated select to our new DOM element:</p>
+<pre><code>dropdown.appendTo(new_bottom)</code></pre>
+</section>
+<section id="step-5-6" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-6">Step 5 &amp; 6</h3>
+<p>And because we’re writing JS as a string in R we can interpolate the <code>nrows</code> number to use in the suffix text <code>of 50 entries</code></p>
+<pre><code>new_bottom.append(' of ' +", nrow(cars), " + ' entries')</code></pre>
+</section>
+<section id="step-7" class="level3">
+<h3 class="anchored" data-anchor-id="step-7">Step 7</h3>
+<p>Now we can replace the existing element with our new custom one!</p>
+<pre><code>$('.dataTables_info').replaceWith(new_bottom)</code></pre>
+</section>
+<section id="step-8" class="level3">
+<h3 class="anchored" data-anchor-id="step-8">Step 8</h3>
+<p>We can remove the custom class we added, and give it the class <code>dataTables_info</code> so that the same styling of the old element is applied to our new one.</p>
+<pre><code>$('.custom_dropdown')
+    .removeClass('custom_dropdown')
+    .addClass('dataTables_info') </code></pre>
+</section>
+<section id="step-9" class="level3">
+<h3 class="anchored" data-anchor-id="step-9">Step 9</h3>
+<p>And now we can remove the <code>dataTables_length</code> element from the DOM!</p>
+<pre><code>$('.dataTables_length').remove()</code></pre>
+</section>
+</section>
+<section id="putting-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="putting-it-all-together">Putting it All Together</h2>
+<p>The DT function <code>renderDataTable</code> function has a <code>callback</code> argument, a function that is run once the table is rendered. We can apply our JS here as a string:</p>
+<pre><code>library(shiny)
+
+ui &lt;- fluidPage(
+  DT::dataTableOutput("table")
+)
+
+server &lt;- function(input, output, session) {
+  output$table &lt;- DT::renderDataTable(
+    data.frame(cars),
+    rownames = FALSE,
+    options = list(
+      scrollY = '50vh'
+    ),
+    callback = DT::JS(paste0("
+     const dropdown = $('.dataTables_length')
+                         .find('label')
+                         .find('select')
+
+     let new_bottom = document.createElement('div')
+     new_bottom.classList.add('custom_dropdown')
+     new_bottom.innerHTML = 'Showing '
+     
+     dropdown.appendTo(new_bottom)
+                      
+     new_bottom.append(' of ' +", nrow(cars), " + ' entries')
+                      
+     $('.dataTables_info')
+          .replaceWith(new_bottom)
+                           
+     $('.custom_dropdown')
+         .removeClass('custom_dropdown')
+         .addClass('dataTables_info') 
+                         
+     $('.dataTables_length').remove()"))
+  )
+}
+
+shinyApp(ui, server)</code></pre>
+<p>Et Viola! It’s a small UI fix that makes a world of difference!</p>
+<p>I leverage jQuery here a LOT because Shiny is already loading the library, but vanilla JS can do <strong>all</strong> of this now. I’m hoping to refactor this code to get more familiar with vanilla JS DOM manipulation: stay tuned for more!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+  
+.anchorjs-link {
+  display: none;
+}
+
+div#quarto-content {
+  display: block;
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 200px;
+}
+
+div#quarto-margin-sidebar {
+    display: none;
+}
+
+.grid-container {
+  margin-top: 50px;
+}
+
+  body {
+    font-family: 'Source Sans Pro';
+    text-align: center;
+    background-color: var(--background-pink);
+    color: var(--blue);
+  }
+
+  strong {
+    color: var(--accent-pink);
+  }
+
+.col-lg-8 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.row {
+  display: block;
+}
+
+ h1, 
+ h2, 
+ h3 {
+   text-align: center;
+   text-transform: uppercase;
+   color: var(--accent-pink);
+   margin: 0;
+   font-family: 'Libre Baskerville';
+ }
+
+ section {
+  margin: 0 10px;
+  padding: 20px;
+}
+
+ .section {
+   border-left: solid 5px var(--accent-pink);
+   border-right: solid 5px var(--accent-pink);
+   border-top: solid 5px var(--accent-pink);
+ }
+
+hr {
+  background: var(--accent-pink) !important;
+  height: 5px !important;
+  border: 0px;
+  margin: 20px -20px;
+  opacity: 1;
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent-pink);
+}
+
+a svg:hover {
+  fill: var(--accent-pink);
+  font-weight: 900;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ h1 {
+   font-size: 4vw;
+ }
+
+ h3 {
+   font-size: 5vw;
+ }
+
+ .grid-container {
+   display: inline-block;
+ }
+
+ .title p {
+   text-transform: uppercase;
+   line-height: -1em;
+   font-family: 'Libre Baskerville';
+ }
+
+ .description {
+   padding: 20px;
+ }
+
+ .description header {
+   font-family: 'Libre Baskerville';
+   color: var(--accent-pink);
+ }
+
+ .description p {
+   margin: 0;
+ }
+
+ .hobbies {
+   border-bottom: 5px solid var(--accent-pink);
+ }
+
+  .alternating-list {
+    font-size: 4.5vw;
+    list-style: none;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+  }
+
+  .alternating-list li:nth-child(odd){
+    font-weight: 900;
+    color: var(--accent-pink);
+  }
+
+  .fancy-card {
+    display: grid;
+    margin: 15px;
+    text-align: left;
+    justify-content: space-between;
+    justify-items: stretch;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 3px 10px rgb(	238, 89, 99);
+  }
+
+  .fancy-card header {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .fancy-card p {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    margin: 0;
+    padding: 0;
+  }
+
+  .fancy-card img {
+    grid-column: 2/3;
+    grid-row: 1/3;
+    width: 112px;
+    height: 85px;
+  }
+
+  .job {
+    display: grid;
+    grid-template-columns: 1fr 0.2fr 2fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "position . role-attrs role-attrs " 
+    "role . role-attrs role-attrs"
+    "date . role-attrs role-attrs";
+    text-align: left;
+    padding: 20px;
+  }
+
+  .position {
+    grid-area: position;
+    color: var(--accent-pink);
+    font-weight: 900;
+  }
+  
+  .date {
+    grid-area: date;
+  }
+
+  .role {
+    grid-area: role;
+    color: var(--accent-pink);
+  }
+
+  .role-attrs {
+    grid-area: role-attrs;
+  }
+  
+.all-skills {
+    display: flex;
+    /* height: 100%;*/
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.all-skills cell {
+  width: 100%;
+}
+
+  .skills .cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    height: 90%;
+    width: 100%;
+  }
+
+  .bar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .big-box {
+    border: solid 2px var(--accent-pink);
+    height: 50px;
+  }
+
+  .big-box:first-child {
+    background-color: var(--accent-pink);
+  }
+
+  .big-box:last-child {
+    border-left: 0;
+  }
+
+  .skill-title {
+    line-height: 5vh;
+  }
+
+  /* Desktop and Tablet */
+  @media (min-width : 1100px) {
+
+     h1 {
+   font-size: 4vw;
+ }
+
+ h3 {
+   font-size: 2vw;
+ }
+
+ .alternating-list {
+  font-size: 2vw;
+  line-height: 5vw;
+}
+
+    .grid-container {
+      display: grid;
+      gap: 0;
+      grid-template-columns: 1fr 2fr 1fr;
+    }
+
+    section {
+      margin: 0;
+    }
+
+    /* 3 columns, 6 rows */
+
+    .logo {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+
+    .title {
+      grid-column: 2/4;
+      grid-row: 1/2;
+      border-left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .intro {
+      grid-column: 1/4;
+      grid-row: 2/3;
+    }
+
+    .link-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      grid-column: 1/2;
+      grid-row: 3/4;
+    }
+
+    .social svg {
+      align-self: center;
+    }
+
+    .experience {
+      grid-column: 2/4;
+      grid-row: 3/5;
+      border-left: 0;
+    }
+
+    .education {
+      grid-column: 1/2;
+      grid-row: 4/5;
+    }
+
+    .skills {
+      grid-row: 5/6;
+      grid-column: 1/2;
+    }
+
+    .publications {
+      grid-row: 5/6;
+      grid-column: 2/4;
+      border-left: 0;
+    }
+
+    .expertise {
+      grid-row: 6/7;
+      grid-column: 1/2;
+      border-bottom: solid 5px var(--accent-pink);
+    }
+
+    .awards {
+      grid-row: 6/7;
+      grid-column: 2/3;
+      border-left: 0;
+      border-bottom: solid 5px var(--accent-pink);
+    }
+
+    .hobbies {
+      grid-row: 6/7;
+      grid-column: 3/4;
+      border-left: 0;
+      border-bottom: solid 5px var(--accent-pink);
+    }
+
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      max-width: none;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .container {
+      max-width: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: none;
+    }
+  }
+
+  @media (min-width: 576px) {
+    .container {
+      max-width: none;
+    }
+  }
+  
+.link-container {
+  height: 100%;
+}
+
+.link-container .cell {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 15px;
+}

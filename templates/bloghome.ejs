@@ -1,0 +1,35 @@
+```{=html}
+<div class="blog-page">
+<div class="blurb">
+ <h1>writings</h1>
+ <p>explaining techinical concepts to myself</p>
+</div>
+
+<div class="all-posts">
+<% for (const item of items) { %>
+<div class="blogpost">
+<a class="postlink" href="<%- item.path %>">
+
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          <%- item.categories[0] %>
+        </span>
+        <span class="time secondary">
+          <%- item['reading-time'] %> read
+        </span>
+  </div>
+  <h3 class="title"><%= item.title %></h3>
+  <div class="description"><%- item.description %></div>
+  <div class="date"><%- item.date %></div>
+</div>
+
+<div class="post-img">
+<img src="<%- `${item.image}` %>"></img>
+</div>
+</a>
+</div>
+<% } %>
+</div>
+</div>
+```

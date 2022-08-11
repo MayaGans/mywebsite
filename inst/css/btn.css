@@ -1,0 +1,95 @@
+.btn-default.maya-btn {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  margin: 10px 0;
+  color: var(--accent-pink);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-radius: 40px;
+  overflow: hidden;
+  background: #fffff7;
+  border: solid 2px var(--accent-pink);
+}
+
+.btn-default.maya-btn:hover, 
+.btn-default.maya-btn:focus {
+  background: var(--background-pink);
+  color: var(--accent-pink);
+}
+
+.btn-default.maya-secondary-btn {
+  border: none;
+}
+
+.btn-default.maya-primary-btn {
+  color: var(--accent-pink);
+  border: solid 2px var(--accent-pink);
+}
+.btn-default.maya-primary-btn:hover,
+.btn-default.maya-primary-btn:focus {
+  color: var(--accent-pink);
+  border: solid 2px;
+}
+
+.ripple-btn {
+  position: absolute;
+  background: var(--accent-pink);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: animate 1s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}
+
+.btn-default.maya-btn:disabled {
+  color: #ccc;
+    border-color: #ccc;
+}
+
+.btn-default.maya-icon-btn:hover,
+.btn-default.maya-icon-btn:active {
+  background: var(--gray);
+  color: var(--accent-pink);
+}
+
+.btn-default.maya-btn:active:hover {
+  background-color: var(--background-pink);
+  border-color: transparent;
+  color: var(--accent-pink);
+  box-shadow: none;
+}
+
+.btn-default.maya-icon-btn i {
+  transform: translate(0px, -4px);
+}
+
+.btn-default.maya-icon-btn {
+  font-size: 1.75rem;
+  padding: 12px;
+  height: 40px;
+  width: 40px;
+  border: none;
+  margin: 0;
+}
+
+.btn-default.maya-icon-btn:hover:disabled {
+  color: #ccc;
+    background: transparent;
+}

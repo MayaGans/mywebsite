@@ -1,0 +1,18 @@
+div#quarto-content {
+  display: block;
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 200px;
+}
+
+div#quarto-margin-sidebar {
+    display: none;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 30px;
+    margin-top: 100px;
+}
+

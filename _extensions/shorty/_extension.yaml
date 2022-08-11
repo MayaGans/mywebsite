@@ -1,0 +1,6 @@
+title: Shorty
+author: Cooltools
+version: 1.0.0
+contributes:
+  shortcodes:
+    - shorty.lua

@@ -1,0 +1,48 @@
+---
+listing:
+  template: templates/projects.ejs
+  contents:
+    - title: projects
+      byline: test
+      projects:
+        - name: tidyblocks
+          href: https://www.quarto.org
+          img: inst/img/projects/tidyblocks.png
+          description: a block based coding language to learn R programming
+          project: javascript
+        - name: shinybody
+          href: https://www.rstudio.org
+          description: a custom shiny input boinding to click on body parts
+          img: inst/img/projects/shinybody.png
+          project: shiny
+        - name: mastering shiny solutions manual
+          href: https://www.quarto.org
+          description: the solution manual to Hadley Wickham's Mastering Shiny
+          img: inst/img/projects/masteringshiny.png
+          project: shiny
+        - name: dinner and a movie
+          href: https://www.quarto.org
+          description: a svelte application to look at Phish statistics 
+          img: inst/img/projects/daam.png
+          project: javascript
+        - name: github calendar
+          href: https://www.quarto.org
+          description: a custom htmlwidget of a github calendar using d3.js
+          img: inst/img/projects/github.png
+          project: shiny
+        - name: phishr
+          href: https://www.quarto.org
+          description: a wrapper package around the phish.net API
+          img: inst/img/projects/phishr.png
+          project: r
+        - name: tidycdisc
+          href: https://www.quarto.org
+          description: a table generating GUI for clinical trial data
+          img: inst/img/projects/tidycdisc.png
+          project: shiny
+format:
+  html:
+    css: [inst/css/projects.css, inst/css/btn.css]
+    include-in-header:
+      text: "<script src='inst/libs/isotope.js'></script>"
+---

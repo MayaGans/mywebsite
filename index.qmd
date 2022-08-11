@@ -1,0 +1,53 @@
+---
+format:
+  html:
+    css: inst/css/home.css
+---
+
+<section>
+
+<div class="img-bio">
+  <img class="author-photo" src="assets/mayagans.png" alt="photo of Maya Gans"/>
+  <h2 style='font-size:2.7rem;font-weight:500!important;text-align:center!important;margin:0!important;padding:0!important;'>Maya Gans</h2>
+  <h3 style="margin:0!important;padding:0!important;">Data Visualization Engineer</h3>
+  <div class="social">
+  </div>
+</div>
+
+<div class="bio">
+<h1>Biography</h1>
+
+I am currently a Data Visualization Engineer at Atorus Research where I develop custom applications using R and JavaScript. As an RStudio intern I designed [TidyBlocks](https://tidyblocks.tech), a visual block based programming language. I also co-wrote [JavaScript for Data Science](https://js4ds.org). I use `ggplot2` and `d3.js` to create music related infographics for [JamBase.com](https://www.jambase.com/article/new-orleans-jazz-fest-after-dark-deep-dive). When I'm not coding, I'm climbing tall mountains.
+
+  <div class="activities">
+    
+  <div class="interests">
+  <span class="activity">Interests</span>
+  <ul>
+   <li>JavaScript</li>
+   <li>d3.js</li>
+   <li>Shiny</li>
+   <li>Playing bass</li>
+   <li>Rock climbing</li>
+  </ul>
+  </div>
+  
+<div class="education">
+  <span class="activity">Education</span>
+<div class="education-element">
+<div class="icon">{{< fa graduation-cap >}}</div>
+<div class="degree">MSc in Botany, 2019</div>
+<div class="school">University of Wyoming</div>
+</div>
+
+<div class="education-element">
+<div class="icon">{{< fa graduation-cap >}}</div>
+<div class="degree">BSc in Biology, 2016</div>
+<div class="school">Florida International University</div>
+</div>
+</div>
+  
+</div>
+</div>
+
+</section>

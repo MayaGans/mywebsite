@@ -1,0 +1,152 @@
+---
+title: "My First Live Coding Interview"
+author: "Maya Gans"
+date: '2019-08-27'
+description: "I tanked my first live coding interview but that still made me want to find answers to all their questions"
+categories: [R]
+image: "featured.png"
+---
+
+Yesterday I interviewed for a position maintaining and creating ShinyApps. To call that a JOB is crazy to me. I love developing reactive web applications, the fact that you can get paid to do that is still mind blowing. I'm realizing that having fun at work is actually a possibility!
+
+That said, the data scientist position usually includes a live coding portion. I went into it trying to treat my first one as practice, but every second I didn't spend typing spanned an eternity. It was horrifying... but thinking about how to solve these questions was also kind of really fun? 
+
+I'm fairly certain I won't get the job. But I'm also certain it was an experience to learn and grow. The interview was so intense that it was pretty easy to recall the questions almost verbatim. I wanted to explore the questions again on my own with no pressure. And I'd love input on how to answer these more elegantly!
+
+:::twitter
+Before we begin, I've updated this post to include asides provided from the wonderful world of `#rstats` twitter. If you have any suggestions on tidying the code feel free to contact me or [submit a PR to my blog repo!](https://github.com/MayaGans/BayesianBabe/tree/master/content/post/2019-08-27-live-coding-interview)
+:::
+
+## Question 1
+
+Create a for loop for n iterations where every third iteration prints "buzz" and every fifth iteration prints "fizz". Every combination prints "buzz-fizz". Print the iterator for all other values.
+
+```{r}
+n = 30
+
+for (i in 1:n) {
+  if (i %% 15 == 0) {
+    print(paste(i,"buzz-fizz"))
+      } else if (i %% 3 == 0) {
+        print(paste(i, "buzz"))
+      } else if (i %% 5 == 0) {
+        print(paste(i, "fizz"))
+      }
+  print(i)
+}
+```
+
+My first attempt answering the question revealed a gap in my mental model. I first attempted to construct the loop using an if statement with logical arguments in the same order as the question: `(i %% 3 == 0)`, then `(i %% 5 == 0)` and lastly `(i %% 15 == 0)`. I was operating under the idea that the arguments within a loop are circular. However, these arguments are inside an `if` statement, not the loop itself, so of course order matters! By putting `(i %% 15 == 0)` first you ensure the numbers divisible by both 3 and 5 are assigned to `buzz-feed` prior to `buzz` or `feed` assignment.
+
+:::twitter
+## The R Way
+R's strength is in dealing with vectors, so leverage that in the approach! [Jon Harmon](https://twitter.com/JonTheGeek) suggested a better approach for this problem.
+```{r}
+    n = 15
+    dplyr::tibble(
+    iteration = seq_len(n),
+    output = dplyr::case_when(
+    iteration %% 15 == 0 ~ "buzz-fizz", 
+    iteration %% 3 == 0 ~ "buzz",
+    iteration %% 5 == 0 ~ "fizz",
+    TRUE ~ as.character(iteration)
+  )
+)
+```
+In fact, this same question is the first example within the `dplyr::case_when` documentation!
+:::
+
+## Question 2
+
+### Summarize the diamonds data set
+
+```{r, include="false"}
+library(tidyverse)
+```
+
+```{r}
+summary(ggplot2::diamonds)
+```
+
+In an attempt to over-complicate this question and to flex my `tidyverse` skills, I was quick to type `diamonds %>% summarise(mean =....)` but the instructor asked "Are you going to write the name of every column?" I panicked. I skipped this question finally remembered the `summary` function. (Clearly, base R functions are currently in the dark recesses of my mind. Use it or lose it...)
+
+#### Find the maximum diamond price
+```{r}
+diamonds %>%
+  filter(price == max(price))
+```
+
+I was quick to type `max(diamonds$price)` and smugly said 'Done!' The interviewer responded, okay but I wanted to know everything else about that diamond. This meant I needed to print the whole row. I'm not sure the function I'm using is the most efficient, but I like it?
+
+#### Calculate the mean, median, standard deviation of the price for each diamond cut
+```{r}
+ggplot2::diamonds %>%
+  group_by(cut) %>%
+  summarise(mean = mean(price),
+            med = median(price),
+            std = sd(price))
+```
+Finally a question I felt comfortable answering! My TidyBlocks focus of the past couple months made me feel quite comfortable with this one.
+
+## Question 3
+Using the MTCars data set, create a linear model to see the affect of mpg on disp and explain the output of the model 
+```{r}
+m.1 <- lm(mtcars$mpg ~ mtcars$disp)
+summary(m.1)
+```
+
+Honestly, I could write this simple code from memory, but what I said as an explanation is an embarrassing blur. I think I can only attribute floundering over the output of a linear model with a single predictor to nerves. 
+
+I'm taking the time here to break the output of the model summary down line for line because every aspiring data scientist should be so comfortable the `lm` output that even nerves shouldn't matter.
+
+* `The call` is an R feature that shows the function and its parameters
+* `The residuals` are the difference between the model predicted and actual values of `disp`
+* `The coefficents` are the weights that minimize the sum of the square of the errors
+    * Since `mpg` never equals zero, there's no intrinsic meaning to the intercept
+    * The negative sign of `disp` means as `mpg` increases, `disp` decreases
+* `Residual standard error` is the standard deviation of the error where the SD is the square root of the variance 
+* `Multiple R squared` is a measurement of how well the model fits your data
+    * An R = 0.7 is pretty good?
+* `Adjusted R squared` takes the amount of variables you add to the model into account as that will inevitably produce a better fit. Because we only have one predictor this number is only very slightly different from our R squared.
+* `F-Statistic` a global statistic to check if at least one coefficient is non-zero.
+
+
+## Question 4
+Create a function that separates a list into two lists, one of unique values and the second containing the duplicates
+
+```{r}
+set.seed(42)
+my_list <- list(round(runif(100, min=0, max=100)), 1)
+
+seperated <- function(input) {
+  dup <- unique(input[[1]][duplicated(input[[1]])])
+  unq <- input[[1]][!input[[1]] %in% input[[1]][duplicated(input[[1]])]]
+  return(list(dup, unq))
+}
+
+seperated(my_list)
+```
+
+To get there, I made a dummy data set to play with, a list with 6 numbers, only one of which is a duplicate. This helped to highlight the workflow (1) find the duplicates for the first list, then (2) find the unique values, but remove the duplicates
+
+```{r}
+test <- list(c(1,2,3,4,5,3))
+
+# find duplicates
+test[[1]][duplicated(test[[1]])]
+
+# I thought of another case -
+# if we have muliple duplicates (three 3s)
+# we need to wrap this function in unique()
+test2 <- list(c(1,2,3,4,5,3,3))
+unique(test2[[1]][duplicated(test2[[1]])])
+
+# remove duplicates from unique values
+test[[1]][!test[[1]] %in% test[[1]][duplicated(test[[1]])]]
+```
+
+Obtaining the data from inside a list, especially nested lists, is a skill I know I need to build. This answer does not look elegant to me but it gets the job done? I'm going to play with "better", cleaner solutions.
+
+## Summary
+
+I left the interview feeling exhausted and deflated. I found myself asking: *if I can't answer these questions, what am I doing trying to become a data scientist?* But now that I've spent a day to reflect, the interview was an incredible learning experience. It pinpointed concrete areas where I can grow and I honestly had fun thinking about these problems. I'm not sure I'll ever perform smoothly under pressure, but at the very least I now have a function to separate duplicates from unique values!

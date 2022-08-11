@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Maya Gans</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-freeze','listing-title-block-banner','listing-title','listing-author','listing-date','listing-description','listing-categories','listing-image','listing-path','listing-filename','listing-file-modified','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] }],
+      
+      searchColumns: ["listing-freeze","listing-title-block-banner","listing-title","listing-author","listing-date","listing-description","listing-categories","listing-image","listing-path","listing-filename","listing-file-modified","listing-reading-time"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="inst/css/styles.css">
+<link rel="stylesheet" href="inst/css/bloghome.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">maya<br>gans</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./blog.html" aria-current="page">blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dataviz.html">dataviz</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./projects.html">projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resume.html">resume</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-custom" id="listing-listing">
+
+<div class="blog-page">
+<div class="blurb">
+ <h1>writings</h1>
+ <p>explaining techinical concepts to myself</p>
+</div>
+<div class="all-posts">
+<div class="blogpost">
+<a class="postlink" href="./posts/moving-dom-elements/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          R
+        </span>
+        <span class="time secondary">
+          4 min read
+        </span>
+  </div>
+  <h3 class="title anchored">Moving DOM Elements in Shiny</h3>
+  <div class="description">A datatable case study to move around DOM elements in Shiny.</div>
+  <div class="date">Feb 15, 2022</div>
+</div>
+<div class="post-img">
+<img src="./posts/moving-dom-elements/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/skip-links/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          5 min read
+        </span>
+  </div>
+  <h3 class="title anchored">Skip Links</h3>
+  <div class="description">Creating a Skip Link in Shiny apps!</div>
+  <div class="date">Aug 30, 2021</div>
+</div>
+<div class="post-img">
+<img src="./posts/skip-links/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/recursion-again-and-again-and-again/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          3 min read
+        </span>
+  </div>
+  <h3 class="title anchored">Recursion again and again and again</h3>
+  <div class="description">Trying to understand recursion by explaining it.</div>
+  <div class="date">Aug 30, 2021</div>
+</div>
+<div class="post-img">
+<img src="./posts/recursion-again-and-again-and-again/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/r-functions-i-took-for-granted/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          3 min read
+        </span>
+  </div>
+  <h3 class="title anchored">R Functions I Took for Granted</h3>
+  <div class="description">An ongoing list of functions I took for granted in R as I learn JavaScript</div>
+  <div class="date">Aug 30, 2021</div>
+</div>
+<div class="post-img">
+<img src="./posts/r-functions-i-took-for-granted/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/d3-to-r-to-d3/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          11 min read
+        </span>
+  </div>
+  <h3 class="title anchored">D3 to R to D3</h3>
+  <div class="description">Documenting using D3 in R (without Observable)</div>
+  <div class="date">Aug 30, 2021</div>
+</div>
+<div class="post-img">
+<img src="./posts/d3-to-r-to-d3/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/being-trendy-learning-svelte/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          6 min read
+        </span>
+  </div>
+  <h3 class="title anchored">Being Trendy, Learning Svelte</h3>
+  <div class="description">Documenting my first foray into the Svelte JavaScript frontend framework</div>
+  <div class="date">Aug 30, 2021</div>
+</div>
+<div class="post-img">
+<img src="./posts/being-trendy-learning-svelte/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/gsap-xaringan/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          3 min read
+        </span>
+  </div>
+  <h3 class="title anchored">GSap and Xaringan</h3>
+  <div class="description">Using the GSAP animation library in Xaringan slides</div>
+  <div class="date">Aug 30, 2021</div>
+</div>
+<div class="post-img">
+<img src="./posts/gsap-xaringan/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/custom-shiny-input/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          3 min read
+        </span>
+  </div>
+  <h3 class="title anchored">Custom Shiny Input</h3>
+  <div class="description">Creating a custom Shiny Input</div>
+  <div class="date">Aug 30, 2021</div>
+</div>
+<div class="post-img">
+<img src="./posts/custom-shiny-input/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/live-coding-interview/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          R
+        </span>
+        <span class="time secondary">
+          6 min read
+        </span>
+  </div>
+  <h3 class="title anchored">My First Live Coding Interview</h3>
+  <div class="description">I tanked my first live coding interview but that still made me want to find answers to all their questions</div>
+  <div class="date">Aug 27, 2019</div>
+</div>
+<div class="post-img">
+<img src="./posts/live-coding-interview/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/javascript-statements/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          6 min read
+        </span>
+  </div>
+  <h3 class="title anchored">JavaScript Statements</h3>
+  <div class="description">Statements aren't functions? Explaining the different and walking through some different JavaScript statements.</div>
+  <div class="date">Aug 2, 2019</div>
+</div>
+<div class="post-img">
+<img src="./posts/javascript-statements/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/wtf-is-a-prototype/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          3 min read
+        </span>
+  </div>
+  <h3 class="title anchored">WTF is a Prototype</h3>
+  <div class="description">Walking through what JavaScript prototypes are so I can better understand them myself</div>
+  <div class="date">Jul 22, 2019</div>
+</div>
+<div class="post-img">
+<img src="./posts/wtf-is-a-prototype/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/css-tips/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          CSS
+        </span>
+        <span class="time secondary">
+          2 min read
+        </span>
+  </div>
+  <h3 class="title anchored">CSS Tips - Notes from CSS Grids</h3>
+  <div class="description">Statements aren't functions? Explaining the different and walking through some different JavaScript statements.</div>
+  <div class="date">Jul 14, 2019</div>
+</div>
+<div class="post-img">
+<img src="./posts/css-tips/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/javascript-statements/why-would-i-settimeout-0/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          2 min read
+        </span>
+  </div>
+  <h3 class="title anchored">Why Would I setTimeout(0)?</h3>
+  <div class="description">Understanding asynchronous nature of JavaScript by setting the timeout to zero.</div>
+  <div class="date">Jul 1, 2019</div>
+</div>
+<div class="post-img">
+<img src="./posts/javascript-statements/why-would-i-settimeout-0/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/babys-first-module/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          JavaScript
+        </span>
+        <span class="time secondary">
+          3 min read
+        </span>
+  </div>
+  <h3 class="title anchored">Baby's First Module</h3>
+  <div class="description">Documenting as I learn about the wild world of modularizing JavaScript code</div>
+  <div class="date">Jun 18, 2019</div>
+</div>
+<div class="post-img">
+<img src="./posts/babys-first-module/featured.png">
+</div>
+</a>
+</div>
+<div class="blogpost">
+<a class="postlink" href="./posts/exploring-networks-through-concerts/index.html">
+<div class="postinfo">
+    <div class="meta">
+        <span class="categories secondary">
+          R
+        </span>
+        <span class="time secondary">
+          21 min read
+        </span>
+  </div>
+  <h3 class="title anchored">Exploring Networks Through Concerts</h3>
+  <div class="description">Using my personal concert data to explore how to make network diagram visuals</div>
+  <div class="date">Jun 15, 2019</div>
+</div>
+<div class="post-img">
+<img src="./posts/exploring-networks-through-concerts/featured.png">
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

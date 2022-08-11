@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Maya Gans">
+<meta name="dcterms.date" content="2019-06-18">
+<meta name="description" content="Documenting as I learn about the wild world of modularizing JavaScript code">
+
+<title>Maya Gans</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../inst/css/styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">maya<br>gans</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dataviz.html">dataviz</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html">projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html">resume</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Baby’s First Module</h1>
+                  <div>
+        <div class="description">
+          Documenting as I learn about the wild world of modularizing JavaScript code
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">JavaScript</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Maya Gans </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 18, 2019</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-book-is-organized-into-chapters-a-good-program-is-divided-into-modules." id="toc-a-book-is-organized-into-chapters-a-good-program-is-divided-into-modules." class="nav-link active" data-scroll-target="#a-book-is-organized-into-chapters-a-good-program-is-divided-into-modules.">A book is organized into chapters, a good program is divided into modules.</a></li>
+  <li><a href="#our-goal" id="toc-our-goal" class="nav-link" data-scroll-target="#our-goal">Our Goal:</a></li>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
+  <li><a href="#mymodule.js" id="toc-mymodule.js" class="nav-link" data-scroll-target="#mymodule.js">myModule.js</a></li>
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
+  <li><a href="#example_blocks.js" id="toc-example_blocks.js" class="nav-link" data-scroll-target="#example_blocks.js">example_blocks.js</a></li>
+  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus">BONUS</a>
+  <ul class="collapse">
+  <li><a href="#rather-than-having-buttons-with-their-functions-at-the-top-of-the-html" id="toc-rather-than-having-buttons-with-their-functions-at-the-top-of-the-html" class="nav-link" data-scroll-target="#rather-than-having-buttons-with-their-functions-at-the-top-of-the-html">Rather than having buttons with their functions at the top of the html</a></li>
+  <li><a href="#declare-button-elements-and-have-the-specifications-of-what-they-actually-do-after-the-module-is-loaded." id="toc-declare-button-elements-and-have-the-specifications-of-what-they-actually-do-after-the-module-is-loaded." class="nav-link" data-scroll-target="#declare-button-elements-and-have-the-specifications-of-what-they-actually-do-after-the-module-is-loaded.">Declare button elements and have the specifications of what they actually DO after the module is loaded.</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Modules are self contained scripts with their own distinct functionality. This allows for the addition or removal of modules as neccessary. It is easy enough to <code>require</code> modules using Node.js, but in the browser they behave very weirdly based on what browser you’re using. One of the quirks of JavaScripts!</p>
+<section id="a-book-is-organized-into-chapters-a-good-program-is-divided-into-modules." class="level2">
+<h2 class="anchored" data-anchor-id="a-book-is-organized-into-chapters-a-good-program-is-divided-into-modules.">A book is organized into chapters, a good program is divided into modules.</h2>
+<p>In my <a href="https://maya.rbind.io/post/2019/blockly-the-big-picture/">blockly big picture post</a> I used an inelegant hack within the <code>CreateDataSet</code> block to include the stringified class code into the block itself. <strong>This is the perfect use case for a module!</strong></p>
+</section>
+<section id="our-goal" class="level2">
+<h2 class="anchored" data-anchor-id="our-goal">Our Goal:</h2>
+<p>Rather than include the class script inside the <code>CreateDataSet</code> block, create a seperate module</p>
+<iframe id="demo block-iframe" height="300" width="700" src="../../../example_withModule/index.html" scrolling="false">
+</iframe>
+</section>
+<section id="workflow" class="level2">
+<h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
+<ul>
+<li>Create the Analysis class in a file called myModule.js and export it</li>
+<li>Import Analysis within our index.html file</li>
+<li>Change the <code>CreateDataSet</code> block to only contain the string <code>new Analysis()</code></li>
+<li>Cross fingers, see if it works??</li>
+</ul>
+<p><em>Before we even begin, I’m still a little confused why each browser has their own errors but in order to run and debug any html code locally download lite-server [<code>npm install lite-server</code>] then serve your site in the directory where your html is located using <code>lite-server index.html</code>. This worked far better than using Chrome directly!</em></p>
+</section>
+<section id="mymodule.js" class="level2">
+<h2 class="anchored" data-anchor-id="mymodule.js">myModule.js</h2>
+<p>I’ve created a file called myModule.js where I’ve defined the Analysis class and I’m exporting it to be used in our html file. The only line that’s changed here from the code in the prior post is the first line, be sure to export this as <code>default</code></p>
+<pre><code>// rather than const PREFIX = 
+// we will export Analysis as a module
+export default class Analysis {
+    constructor () { 
+        this.value = 0 
+    }
+    increment () { 
+        this.value += 1; 
+        return this 
+    }
+    display () {
+    return this.value 
+    }
+}</code></pre>
+</section>
+<section id="import" class="level2">
+<h2 class="anchored" data-anchor-id="import">Import</h2>
+<p>Back inside our html file we add</p>
+<pre><code>import Analysis from "myModule.js";</code></pre>
+<p>This was the trickiest part. This script needs to be contained within a <code>type=module</code> script tag, but in order for the blockly code to access the module we have to make Analysis a global class. The simplist way to do this is by using <code>window.Analysis</code>:</p>
+<pre><code>&lt;script type="module"&gt;
+import Analysis from "myModule.js";
+window.Analysis = Analysis
+&lt;/script&gt;</code></pre>
+</section>
+<section id="example_blocks.js" class="level2">
+<h2 class="anchored" data-anchor-id="example_blocks.js">example_blocks.js</h2>
+<p>Now we get elegant. Rather than include the Analysis class defintion within our block, we can simply point to our newly created module</p>
+<pre><code>Blockly.JavaScript['example_CreateDataSet'] = function(block) {
+    return "new Analysis()"
+}</code></pre>
+<p>Whew! With <strong>A LOT</strong> of help from <a href="https://ca.linkedin.com/in/evanschultz1">Evan Schultz</a>, I successfully loaded my first module!</p>
+</section>
+<section id="bonus" class="level2">
+<h2 class="anchored" data-anchor-id="bonus">BONUS</h2>
+<p>I had to include <code>window.Analysis = Analysis</code> because in my current framework I created two buttons with event handlers ABOVE the module.</p>
+<p>While this works, it’s not good code ettiquite. Instead, we can create the button elements with IDs, then assign the event handlers <strong>BELOW</strong> the module script tag. That way we create buttons, then specify what those buttons actually DO after our module is loaded. This way, our two buttons <code>show JavaScript</code> and <code>run JavaScript</code> will work without needing to specify Analysis at the global scope.</p>
+<section id="rather-than-having-buttons-with-their-functions-at-the-top-of-the-html" class="level3">
+<h3 class="anchored" data-anchor-id="rather-than-having-buttons-with-their-functions-at-the-top-of-the-html">Rather than having buttons with their functions at the top of the html</h3>
+<pre><code>&lt;button onclick="showCode()"&gt;Show JavaScript&lt;/button&gt;
+&lt;button onclick="runCode()"&gt;Run JavaScript&lt;/button&gt;</code></pre>
+</section>
+<section id="declare-button-elements-and-have-the-specifications-of-what-they-actually-do-after-the-module-is-loaded." class="level3">
+<h3 class="anchored" data-anchor-id="declare-button-elements-and-have-the-specifications-of-what-they-actually-do-after-the-module-is-loaded.">Declare button elements and have the specifications of what they actually DO after the module is loaded.</h3>
+<pre><code>&lt;button id="showCode"&gt;Show JavaScript&lt;/button&gt;
+&lt;button id="runCode"&gt;Run JavaScript&lt;/button&gt;</code></pre>
+<p>Now, BELOW our loaded module we can assign the function <code>runCode</code> [which evaluates the JavaScript within our blocks] to the button with the id above. This lets us look for the button in the UI - and then attach a click event to it. Below the <code>runCode</code> function we can now add the lines:</p>
+<pre><code>document.getElementById("runCode").addEventListener('click', runCode)
+document.getElementById("showCode").addEventListener('click', showCode)</code></pre>
+<p><code>document</code> looks within the entire html, and <code>getElementById()</code> grabs the proper element associated with the specified id [here the buttons that we get the IDs “runCode” and “showCode”]. <code>.addEventListener</code> allows us to attach <strong>multipule handlers</strong> to a single element: clicking the button should initiate (1) a click and (2) the function <code>runCode</code> or <code>showCode</code>.</p>
+<p>It’s easy to see now that having multiple modules each contained within their own script tags in our index.html (and thus individually loading) could get cumbersome. Up next, exploring module bundling [read: concatenation] and minification [read: removal of unnecessary characters]!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

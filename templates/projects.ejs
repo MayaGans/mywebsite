@@ -1,0 +1,98 @@
+```{=html}
+<% for (const item of items) { %>
+<div class="all-projects">
+<div class="title">
+  <h1><%- item.title %></h1>
+  <p><%- item.byline %></p>
+</div>
+
+<div class="all-content">
+<div class="button-group filters-button-group">
+<button class="button is-checked btn-default maya-btn" data-filter="*">show all</button>
+<% for (const project of item.projects.map(x => x.project).filter((v, i, a) => a.indexOf(v) === i)) { %>
+  <button class="button btn-default maya-btn" data-filter="<%= `.${project}` %>"><%- project %></button>
+<% } %>
+</div>
+
+<div class="project-container">
+<% for (const project of item.projects) { %>
+<div class="card <%- project.project %>">
+<a href="<%- project.href %>" target="_blank" rel="noopener" class="card-image hover-overlay">
+<img src="<%- project.img %>" class="img-responsive">
+</a>
+<div class="card-text">
+<h4><a href="<%= project.href %>" target="_blank" rel="noopener"><%= project.name %></a></h4>
+<div class="card-desription">
+<p><%= project.description %></p>
+</div>
+</div>
+</div>
+<% } %>
+</div>
+</div>
+</div>
+
+<% } %>
+
+<script>
+  window.addEventListener('load', function () {
+  // external js: isotope.pkgd.js
+
+// init Isotope
+var iso = new Isotope( '.project-container', {
+  itemSelector: '.card',
+  percentPosition: true,
+  layoutMode: 'masonry',
+  masonry: { 
+            percentPosition: true,
+            gutter: 20
+        }
+});
+
+// filter functions
+var filterFns = {
+  // show if number is greater than 50
+  numberGreaterThan50: function( itemElem ) {
+    var number = itemElem.querySelector('.number').textContent;
+    return parseInt( number, 10 ) > 50;
+  },
+  // show if name ends with -ium
+  ium: function( itemElem ) {
+    var name = itemElem.querySelector('.name').textContent;
+    return name.match( /ium$/ );
+  }
+};
+
+// bind filter button click
+var filtersElem = document.querySelector('.filters-button-group');
+filtersElem.addEventListener( 'click', function( event ) {
+  // only work with buttons
+  if ( !matchesSelector( event.target, 'button' ) ) {
+    return;
+  }
+  var filterValue = event.target.getAttribute('data-filter');
+  // use matching filter function
+  filterValue = filterFns[ filterValue ] || filterValue;
+  iso.arrange({ filter: filterValue });
+});
+
+// change is-checked class on buttons
+var buttonGroups = document.querySelectorAll('.button-group');
+for ( var i=0, len = buttonGroups.length; i < len; i++ ) {
+  var buttonGroup = buttonGroups[i];
+  radioButtonGroup( buttonGroup );
+}
+
+function radioButtonGroup( buttonGroup ) {
+  buttonGroup.addEventListener( 'click', function( event ) {
+    // only work with buttons
+    if ( !matchesSelector( event.target, 'button' ) ) {
+      return;
+    }
+    buttonGroup.querySelector('.is-checked').classList.remove('is-checked');
+    event.target.classList.add('is-checked');
+  });
+}
+})
+</script>
+```

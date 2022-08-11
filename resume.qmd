@@ -1,0 +1,248 @@
+---
+format:
+  html:
+    css: inst/css/resume.css
+execute:
+  echo: false
+---
+
+```{r, echo=FALSE}
+source("R/resume_utils.R")
+source("R/icons.R")
+```
+
+<div class="grid-container">
+  
+<section class="logo section">
+```{ojs}
+import {chart, newData, updateBar} from "@mayagans/continually-updating-bar-plot"
+chart
+```
+
+```{ojs}
+//| output: false
+{
+  while (true) {
+    newData();
+    updateBar();
+    yield;
+    await Promises.delay(1300);
+  }
+}
+```
+
+</section>
+
+<section class="title section">
+<h1>MAYA GANS</h1>
+<p>Data Visualization Engineer</p>
+</section>
+
+  
+<section class="intro section">
+<p>I graduated from the University of Wyoming with my Master’s in Science May 2019. My thesis was on the bacterial communities of a parasitic plant and how it interacts with fungi and adjacent trees. Working in ecology provided the foundation for studying complex, interconnected networks. My interests shifted from my study system to the statistical methods needed to model complex interactions and large datasets. After completing my degree, I worked at RStudio as an Intern where I created tidyblocks.tech, a blocks-based coding language to teach high school statistical students the fundamentals of programming. 
+
+After my internship I have been applying my R and JavaScript skills as a web developer in the clinical trial space.</p>
+</section>
+
+<section class="experience section">
+<h3>Experience</h3>
+<hr>
+
+```{r, echo=FALSE}
+job(
+  position = "Data Visualization Engineer", 
+  date = "2020-Present", 
+  role = "Atorus Research", 
+  attrs = "Designing and developing software, end to end from user interface to technical application. Maintaining a code base using software versioning tools and continuous integration tests. Interfacing with clients and leading projects."
+)
+
+job(
+  position = "Statistical Programmer", 
+  date = "2019-2020", 
+  role = "Cytel Inc", 
+  attrs = "Creating custom Shiny applications In R using JavaScript and advanced R programming skills. Using GitHub to collaborate with a team of R programmers and create packages."
+)
+
+job(
+  position = "JavaScript Developer", 
+  date = "2018-2019", 
+  role = "RStudio Inc", 
+  attrs = "Using JavaScript and R to build TidyBlocks, a blocks-based coding language of the Tidyverse for data manipulation and visualization."
+)
+```
+
+</section>
+
+<section class="social section">
+<div class="link-container">
+```{r, echo=FALSE}
+twitter("https://twitter.com/Mayacelium")
+github("https://github.com/mayagans/")
+linkedin("https://www.linkedin.com/in/mayagans/")
+personal("https://maya.rbind.io/")
+```
+</div>
+</section>
+
+<section class="education section">
+<h3>Education</h3>
+<hr>
+```{r, echo=FALSE}
+education(
+  "MASTER OF SCIENCE",
+  "University of Wyoming",
+  "2016-2019"
+)
+
+education(
+  "BACHELOR OF SCIENCEE",
+  "Florida International University",
+  "2010-2014"
+)
+```
+</section>
+
+
+<section class="skills section">
+<h3>Skills</h3>
+<hr>
+<div class="all-skills">
+```{r, echo=FALSE}
+skill("R", 95)
+skill("git", 95)
+skill("JavaScript", 80)
+skill("d3.js", 70)
+skill("react.js", 50)
+```
+</div>
+</section>
+
+<section class="publications section">
+<h3>Talks and Publications</h3>
+<div class="wrapper">
+<hr>
+```{r, echo = FALSE}
+talk_pub(
+  auth = "Gans, MR", 
+  title = "A Little JS Goes a Long Way", 
+  link = "https://alittlejs.netlify.app/#1", 
+  location = "RLadies Dammamm and RLadies Tunis", 
+  img = "talk_alittlejs.png"
+)
+
+talk_pub(
+  auth = "Gans, MR", 
+  title = "JS + R = Amazing Applications", 
+  link = "https://phuseus-jsandr.netlify.app/",
+  location = "Phuse US 2021", 
+  img = "talk_jsplusr.png"
+)
+
+talk_pub(
+  auth = "Gans, MR", 
+  title = "Starting an R Book Club: Finding Friendship in Isolation", 
+  link = "https://r4dsbookclub.netlify.app/#1",
+  location = "rstudio::global(2021). January, 2021", 
+  img = "talk_bookclub.png"
+)
+
+talk_pub(
+  auth = "Gans, MR", 
+  title = "Episode 15", 
+  link = "https://r4dsbookclub.netlify.app/#1",
+  location = "Shiny Developer Podcast", 
+  img = "talk_shinydev.png"
+)
+
+talk_pub(
+  auth = "Gans, MR", 
+  title = "From Manuscript to R Package.",
+  location = "INBRE Summer of Code. August 2020, Virtual", 
+  img = "talk_inbre.png"
+)
+
+talk_pub(
+  auth = "Gans, MR", 
+  title = "TidyCDISC", 
+  link = "https://r4dsbookclub.netlify.app/#1",
+  location = "R/Pharma, R/Medicine, and Phuse EU. September 2020, Virtual", 
+  img = "talk_rmed.png"
+)
+
+talk_pub(
+  auth = "Gans, MR", 
+  title = "TidyBlocks: using the language of the Tidyverse in a blocks-based interface", 
+  location = "RStudio Conference January 2020, San Francisco, CA", 
+  img = "talk_tidyblocks.png"
+)
+
+talk_pub(
+  auth = "Gans, MR", 
+  title = "JavaScript for Data Science. CRC Press, 2020", 
+  location = "RStudio Conference January 2020, San Francisco, CA", 
+  img = "pub_js4ds.png"
+)
+```
+      
+</div>
+</section>
+
+<section class="expertise section">
+<h3>Expertise</h3>
+<hr>
+```{r, echo=FALSE}
+htmltools::tags$ul(class="alternating-list",
+  htmltools::tags$li("data visualization"),
+  htmltools::tags$li("htmlwidgets"),
+  htmltools::tags$li("shiny"),
+  htmltools::tags$li("package development")
+)
+```
+</section>
+
+<section class="awards section">
+<h3>Awards</h3>
+<hr>
+```{r, echo=FALSE}
+award(
+  "RSTUDIO TABLE CONTEST",
+  "Runner-up: a Shiny GUI to generate clinical trial tables"
+)
+
+award(
+  "WILHELM G AND RAGNHIL D SOLHEIM MEMORIAL SCHOLORSHIP 2019",
+  "Totaling $600 for an outstanding Botany graduate student"
+)
+
+award(
+  "DATA CARPENTRY 2018",
+  "Totalling $1150 for certification to teach R Programming"
+)
+
+award(
+  "INSURETECH CONNECT 2018",
+  "Totaling $1500 for registration to attend InsureTech Connect 2018 in Las Vegas, NV"
+)
+
+award(
+  "FISHER INNOVATION CHALLENGE 2018",
+  "Totalling $31500 for technology start up seed funding"
+)
+```
+</section>
+
+<section class="hobbies section">
+<h3>Hobbies</h3>
+<hr>
+```{r, echo=FALSE}
+htmltools::tags$ul(class="alternating-list",
+  htmltools::tags$li("rock climbing"),
+  htmltools::tags$li("playing bass"),
+  htmltools::tags$li("music analytics"),
+  htmltools::tags$li("statistics")
+)
+```
+</section>
+
+</div>

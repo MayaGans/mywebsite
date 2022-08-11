@@ -1,0 +1,212 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "maya<br>gans",
+    "section": "",
+    "text": "I am currently a Data Visualization Engineer at Atorus Research where I develop custom applications using R and JavaScript. As an RStudio intern I designed TidyBlocks, a visual block based programming language. I also co-wrote JavaScript for Data Science. I use ggplot2 and d3.js to create music related infographics for JamBase.com. When I’m not coding, I’m climbing tall mountains.\n\n\nInterests\n\n\nJavaScript\n\n\nd3.js\n\n\nShiny\n\n\nPlaying bass\n\n\nRock climbing\n\n\n\n\nEducation\n\n\n\n\n\nMSc in Botany, 2019\n\n\nUniversity of Wyoming\n\n\n\n\n\n\n\nBSc in Biology, 2016\n\n\nFlorida International University"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "maya<br>gans",
+    "section": "",
+    "text": "import {chart, newData, updateBar} from \"@mayagans/continually-updating-bar-plot\"\nchart\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n{\n  while (true) {\n    newData();\n    updateBar();\n    yield;\n    await Promises.delay(1300);\n  }\n}\n\n\n\n\n\n\n\n\n\nMAYA GANS\n\n\nData Visualization Engineer\n\n\n\n\nI graduated from the University of Wyoming with my Master’s in Science May 2019. My thesis was on the bacterial communities of a parasitic plant and how it interacts with fungi and adjacent trees. Working in ecology provided the foundation for studying complex, interconnected networks. My interests shifted from my study system to the statistical methods needed to model complex interactions and large datasets. After completing my degree, I worked at RStudio as an Intern where I created tidyblocks.tech, a blocks-based coding language to teach high school statistical students the fundamentals of programming.\nAfter my internship I have been applying my R and JavaScript skills as a web developer in the clinical trial space.\n\n\n\n\nExperience\n\n\n\n\n\nData Visualization Engineer\n2020-Present\nAtorus Research\nDesigning and developing software, end to end from user interface to technical application. Maintaining a code base using software versioning tools and continuous integration tests. Interfacing with clients and leading projects.\n\n\n\n\nStatistical Programmer\n2019-2020\nCytel Inc\nCreating custom Shiny applications In R using JavaScript and advanced R programming skills. Using GitHub to collaborate with a team of R programmers and create packages.\n\n\n\n\nJavaScript Developer\n2018-2019\nRStudio Inc\nUsing JavaScript and R to build TidyBlocks, a blocks-based coding language of the Tidyverse for data manipulation and visualization.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEducation\n\n\n\n\n\nMASTER OF SCIENCE\nUniversity of Wyoming\n2016-2019\n\n\n\n\nBACHELOR OF SCIENCEE\nFlorida International University\n2010-2014\n\n\n\n\n\n\nSkills\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\n\n\n\ngit\n\n\n\n\n\n\n\n\n\n\nJavaScript\n\n\n\n\n\n\n\n\n\n\nd3.js\n\n\n\n\n\n\n\n\n\n\nreact.js\n\n\n\n\n\n\n\n\n\n\n\n\nTalks and Publications\n\n\n\n\n\n\n\nGans, MR\nA Little JS Goes a Long Way\n\nRLadies Dammamm and RLadies Tunis\n\n\n\n\n\n\nGans, MR\nJS + R = Amazing Applications\n\nPhuse US 2021\n\n\n\n\n\n\nGans, MR\nStarting an R Book Club: Finding Friendship in Isolation\n\nrstudio::global(2021). January, 2021\n\n\n\n\n\n\nGans, MR\nEpisode 15\n\nShiny Developer Podcast\n\n\n\n\n\n\nGans, MR\nFrom Manuscript to R Package.\n\nINBRE Summer of Code. August 2020, Virtual\n\n\n\n\n\n\nGans, MR\nTidyCDISC\n\nR/Pharma, R/Medicine, and Phuse EU. September 2020, Virtual\n\n\n\n\n\n\nGans, MR\nTidyBlocks: using the language of the Tidyverse in a blocks-based interface\n\nRStudio Conference January 2020, San Francisco, CA\n\n\n\n\n\n\nGans, MR\nJavaScript for Data Science. CRC Press, 2020\n\nRStudio Conference January 2020, San Francisco, CA\n\n\n\n\n\n\n\n\nExpertise\n\n\n\n\n\ndata visualization\nhtmlwidgets\nshiny\npackage development\n\n\n\n\n\n\nAwards\n\n\n\n\n\n\nRSTUDIO TABLE CONTEST\nRunner-up: a Shiny GUI to generate clinical trial tables\n\n\n\n\nWILHELM G AND RAGNHIL D SOLHEIM MEMORIAL SCHOLORSHIP 2019\nTotaling $600 for an outstanding Botany graduate student\n\n\n\n\nDATA CARPENTRY 2018\nTotalling $1150 for certification to teach R Programming\n\n\n\n\nINSURETECH CONNECT 2018\nTotaling $1500 for registration to attend InsureTech Connect 2018 in Las Vegas, NV\n\n\n\n\nFISHER INNOVATION CHALLENGE 2018\nTotalling $31500 for technology start up seed funding\n\n\n\n\n\n\nHobbies\n\n\n\n\n\nrock climbing\nplaying bass\nmusic analytics\nstatistics"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "maya<br>gans",
+    "section": "",
+    "text": "explaining techinical concepts to myself\n\n\n\n\n\n    \n        \n          R\n        \n        \n          4 min read\n        \n  \n  \n  A datatable case study to move around DOM elements in Shiny.\n  Feb 15, 2022\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          5 min read\n        \n  \n  \n  Creating a Skip Link in Shiny apps!\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Trying to understand recursion by explaining it.\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  An ongoing list of functions I took for granted in R as I learn JavaScript\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          11 min read\n        \n  \n  \n  Documenting using D3 in R (without Observable)\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          6 min read\n        \n  \n  \n  Documenting my first foray into the Svelte JavaScript frontend framework\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Using the GSAP animation library in Xaringan slides\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Creating a custom Shiny Input\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          R\n        \n        \n          6 min read\n        \n  \n  \n  I tanked my first live coding interview but that still made me want to find answers to all their questions\n  Aug 27, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          6 min read\n        \n  \n  \n  Statements aren't functions? Explaining the different and walking through some different JavaScript statements.\n  Aug 2, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Walking through what JavaScript prototypes are so I can better understand them myself\n  Jul 22, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          CSS\n        \n        \n          2 min read\n        \n  \n  \n  Statements aren't functions? Explaining the different and walking through some different JavaScript statements.\n  Jul 14, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          2 min read\n        \n  \n  \n  Understanding asynchronous nature of JavaScript by setting the timeout to zero.\n  Jul 1, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Documenting as I learn about the wild world of modularizing JavaScript code\n  Jun 18, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          R\n        \n        \n          21 min read\n        \n  \n  \n  Using my personal concert data to explore how to make network diagram visuals\n  Jun 15, 2019\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "maya<br>gans",
+    "section": "",
+    "text": "test\n\n\n\nshow all\n  javascript\n  shiny\n  r\n\n\n\n\n\n\n\n\n\na block based coding language to learn R programming\n\n\n\n\n\n\n\n\n\n\na custom shiny input boinding to click on body parts\n\n\n\n\n\n\n\n\n\n\nthe solution manual to Hadley Wickham's Mastering Shiny\n\n\n\n\n\n\n\n\n\n\na svelte application to look at Phish statistics\n\n\n\n\n\n\n\n\n\n\na custom htmlwidget of a github calendar using d3.js\n\n\n\n\n\n\n\n\n\n\na wrapper package around the phish.net API\n\n\n\n\n\n\n\n\n\n\na table generating GUI for clinical trial data\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/post-with-code/index.html",
+    "href": "projects/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "projects/welcome/index.html",
+    "href": "projects/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "dataviz.html",
+    "href": "dataviz.html",
+    "title": "maya<br>gans",
+    "section": "",
+    "text": "Showcase of some of my data visualizations made in both R and JavaScript\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/moving-dom-elements/index.html",
+    "href": "posts/moving-dom-elements/index.html",
+    "title": "Moving DOM Elements in Shiny",
+    "section": "",
+    "text": "As a Shiny web developer it’s really common to leverage existing packages to create your HTML. But what if a package gets you 90% of where you want to go, and you want to customize it a little?\nIn this tutorial I give a default DT table a small makeover by combining the datatable’s dataTables_length element and the datatables `dataTables_info element. How did I find the names of these elements? The inspector!\nMy goal is to combine these into a single element at the bottom of the table:"
+  },
+  {
+    "objectID": "posts/moving-dom-elements/index.html#the-plan",
+    "href": "posts/moving-dom-elements/index.html#the-plan",
+    "title": "Moving DOM Elements in Shiny",
+    "section": "The Plan",
+    "text": "The Plan\nGiven the following Shiny app:\nlibrary(shiny)\n\nui <- fluidPage(\n  DT::dataTableOutput(\"table\")\n)\n\nserver <- function(input, output, session) {\n  output$table <- DT::renderDataTable(\n    data.frame(cars),\n    rownames = FALSE,\n    # I want to scroll the y-axis \n    # so the table is always the same height\n    options = list(\n      scrollY = '50vh'\n    )\n  )\n}\n\nshinyApp(ui, server)\nWe need to:\n\nStore the select within dataTables_length as an object\nCreate a new HTML element, new_bottom that we will use for our revamped dataTables_info\nAdd the preamble text Showing\nAppend the select dropdown from dataTables_length to the new element\nAdd the total number of rows information in R\nAdd the suffix text entries\nReplace dataTables_info with our new element\nGive the new element the dataTables_info class for styling\nRemove the dataTables_length node from the DOM"
+  },
+  {
+    "objectID": "posts/moving-dom-elements/index.html#implementation",
+    "href": "posts/moving-dom-elements/index.html#implementation",
+    "title": "Moving DOM Elements in Shiny",
+    "section": "Implementation",
+    "text": "Implementation\nMy general workflow for applying JS to Shiny apps is to run the application and then actually do my manipulation in the browser’s console.\n\nStep 1\nUsing jQuery I stored the select dropdown to the object dropdown by finding the element of class dataTables_length, and then finding the select element inside it\nconst dropdown = $('.dataTables_length')\n                         .find('label')\n                         .find('select')\n\n\n\nStep 2 & 3\nNext I created a new DOM element, added the class custom_dropdown to make selecting the node easier, and added the prefix text Showing\nlet new_bottom = document.createElement('div')\nnew_bottom.classList.add('custom_dropdown')\nnew_bottom.innerHTML = 'Showing '\n\n\nStep 4\nUsing jQuery’s append function, we can add the isolated select to our new DOM element:\ndropdown.appendTo(new_bottom)\n\n\nStep 5 & 6\nAnd because we’re writing JS as a string in R we can interpolate the nrows number to use in the suffix text of 50 entries\nnew_bottom.append(' of ' +\", nrow(cars), \" + ' entries')\n\n\nStep 7\nNow we can replace the existing element with our new custom one!\n$('.dataTables_info').replaceWith(new_bottom)\n\n\nStep 8\nWe can remove the custom class we added, and give it the class dataTables_info so that the same styling of the old element is applied to our new one.\n$('.custom_dropdown')\n    .removeClass('custom_dropdown')\n    .addClass('dataTables_info') \n\n\nStep 9\nAnd now we can remove the dataTables_length element from the DOM!\n$('.dataTables_length').remove()"
+  },
+  {
+    "objectID": "posts/moving-dom-elements/index.html#putting-it-all-together",
+    "href": "posts/moving-dom-elements/index.html#putting-it-all-together",
+    "title": "Moving DOM Elements in Shiny",
+    "section": "Putting it All Together",
+    "text": "Putting it All Together\nThe DT function renderDataTable function has a callback argument, a function that is run once the table is rendered. We can apply our JS here as a string:\nlibrary(shiny)\n\nui <- fluidPage(\n  DT::dataTableOutput(\"table\")\n)\n\nserver <- function(input, output, session) {\n  output$table <- DT::renderDataTable(\n    data.frame(cars),\n    rownames = FALSE,\n    options = list(\n      scrollY = '50vh'\n    ),\n    callback = DT::JS(paste0(\"\n     const dropdown = $('.dataTables_length')\n                         .find('label')\n                         .find('select')\n\n     let new_bottom = document.createElement('div')\n     new_bottom.classList.add('custom_dropdown')\n     new_bottom.innerHTML = 'Showing '\n     \n     dropdown.appendTo(new_bottom)\n                      \n     new_bottom.append(' of ' +\", nrow(cars), \" + ' entries')\n                      \n     $('.dataTables_info')\n          .replaceWith(new_bottom)\n                           \n     $('.custom_dropdown')\n         .removeClass('custom_dropdown')\n         .addClass('dataTables_info') \n                         \n     $('.dataTables_length').remove()\"))\n  )\n}\n\nshinyApp(ui, server)\nEt Viola! It’s a small UI fix that makes a world of difference!\nI leverage jQuery here a LOT because Shiny is already loading the library, but vanilla JS can do all of this now. I’m hoping to refactor this code to get more familiar with vanilla JS DOM manipulation: stay tuned for more!"
+  },
+  {
+    "objectID": "posts/exploring-networks-through-concerts/index.html",
+    "href": "posts/exploring-networks-through-concerts/index.html",
+    "title": "Exploring Networks Through Concerts",
+    "section": "",
+    "text": "My favorite music is improvisational; seeing my favorite musicians push themselves into new territory in a one of a kind unique experience is one of the most exciting creative processes to bear witness to. The art of improvisation also tends to bring people together, which was the inspiration behind creating this network. I chose to teach myself network science using a topic I’m extremely familiar with; the jam band live music scene. I began documenting all the concerts I attend, noting the artists partaking in those bands.\nThis allowed me to learn Neo4J, and RNeo4J for the visualization of the network. Here I have visualized the artists I’ve seen, using the metric of betweeness to quantify the importance of artists and bands connecting other network nodes. Betweenness centrality takes every combination of node and measures the shortest path between them, counting how many times each node is used in the shortest path. Nodes are proportionately sized to reflect their betwenness centrality within the network.\nI also used the Gervan-Newman algorithm which removes these highly important nodes to see which artists and bands belong to clusters. We can then look at these artists and ask questions like: are they clustering due to geography? Perhaps the New Orleans music scene is segregated from the New York scene. As Wikipedia puts it: Instead of trying to construct a measure that tells us which edges are the most central to communities, the Girvan–Newman algorithm focuses on edges that are most likely “between” communities.\nEdges are also sized according to their weight. Here that is a metric of how many times we’ve seen that artist in the band. As a Phishhead, the edges of Phish are far thicker than any other relationship."
+  },
+  {
+    "objectID": "posts/exploring-networks-through-concerts/index.html#connect-your-graph-to-the-database",
+    "href": "posts/exploring-networks-through-concerts/index.html#connect-your-graph-to-the-database",
+    "title": "Exploring Networks Through Concerts",
+    "section": "Connect your graph to the database",
+    "text": "Connect your graph to the database\nI’m using the default port. You can find this under Details in Neo4j Desktop. Make sure to use the HTTP port (7474)\ngraph <- startGraph(\"http://localhost:7474/db/data/\")\nPass the graph object to summary to get graph overview. This gives us all the combinations of node relationships and helps to familiarize ourselves with the data model.\n    # summary(graph)\n\n    ##     This        To That\n    ## 1 artist PLAYED_IN band\nWe can write a query and using the cypher function perform that query on our graph. Nodes are written in perenthesis and connected by edges in brackets. The names of the nodes and edges come after colons. We can assign the nodes and edges labels to perform queries.\n    # a:artist = a is a label; artist is the name of the node\n\n    # here we say using the relationship of artists playing in bands\n    # how many times have we seen each artist\n\n    query = \"\n    MATCH (a:artist)-[:PLAYED_IN]->(b:band)\n    RETURN a.name , COUNT(*)  AS TimesPlayed\n    ORDER BY TimesPlayed DESC\n    LIMIT 10\n    \"\n    cypher(graph, query)\n\n    ##               a.name TimesPlayed\n    ## 1     Trey Anastasio          15\n    ## 2        Mike Gordon          12\n    ## 3       John Fishman          11\n    ## 4     Page McConnell          11\n    ## 5  George Porter Jr.           7\n    ## 6       John Medeski           6\n    ## 7        DJ Williams           5\n    ## 8      Eddie Roberts           5\n    ## 9        Shira Elias           5\n    ## 10       Adam Deitch           5\nNow we can use igraph to create static visuals and perform lots of network metrics.\nlibrary(igraph)\nIn order to use igraph we need to extract edgelists with cypher query. The visualization packages in R work with edgelists to create visualizations where node 1 and node 2 are in different columns, indicating there should be a relationship between 1 and 2.\nIn this specific graph query we will extract the times an artist is seen in a band and we can give the edges weights which are how many times we’ve seen that artist in that band.\n    query = \"\n    MATCH (a:artist)-[r:PLAYED_IN]->(b:band) \n    RETURN a.name, b.name, COUNT(*) AS weight\n    ORDER BY weight DESC\n    \"\n\n    edges = cypher(graph, query)\n    head(edges)\n\n    ##           a.name                  b.name weight\n    ## 1 Trey Anastasio                   Phish     11\n    ## 2   John Fishman                   Phish     11\n    ## 3    Mike Gordon                   Phish     11\n    ## 4 Page McConnell                   Phish     11\n    ## 5  Scott Metzger Joe Russo's Almost Dead      3\n    ## 6 Tommy Hamilton Joe Russo's Almost Dead      3\nRunning this script we see we’ve seen Trey in Phish 11 times. Because this is my favorite band it makes sense I’ve seen them the most.\ngraph_from_data_frame takes this edgelist and we can then pass that to plot (with default settings)\n    ig = graph_from_data_frame(edges, directed = F)\n    plot(ig)\n\nThis visual is pretty gross, especially because it is a large network. We can remove labels to look at the general structure of our graph.\nplot(ig, vertex.color = \"forestgreen\", vertex.label = NA, size = 1)\n\nWe can further improve on this by making the size of the nodes a function of some graph metric. Here we will explore betweenness: how often some node is on the shortest paths. Betweenness looks at every combination of nodes and calculates the shortest path between them; adding up how many times a node is on that shortest path. High betweennesss indicates bridges between clusters in the graph.\n    # we are sorting based on the top 5 nodes of betweenness\n    sort(betweenness(ig), decreasing = TRUE)[1:5]\n\n    ## DJ Williams Shots Fired           Eddie Roberts      Everyone Orchestra \n    ##                9282.675                7163.549                6277.136 \n    ##      Foundation of Funk                  Skerik \n    ##                5674.447                5404.948\nWe can then use this in our visualization by changing the size of the vertices and scale so that it doesn’t take up the entire graph\n    plot(ig, vertex.color = \"cyan\", vertex.label = NA,\n         vertex.size = betweenness(ig)/(max(betweenness(ig)* 0.1)))\n\nWe also want to look at community detection algorithms. There are many different algorithms and here we are using the Gervin Newman algorithm which iteratively removes edges with high betweeenness centrality. What’s left without these major bridges is our clusters\n    clusters = cluster_edge_betweenness(ig)\n    clusters[1:3]\n\n    ## $`1`\n    ##  [1] \"Trey Anastasio\"                                           \n    ##  [2] \"John Fishman\"                                             \n    ##  [3] \"Mike Gordon\"                                              \n    ##  [4] \"Page McConnell\"                                           \n    ##  [5] \"Bill Kreutzmann\"                                          \n    ##  [6] \"Mickey Heart\"                                             \n    ##  [7] \"Phil Lesh\"                                                \n    ##  [8] \"Jeff Chimenti\"                                            \n    ##  [9] \"Bob Weir\"                                                 \n    ## [10] \"Scott Murawski\"                                           \n    ## [11] \"John Kimock\"                                              \n    ## [12] \"Oteil Burbridge\"                                          \n    ## [13] \"Craig Myers\"                                              \n    ## [14] \"John Mayer\"                                               \n    ## [15] \"Phish\"                                                    \n    ## [16] \"Fare Thee Well: Celebrating 50 Years of the Grateful Dead\"\n    ## [17] \"Dead and Company\"                                         \n    ## [18] \"Mike Gordon Band\"                                         \n    ## [19] \"Trey Anastasio Solo\"                                      \n    ## \n    ## $`2`\n    ##  [1] \"Scott Metzger\"                      \n    ##  [2] \"Tommy Hamilton\"                     \n    ##  [3] \"Dave Drewitz\"                       \n    ##  [4] \"Joe Russo\"                          \n    ##  [5] \"Marco Benevento\"                    \n    ##  [6] \"John Medeski\"                       \n    ##  [7] \"Scotty Zwang\"                       \n    ##  [8] \"Billy Martin\"                       \n    ##  [9] \"John Scofield\"                      \n    ## [10] \"Adam Deitch\"                        \n    ## [11] \"Steve Lyons\"                        \n    ## [12] \"Skerik\"                             \n    ## [13] \"Chris Wood\"                         \n    ## [14] \"Raina Mullen\"                       \n    ## [15] \"Borahm Lee\"                         \n    ## [16] \"Jesus Coomes\"                       \n    ## [17] \"Vincente Archer\"                    \n    ## [18] \"Cyrll Nevil\"                        \n    ## [19] \"Bill Stewart\"                       \n    ## [20] \"Nigel Hall\"                         \n    ## [21] \"Holly Bowling\"                      \n    ## [22] \"Ryan Zoidis\"                        \n    ## [23] \"Benny Bloom\"                        \n    ## [24] \"Erik Deutsch\"                       \n    ## [25] \"Ghostface Killah\"                   \n    ## [26] \"DJ Logic\"                           \n    ## [27] \"Larry Goldings\"                     \n    ## [28] \"Joe Russo's Almost Dead\"            \n    ## [29] \"Worship My Organ\"                   \n    ## [30] \"Ghost Light\"                        \n    ## [31] \"Medeski, Martin, Scofield & Wood\"   \n    ## [32] \"Lettuce\"                            \n    ## [33] \"Medeski, Martin & Wood\"             \n    ## [34] \"Adam Deitch Quartet\"                \n    ## [35] \"John Scofield's Country For Old Men\"\n    ## [36] \"DRKWAV\"                             \n    ## \n    ## $`3`\n    ##  [1] \"DJ Williams\"          \"Zigaboo Modeliste\"    \"Deshawn Alexander\"   \n    ##  [4] \"Eddie Roberts\"        \"Eric Krasno\"          \"Joe Tatton\"          \n    ##  [7] \"Kevin Scott\"          \"Pete Shand\"           \"Marcus King\"         \n    ## [10] \"Simon Allen\"          \"Lamar Williams Jr.\"   \"Chris Spies\"         \n    ## [13] \"Duane Trucks\"         \"Kimberly Dawson\"      \"Adryon de Leon\"      \n    ## [16] \"Alan Evans\"           \"Foundation of Funk\"   \"The Cleaners\"        \n    ## [19] \"Matador Soul Sounds\"  \"The New Mastersounds\"\nWe can see some structure to these clusters; Phish and Dead and Company is seprate from the local shows I’ve seen in Colorado in cluster 3. We can use these clusters to color our graph coloring the verteces by their clusters.\n    plot(ig, vertex.color = clusters$membership, vertex.label = NA,\n         vertex.size = betweenness(ig)/(max(betweenness(ig)* 0.1)))\n\nWe can make this same graph dynamic using networkD3; a package which uses beautiful D3 visuals in R.\nlibrary(networkD3)\nWe have an edge dataframe but we also need a node dataframe for this package. It’s easy enough to extract this, pulling out the unique names of all our nodes from the edgeist.\n\n    nodes = data.frame(name = unique(c(edges$a.name, edges$b.name)))\n    head(nodes)\n\n    ##             name\n    ## 1 Trey Anastasio\n    ## 2   John Fishman\n    ## 3    Mike Gordon\n    ## 4 Page McConnell\n    ## 5  Scott Metzger\n    ## 6 Tommy Hamilton\nWe also need the edgelist to point to the name of the node we index the position of the node, getting the name of the from and to nodes and setting them as the source and target. We need to write a loop because although R starts counting at 1, we need to begin here with the first node at 0.\nfor(i in 1:nrow(edges)) {\n      from = edges$a.name[i]\n      to = edges$b.name[i]\n      \n      edges$source[i] = which(nodes$name == from)\n      edges$target[i] = which(nodes$name == to)\n    }\n\n    edges$source = edges$source - 1\n    edges$target = edges$target - 1\n\n    nodes$group = clusters$membership\n    nodes$Nodesize = betweenness(ig)/10\nUsing the edges, nodes and source and functions set above, we can include more functions for customization. We can set the name so when we scroll over that node we see a name different from the id, we can color our nodes by their cluster, change the font size, and linkWidth to mirror the weight (obviously Phish is the thickest).\nforceNetwork(edges, nodes, Source = \"source\", Target = \"target\",\n             NodeID = \"name\", Group = \"group\", Nodesize = \"Nodesize\",\n             linkWidth = edges$weight, zoom = FALSE, fontSize = 50, opacity = 0.8, \n             charge = -5)\nAnd there you have it! My first foray into graph metrics.\nAs an aside, you can save your network using the saveNetwork function which includes all the html code needed to imbed your graph into a webpage such as I have here. I’ve included the html file within an <iframe> tag which allows for the imbedding of a webpage within a webpage"
+  },
+  {
+    "objectID": "posts/skip-links/index.html",
+    "href": "posts/skip-links/index.html",
+    "title": "Skip Links",
+    "section": "",
+    "text": "I took Jon Kuperman’s amazing accessibility intro course on Frontend Masters and one of the coolest things he demonstrated was how to create a skip link. Skip links allow a keyboard only user to tab directly to the content of a page, rather than first tab through the page’s entire menu. In this post, I wanted to share what I learned as it applies to Shiny!\nI like to demonstrate where we’re going before I break it down. In the navbar below you see a link with the text “Skip to Main Content”. Clicking this link directs us to the button with the text “Tab Skip to Here!” [visible by the focus ring around the button]. In this post we’re going to create and style the skip link!\n{#r, echo=FALSE} shiny::tagList( shiny::tags$a(id=\"skiplink-pre\", \"Skip to Main Content\", href=\"#first-button-pre\"),     shiny::navbarPage(\"App Title\",                       shiny::tabPanel(\"Plot\"),                       shiny::tabPanel(\"Summary\"),                       shiny::tabPanel(\"Table\")     ),     shiny::tags$button(id=\"first-button-pre\", \"Tab Skip to Here!\") )"
+  },
+  {
+    "objectID": "posts/skip-links/index.html#nav-bar",
+    "href": "posts/skip-links/index.html#nav-bar",
+    "title": "Skip Links",
+    "section": "Nav Bar",
+    "text": "Nav Bar\nIn Shiny, when we create a navigation bar, we get a <nav> element with the ARIA role “navigation”. The navbar contains a tabbable list with data-values set to the tab’s titles.\nshiny::navbarPage(\"App Title\",\n  shiny::tabPanel(\"Plot\"),\n  shiny::tabPanel(\"Summary\"),\n  shiny::tabPanel(\"Table\")\n)\n \n<nav class=\"navbar navbar-default navbar-static-top\" role=\"navigation\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <span class=\"navbar-brand\">App Title</span>\n    </div>\n    <ul class=\"nav navbar-nav\" data-tabsetid=\"8029\">\n      <li class=\"active\">\n        <a href=\"#tab-8029-1\" data-toggle=\"tab\" data-value=\"Plot\">Plot</a>\n      </li>\n      <li>\n        <a href=\"#tab-8029-2\" data-toggle=\"tab\" data-value=\"Summary\">Summary</a>\n      </li>\n      <li>\n        <a href=\"#tab-8029-3\" data-toggle=\"tab\" data-value=\"Table\">Table</a>\n      </li>\n    </ul>\n  </div>\n</nav>\nNow, let’s imagine your navbar has some drop down menues. If the navbar has 20 tabbable items, the user is going to need to tab through to number 21 in order to get to the links on the page they are browsing!"
+  },
+  {
+    "objectID": "posts/skip-links/index.html#create-a-link",
+    "href": "posts/skip-links/index.html#create-a-link",
+    "title": "Skip Links",
+    "section": "Create a link",
+    "text": "Create a link\nThe first step in creating a skip link is to create the link itself. Before our navbar let’s pre-append a link with the id=skiplink.\n{#r, eval=FALSE} shiny::tags$a(id=\"skiplink\", \"Skip to Main Content\")\n{#r, eval=FALSE} <a id=\"skiplink\">Skip to Main Content</a>"
+  },
+  {
+    "objectID": "posts/skip-links/index.html#styling",
+    "href": "posts/skip-links/index.html#styling",
+    "title": "Skip Links",
+    "section": "Styling",
+    "text": "Styling\nNow let’s style the link as hidden when it’s not being tabbed/focused. We will do this by positioning the link out of frame using a transform.\nWe’ll also use the css pseudo class focus so that when the link is tabbed over it is put back in frame and made obvious to the user:\n#skiplink {\n  position: absolute;\n  transform: translateY(-100%);\n}\n\n#skiplink:focus {\n  transform: translateY(0%);\n  background-color: lightyellow;\n  padding: 20px;\n  z-index: 9999;\n}"
+  },
+  {
+    "objectID": "posts/skip-links/index.html#link-re-direct",
+    "href": "posts/skip-links/index.html#link-re-direct",
+    "title": "Skip Links",
+    "section": "Link Re-direct",
+    "text": "Link Re-direct\nThe last step is to make our link go where we want it - to the first tabbable element on our page (“first-button”). We can do this by making the href of the link match the id of the first tabbable element:\n{#r, eval=FALSE} shiny::tags$a(id=\"skiplink\", \"Skip to Main Content\", href=\"first-button\")\n{#r, eval=FALSE} <a id=\"skiplink\" href=\"#first-button\">Skip to Main Content</a>"
+  },
+  {
+    "objectID": "posts/skip-links/index.html#putting-it-all-together",
+    "href": "posts/skip-links/index.html#putting-it-all-together",
+    "title": "Skip Links",
+    "section": "Putting it all together",
+    "text": "Putting it all together\nNow we have a link before our navbar, followed by the content of our page and the css needed to style our link:\n{#r, eval=FALSE} shinyApp(   ui = basicPage(     tags$a(id=\"skiplink\", \"Skip to Main Content\", href=\"#first-button\"),     shiny::navbarPage(\"App Title\",                       shiny::tabPanel(\"Plot\"),                       shiny::tabPanel(\"Summary\"),                       shiny::tabPanel(\"Table\")     ),     tags$button(id=\"first-button\", \"Tab Skip to Here!\"),     tags$style(HTML(\"       #skiplink {         position: absolute;         transform: translateY(-100%);       }       #skiplink:focus {       transform: translateY(0%);       background-color: lightyellow;       padding: 20px;       z-index: 9999;       }\"))   ),   server = function(input, output) {   } )\n\nBy clicking tab to go forwards (or shift tab to go backwards), you should now be able to only see the skip link when it’s being focused on:\n{#r, echo=FALSE} shiny::tagList( shiny::tags$a(id=\"skiplink\", \"Skip to Main Content\", href=\"#first-button\"),     shiny::navbarPage(\"App Title\",                       shiny::tabPanel(\"Plot\"),                       shiny::tabPanel(\"Summary\"),                       shiny::tabPanel(\"Table\")     ),     shiny::tags$button(id=\"first-button\", \"Tab Skip to Here!\") )\n\n\nThere are SO many gems in Jon’s course, and it is genuinely fun to start to think about how to integrate these changes and make your website as accessible as possible. Shiny uses bootstrap, a design system that has put a lot of time and thought into accessibility so we get a lot for free, but I hope to continue this series with some other tips if you’re building any custom components."
+  },
+  {
+    "objectID": "posts/babys-first-module/index.html",
+    "href": "posts/babys-first-module/index.html",
+    "title": "Baby’s First Module",
+    "section": "",
+    "text": "Modules are self contained scripts with their own distinct functionality. This allows for the addition or removal of modules as neccessary. It is easy enough to require modules using Node.js, but in the browser they behave very weirdly based on what browser you’re using. One of the quirks of JavaScripts!"
+  },
+  {
+    "objectID": "posts/babys-first-module/index.html#a-book-is-organized-into-chapters-a-good-program-is-divided-into-modules.",
+    "href": "posts/babys-first-module/index.html#a-book-is-organized-into-chapters-a-good-program-is-divided-into-modules.",
+    "title": "Baby’s First Module",
+    "section": "A book is organized into chapters, a good program is divided into modules.",
+    "text": "A book is organized into chapters, a good program is divided into modules.\nIn my blockly big picture post I used an inelegant hack within the CreateDataSet block to include the stringified class code into the block itself. This is the perfect use case for a module!"
+  },
+  {
+    "objectID": "posts/babys-first-module/index.html#our-goal",
+    "href": "posts/babys-first-module/index.html#our-goal",
+    "title": "Baby’s First Module",
+    "section": "Our Goal:",
+    "text": "Our Goal:\nRather than include the class script inside the CreateDataSet block, create a seperate module"
+  },
+  {
+    "objectID": "posts/babys-first-module/index.html#workflow",
+    "href": "posts/babys-first-module/index.html#workflow",
+    "title": "Baby’s First Module",
+    "section": "Workflow",
+    "text": "Workflow\n\nCreate the Analysis class in a file called myModule.js and export it\nImport Analysis within our index.html file\nChange the CreateDataSet block to only contain the string new Analysis()\nCross fingers, see if it works??\n\nBefore we even begin, I’m still a little confused why each browser has their own errors but in order to run and debug any html code locally download lite-server [npm install lite-server] then serve your site in the directory where your html is located using lite-server index.html. This worked far better than using Chrome directly!"
+  },
+  {
+    "objectID": "posts/babys-first-module/index.html#mymodule.js",
+    "href": "posts/babys-first-module/index.html#mymodule.js",
+    "title": "Baby’s First Module",
+    "section": "myModule.js",
+    "text": "myModule.js\nI’ve created a file called myModule.js where I’ve defined the Analysis class and I’m exporting it to be used in our html file. The only line that’s changed here from the code in the prior post is the first line, be sure to export this as default\n// rather than const PREFIX = \n// we will export Analysis as a module\nexport default class Analysis {\n    constructor () { \n        this.value = 0 \n    }\n    increment () { \n        this.value += 1; \n        return this \n    }\n    display () {\n    return this.value \n    }\n}"
+  },
+  {
+    "objectID": "posts/babys-first-module/index.html#import",
+    "href": "posts/babys-first-module/index.html#import",
+    "title": "Baby’s First Module",
+    "section": "Import",
+    "text": "Import\nBack inside our html file we add\nimport Analysis from \"myModule.js\";\nThis was the trickiest part. This script needs to be contained within a type=module script tag, but in order for the blockly code to access the module we have to make Analysis a global class. The simplist way to do this is by using window.Analysis:\n<script type=\"module\">\nimport Analysis from \"myModule.js\";\nwindow.Analysis = Analysis\n</script>"
+  },
+  {
+    "objectID": "posts/babys-first-module/index.html#example_blocks.js",
+    "href": "posts/babys-first-module/index.html#example_blocks.js",
+    "title": "Baby’s First Module",
+    "section": "example_blocks.js",
+    "text": "example_blocks.js\nNow we get elegant. Rather than include the Analysis class defintion within our block, we can simply point to our newly created module\nBlockly.JavaScript['example_CreateDataSet'] = function(block) {\n    return \"new Analysis()\"\n}\nWhew! With A LOT of help from Evan Schultz, I successfully loaded my first module!"
+  },
+  {
+    "objectID": "posts/babys-first-module/index.html#bonus",
+    "href": "posts/babys-first-module/index.html#bonus",
+    "title": "Baby’s First Module",
+    "section": "BONUS",
+    "text": "BONUS\nI had to include window.Analysis = Analysis because in my current framework I created two buttons with event handlers ABOVE the module.\nWhile this works, it’s not good code ettiquite. Instead, we can create the button elements with IDs, then assign the event handlers BELOW the module script tag. That way we create buttons, then specify what those buttons actually DO after our module is loaded. This way, our two buttons show JavaScript and run JavaScript will work without needing to specify Analysis at the global scope.\n\nRather than having buttons with their functions at the top of the html\n<button onclick=\"showCode()\">Show JavaScript</button>\n<button onclick=\"runCode()\">Run JavaScript</button>\n\n\nDeclare button elements and have the specifications of what they actually DO after the module is loaded.\n<button id=\"showCode\">Show JavaScript</button>\n<button id=\"runCode\">Run JavaScript</button>\nNow, BELOW our loaded module we can assign the function runCode [which evaluates the JavaScript within our blocks] to the button with the id above. This lets us look for the button in the UI - and then attach a click event to it. Below the runCode function we can now add the lines:\ndocument.getElementById(\"runCode\").addEventListener('click', runCode)\ndocument.getElementById(\"showCode\").addEventListener('click', showCode)\ndocument looks within the entire html, and getElementById() grabs the proper element associated with the specified id [here the buttons that we get the IDs “runCode” and “showCode”]. .addEventListener allows us to attach multipule handlers to a single element: clicking the button should initiate (1) a click and (2) the function runCode or showCode.\nIt’s easy to see now that having multiple modules each contained within their own script tags in our index.html (and thus individually loading) could get cumbersome. Up next, exploring module bundling [read: concatenation] and minification [read: removal of unnecessary characters]!"
+  }
+]
