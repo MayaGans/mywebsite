@@ -18,9 +18,43 @@
   --header-font: 'briarbold';
 }
 
+#quarto-header nav {
+  padding-left: 0em !important;
+  padding-right: 0em !important;
+}
+
+.navbar-collapse {
+  background: #fffff7;
+}
+
 h1 {
   font-family: var(--header-font);
   font-size: 3rem;
+}
+
+
+#title-block-header {
+    margin-block-end: 1rem;
+    position: relative;
+    margin-top: 150px;
+}
+
+.quarto-title-banner {
+    margin-bottom: 0.8em;
+    color: var(--blue);
+    background: transparent;
+}
+
+.quarto-title-meta {
+  display: none !important;
+}
+
+#TOC {
+  display: none;
+}
+
+.quarto-margin-sidebar {
+  display: none !important;
 }
 
 h2,h3,h4,h5,h6 {
@@ -36,7 +70,11 @@ h1, h2, h3 {
 }
 
 p {
-  fony-family: var(--main-font);
+  font-family: var(--main-font);
+}
+
+body {
+  font-family: var(--main-font);
 }
 
 ::-moz-selection {

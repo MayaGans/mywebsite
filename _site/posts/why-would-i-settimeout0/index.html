@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Maya Gans">
+<meta name="dcterms.date" content="2019-07-01">
+<meta name="description" content="Trying to understand the weird world of async javascript">
+
+<title>Maya Gans</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../inst/css/styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">maya<br>gans</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dataviz.html">dataviz</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html">projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html">resume</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Why Would I setTimeout(0)?</h1>
+                  <div>
+        <div class="description">
+          Trying to understand the weird world of async javascript
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">JavaScript</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Maya Gans </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 1, 2019</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#create-button-in-html" id="toc-create-button-in-html" class="nav-link active" data-scroll-target="#create-button-in-html">CREATE BUTTON IN HTML</a></li>
+  <li><a href="#create-long-function" id="toc-create-long-function" class="nav-link" data-scroll-target="#create-long-function">CREATE LONG FUNCTION</a></li>
+  <li><a href="#create-status-update-function" id="toc-create-status-update-function" class="nav-link" data-scroll-target="#create-status-update-function">CREATE STATUS UPDATE FUNCTION</a></li>
+  <li><a href="#put-it-all-together" id="toc-put-it-all-together" class="nav-link" data-scroll-target="#put-it-all-together">PUT IT ALL TOGETHER</a></li>
+  <li><a href="#fail" id="toc-fail" class="nav-link" data-scroll-target="#fail">FAIL</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">CONCLUSION</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<table border="1">
+<tbody>
+<tr>
+<td>
+<button id="do">
+Do long calc - No Time Out
+</button>
+</td>
+<td>
+<div id="status">
+Not Calculating yet.
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<button id="do_ok">
+Do long calc - Set Time Out 0
+</button>
+</td>
+<td>
+<div id="status_ok">
+Not Calculating yet.
+</div>
+</td>
+</tr>
+</tbody>
+
+</table>
+<script>
+function long_running(statusId) {var result = 0;
+for (var i = 0; i < 1000; i++) {
+for (var j = 0; j < 700; j++) {
+for (var k = 0; k < 300; k++) {
+result = result + i + j + k;
+}
+}
+}
+status_update(statusId, `Done!`);
+}
+function status_update(statusId, message) {document.getElementById(statusId).innerHTML = message;
+}
+document.getElementById("do").addEventListener("click", function() {
+long_running("status");
+status_update("status", "calculating...");
+});
+ document.getElementById("do_ok").addEventListener("click", function() {
+setTimeout(function() {
+long_running("status_ok");
+}, 0);
+status_update("status_ok", "calculating....");
+});
+</script>
+
+<p><br><br></p>
+<p>Along with the hands-on skills I’ve been learning during my internship with RStudio, I’ve also been bolstering my theoretical understandings of programming concepts. This brought me to a common trick <code>setTimeout(0)</code>, which defers the execution of a function, giving something else a chance to run.</p>
+<p>This concept was described using a concrete example in a <a href="https://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful">StackOverflow post</a> that I wanted to explore in more detail (both visually and without using JQuery):</p>
+<p><img src="img1.png" class="img-fluid"></p>
+<p>You want to create a button on your website with two tasks (1) perform a long calculation (2) and to print “Calculating…” in a div until “Done!” can be printed.</p>
+<section id="create-button-in-html" class="level2">
+<h2 class="anchored" data-anchor-id="create-button-in-html">CREATE BUTTON IN HTML</h2>
+<p>First we’ll create two buttons with small divs to see the status of the calculation</p>
+<pre><code>&lt;table border=1&gt;
+  // our 'do' button will not use setTimeout
+  &lt;tr&gt;&lt;td&gt;&lt;button id='do'&gt;Do long calc - No Time Out&lt;/button&gt;&lt;/td&gt;
+  // the default value in the div is 'Not Calculating yet'
+      &lt;td&gt;&lt;div id='status'&gt;Not Calculating yet.&lt;/div&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;&lt;button id='do_ok'&gt;Do long calc - Set Time Out 0&lt;/button&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div id='status_ok'&gt;Not Calculating yet.&lt;/div&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+<p><img src="img3.png" class="img-fluid"></p>
+</section>
+<section id="create-long-function" class="level2">
+<h2 class="anchored" data-anchor-id="create-long-function">CREATE LONG FUNCTION</h2>
+<p>Create a function that takes a “long time” to run. When the function is done, it prints “Done!” to the div</p>
+<pre><code>function long_running(statusId) {
+        var result = 0;
+        for (var i = 0; i &lt; 1000; i++) {
+          for (var j = 0; j &lt; 700; j++) {
+            for (var k = 0; k &lt; 300; k++) {
+              result = result + i + j + k;
+            }
+          }
+        }
+        status_update(statusId, `Done!`);
+      }</code></pre>
+</section>
+<section id="create-status-update-function" class="level2">
+<h2 class="anchored" data-anchor-id="create-status-update-function">CREATE STATUS UPDATE FUNCTION</h2>
+<pre><code>function status_update(statusId, message) {
+  document.getElementById(statusId).innerHTML = message;
+}</code></pre>
+</section>
+<section id="put-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="put-it-all-together">PUT IT ALL TOGETHER</h2>
+<p>Update the div by using an Event Listener. When clicking the button run our long calculation and the status update.</p>
+<pre><code>document.getElementById("do").addEventListener("click", function() {
+  long_running("status");
+  status_update("status", "calculating...");
+});</code></pre>
+</section>
+<section id="fail" class="level2">
+<h2 class="anchored" data-anchor-id="fail">FAIL</h2>
+<p>Without using <code>setTimeout(0)</code> the queue of tasks that the button fires off are done serially: the long calculation “locks” the thread; the text <em>is</em> quickly set to “Done!” but the <code>status_update</code> function overwrites it with <code>calculating...</code></p>
+<p><img src="img2.png" class="img-fluid"></p>
+<p>Using <code>setTimeout(0)</code> is a nifty trick to defer the actual long calculations until <code>status_update</code> has been executed. By setting a timeout if 0, you are queuing asynchronous code until the engine executes the current call stack.</p>
+<pre><code>document.getElementById("do_ok").addEventListener("click", function() {
+  setTimeout(function() {
+    long_running("status_ok");
+  }, 0);
+    status_update("status_ok", "calculating....");
+});</code></pre>
+<p><strong>In the code chunk above the button text “Not calculating yet” will change to “Calculating….” and THEN “Done!”</strong></p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">CONCLUSION</h2>
+<p>JavaScript runtimes contain a message queue to store the list of messages to be processed (here “calculating…”). Because JavaScript is non-blocking, the messages can be queued in response to events (here: the long calculation). Using a simple <strong>event loop</strong> within our button, JavaScript enables the collection of asynchronous callbacks freeing the runtime to handle concurrent operations.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,66 @@
+---
+title: "R Data to Observable Pipeline"
+format: 
+  html:
+    include-in-header: 
+      text: <script src="./foo.js"></script>
+editor: visual
+---
+
+# non-modularized code:
+
+    title: "R Data to Observable Pipeline"
+    format: 
+      html:
+        include-in-header: 
+          text: <script src="./foo.js"></script>
+    editor: visual
+
+# ES6
+
+```{ojs}
+import { add } from "./test.js";
+```
+
+# Published Observable or QMD notebook!
+
+Your notebook needs to have a permissive license in order to use the function!
+
+```{ojs}
+import { quarto_function } from "./foo.qmd" 
+import { ojs_function } from "" 
+```
+
+```{r}
+setlists <- read.csv("./setlists.csv")
+ojs_define(all_setlists = setlists)
+```
+
+```{ojs}
+all_setlists
+```
+
+```{ojs}
+HTMLWidgets = window.HTMLWidgets
+```
+
+```{ojs}
+setlist_obj = HTMLWidgets.dataframeToD3(all_setlists)
+setlist_obj
+```
+
+```{ojs}
+// OJS doesn't type check but posit is gonna make it happen, relax
+//add(1 + 'a')
+add(1,2)
+```
+
+ojs(selectedData, clusters)
+
+This is not gonna work if you're not importing a module. Of course `htmlWidgets` is making our life difficult.
+
+But we can use this for a local file
+
+```{ojs}
+import { add } from "./test.ts";
+```
