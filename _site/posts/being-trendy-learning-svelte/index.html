@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Maya Gans">
+<meta name="dcterms.date" content="2021-08-30">
+<meta name="description" content="Documenting my first foray into the Svelte JavaScript frontend framework">
+
+<title>Maya Gans</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../inst/css/styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">maya<br>gans</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dataviz.html">dataviz</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html">projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html">resume</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Being Trendy, Learning Svelte</h1>
+                  <div>
+        <div class="description">
+          Documenting my first foray into the Svelte JavaScript frontend framework
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">JavaScript</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Maya Gans </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 30, 2021</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#step-1-create-a-svelte-template" id="toc-step-1-create-a-svelte-template" class="nav-link active" data-scroll-target="#step-1-create-a-svelte-template">Step 1: Create a Svelte Template</a></li>
+  <li><a href="#step-2-edit-the-template" id="toc-step-2-edit-the-template" class="nav-link" data-scroll-target="#step-2-edit-the-template">Step 2: Edit the Template</a></li>
+  <li><a href="#step-3-understanding-components" id="toc-step-3-understanding-components" class="nav-link" data-scroll-target="#step-3-understanding-components">Step 3: Understanding Components</a></li>
+  <li><a href="#step-4-understanding-main.js" id="toc-step-4-understanding-main.js" class="nav-link" data-scroll-target="#step-4-understanding-main.js">Step 4: Understanding main.js</a></li>
+  <li><a href="#step-5-bundling" id="toc-step-5-bundling" class="nav-link" data-scroll-target="#step-5-bundling">Step 5: Bundling</a></li>
+  <li><a href="#step-6-make-it-reactive" id="toc-step-6-make-it-reactive" class="nav-link" data-scroll-target="#step-6-make-it-reactive">Step 6: Make it reactive</a></li>
+  <li><a href="#step-7-creating-an-input-your-own-name" id="toc-step-7-creating-an-input-your-own-name" class="nav-link" data-scroll-target="#step-7-creating-an-input-your-own-name">Step 7: Creating an input (your own name)</a></li>
+  <li><a href="#step-8-two-way-binding" id="toc-step-8-two-way-binding" class="nav-link" data-scroll-target="#step-8-two-way-binding">Step 8: Two way binding</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Svelte is a compiler for creating reactive web applications. A reactive webapp <em>reacts</em> to data changes - it uses data when the state changes there is a reflection of that change in the browser. It bundles your JavaScript code into a single file for production without any extra scripts or libraries, resulting in a faster website!</p>
+<p>I’ve broken down this introduction into 8 pieces:</p>
+<ul>
+<li>Step 1: Create a template</li>
+<li>Step 2: Edit the template</li>
+<li>Step 3: Understanding components</li>
+<li>Step 4: Understanding <code>main.js</code></li>
+<li>Step 5: Bundling</li>
+<li>Step 6: Make it reactive</li>
+<li>Step 7: Creating an input</li>
+<li>Step 8: Two way binding</li>
+</ul>
+<section id="step-1-create-a-svelte-template" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-create-a-svelte-template">Step 1: Create a Svelte Template</h2>
+<p>We’ll first install the <code>degit</code> library which will allow us to clone a Svelte template, with some additional cool features you don’t get from plain old git.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>npm install <span class="op">-</span>g degit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now you can navigate to the directory you want to create your project in and type</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>degit sveltejs<span class="op">/</span>template svelteproj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Which can be read as clone the template repository from sveltejs and put that in a folder locally called <code>svelteproj</code></p>
+<p>This gives us the starter file directory:</p>
+<p>|– <code>public</code> where the output production code is put to deploy <br> |—- <code>favicon.png</code> <br> |—- <code>global.css</code> <br> |—- <code>index.html</code> <br> |– <code>scripts</code> <br> |—- <code>setupTypeScript.js</code> <br> |– <code>src</code> - write all our source code <br> |—-<code>App.svelte</code> the svelte root component of the app <br> |—-<code>main.js</code> the main file to kickstart the app <br> |– <code>.gitignore</code> don’t include build file <br> |– <code>package.json</code> list dependencies and scripts <br> |– <code>README.md</code> help file <br> |– <code>rollup.config.js</code> watches, configures, and bundles code</p>
+<p>Install the packages in our <code>package.json</code> file by running <code>npm install</code>. This adds a new folder to our directory, <code>node_modules</code> and a <code>package-lock.json</code> file:</p>
+<p>|– <span class="highlight-code"><code>node_modules</code></span> <br> |– <code>public</code> <br> |—- <code>favicon.png</code> <br> |—- <code>global.css</code> <br> |—- <code>index.html</code> <br> |– <code>scripts</code> <br> |—- <code>setupTypeScript.js</code> <br> |– <code>src</code> <br> |—-<code>App.svelte</code> <br> |—-<code>main.js</code> <br> |– <code>.gitignore</code> <br> |– <code>package.json</code> <br> |– <span class="highlight-code"><code>package-lock.json</code></span> <br> |– <code>README.md</code> <br> |– <code>rollup.config.js</code></p>
+<p>Now we can look at the template locally by running <code>npm run dev</code>. This will prompt you to open your local host and see the webpage below:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  Your application is ready<span class="op">~!</span> 🚀</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> Local<span class="op">:</span>      http<span class="op">:</span><span class="co">//localhost:5000</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> Network<span class="op">:</span>    <span class="fu">Add</span> <span class="vs">`--host`</span> to expose</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>────────────────── LOGS ──────────────────</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="template.png" class="img-fluid figure-img" width="667"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is the content of our app, being driven within <code>App.svelte</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">export</span> <span class="kw">let</span> name<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;main&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>Hello {name}!<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span>Visit the </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://svelte.dev/tutorial"</span><span class="kw">&gt;</span>Svelte tutorial<span class="kw">&lt;/a&gt;</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    to learn how to build Svelte apps.</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/p&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/main&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;style&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    main {</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">text-align</span>: <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">padding</span>: <span class="dv">1</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="kw">max-width</span>: <span class="dv">240</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin</span>: <span class="dv">0</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    h1 {</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span>: <span class="cn">#ff3e00</span><span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="kw">text-transform</span>: <span class="dv">uppercase</span><span class="op">;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span>: <span class="dv">4</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-weight</span>: <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="im">@media</span> (<span class="kw">min-width</span>: <span class="dv">640</span><span class="dt">px</span>) {</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        main {</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>            <span class="kw">max-width</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/style&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-2-edit-the-template" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-edit-the-template">Step 2: Edit the Template</h2>
+<p>If you change any of this code and save it, the changes will be rendered automatically! Let’s try this by removing:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>Visit the </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://svelte.dev/tutorial"</span><span class="kw">&gt;</span>Svelte tutorial<span class="kw">&lt;/a&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>to learn how to build Svelte apps.</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/p&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and adding</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;&lt;My</span> <span class="er">single</span> <span class="er">page</span> <span class="er">webapp&lt;/p</span><span class="kw">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="update_p.png" class="img-fluid figure-img" width="584"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-understanding-components" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-understanding-components">Step 3: Understanding Components</h2>
+<p>We write most of our code in the <code>src</code> folder, and this is where we create our app components. Think of components as lego blocks that Svelte will stack together into the DOM to create your website. All components must have the extension <code>.svelte</code>. Let’s look at the <code>App.svelte</code> component and break it down into it’s three elements:</p>
+<section id="script" class="level4">
+<h4 class="anchored" data-anchor-id="script"><code>script</code></h4>
+<p>The script is the component logic, here we are creating a variable called <code>name</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">export</span> <span class="kw">let</span> name<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="html-template" class="level4">
+<h4 class="anchored" data-anchor-id="html-template"><code>html template</code></h4>
+<p>This is the html to be injected into the DOM</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;main&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>Hello {name}!<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;&lt;My</span> <span class="er">single</span> <span class="er">page</span> <span class="er">webapp&lt;/p</span><span class="kw">&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/main&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>style</code> how to style the component that will be injected.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;style&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    main {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">text-align</span>: <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">padding</span>: <span class="dv">1</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">max-width</span>: <span class="dv">240</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin</span>: <span class="dv">0</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    h1 {</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span>: <span class="cn">#ff3e00</span><span class="op">;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">text-transform</span>: <span class="dv">uppercase</span><span class="op">;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span>: <span class="dv">4</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-weight</span>: <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="im">@media</span> (<span class="kw">min-width</span>: <span class="dv">640</span><span class="dt">px</span>) {</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        main {</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>            <span class="kw">max-width</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/style&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="step-4-understanding-main.js" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-understanding-main.js">Step 4: Understanding main.js</h2>
+<p>This is the file that kickstarts the app and sets everything up for us:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>import App from './App.svelte';</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>const app = new App({</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    target: document.body,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    props: {</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        name: 'world'</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>});</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>export default app;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We import the code from <code>App.svelte</code>, so that we can create a single instance of the component called <code>app</code>.</p>
+<p>In this specific instance called <code>app</code>, we specify the <code>target</code> (where we want to put the html), and we’re putting it in the <code>document.body</code>.</p>
+<p>If you navigate to <code>public/html</code> you’ll see:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">"en"</span><span class="kw">&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">'utf-8'</span><span class="kw">&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">'viewport'</span> <span class="er">content</span><span class="ot">=</span><span class="st">'width=device-width,initial-scale=1'</span><span class="kw">&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>Svelte app<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">'icon'</span> <span class="er">type</span><span class="ot">=</span><span class="st">'image/png'</span> <span class="er">href</span><span class="ot">=</span><span class="st">'/favicon.png'</span><span class="kw">&gt;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">'stylesheet'</span> <span class="er">href</span><span class="ot">=</span><span class="st">'/global.css'</span><span class="kw">&gt;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">'stylesheet'</span> <span class="er">href</span><span class="ot">=</span><span class="st">'/build/bundle.css'</span><span class="kw">&gt;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;script</span> <span class="er">defer</span> <span class="er">src</span><span class="ot">=</span><span class="st">'/build/bundle.js'</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span> #<span class="er">&lt;&lt;</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span> #<span class="er">&lt;&lt;</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By assigning the target to <code>document.body</code> we’re saying put our code inside those body tags. This is generally where component code will go but you can use whatever selectors you like!</p>
+<p>In the second part of <code>app</code> we use <code>props</code> to pass data into the component. In the <code>script</code> portion of <code>App.svelte</code> we created a variable called <code>name</code> so that we can print <code>Hello {name}</code> in the html of the component. By assinging <code>world</code> to the <code>name</code> property, the <code>app</code> component will display <code>Hello world</code>.</p>
+</section>
+<section id="step-5-bundling" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-bundling">Step 5: Bundling</h2>
+<p>This example has a single component but in reality we nest components and stack them together. All the scripts, styles and html from all our components are bundled together inside <code>public/build</code> and if we navigate back to our <code>index.html</code> we see that these bundled scripts are referenced inside the head of our page.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;link</span> <span class="er">rel</span><span class="ot">=</span><span class="st">'stylesheet'</span> <span class="er">href</span><span class="ot">=</span><span class="st">'/build/bundle.css'</span><span class="kw">&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">defer</span> <span class="er">src</span><span class="ot">=</span><span class="st">'/build/bundle.js'</span><span class="kw">&gt;&lt;/script&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-6-make-it-reactive" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-make-it-reactive">Step 6: Make it reactive</h2>
+<p>In our script we leverage the variable <code>name</code> but let’s modify that script a bit:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">export</span> <span class="kw">let</span> name<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rather than export the name as a prop, we can give it a string value:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> name <span class="op">=</span> Maya<span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To demonstrate the reactivity of the page, we can create a button element in our html with an on click handler that will change the name displayed when clicked</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;main&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>Hello {name}!<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span>My Single Page Webapp<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;button</span> <span class="er">on:click</span><span class="ot">=</span><span class="st">{handleClick}</span><span class="kw">&gt;</span>update name<span class="kw">&lt;/button&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/main&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then we need to add the <code>handleClick</code> function to our script code above:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> name <span class="op">=</span> <span class="st">'Maya'</span><span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> handleClick <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">'Gans'</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>on:click={handleClick}</code> is Svelte syntax, which makes it really easy to react to and change dynamic data like our click event here. What happens when we build our project is it runs accross all our components, takes the Svelte syntax, and compules it all into vanialla JS. This compiled code can be seen in <code>build/bundle.js</code> [it’s 459 lines for this one little component - but all the hard work is done for us!]</p>
+</section>
+<section id="step-7-creating-an-input-your-own-name" class="level2">
+<h2 class="anchored" data-anchor-id="step-7-creating-an-input-your-own-name">Step 7: Creating an input (your own name)</h2>
+<p>Let’s finish off this introduction by creating an input so that the user can display their own name on the page, and rather than need to click a button it will dynamically update with typing.</p>
+<p>Just by adding an input element we see we can create a text field:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;main&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>Hello {name}!<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span>My Single Page Webapp<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;button</span> <span class="er">on:click</span><span class="ot">=</span><span class="st">{handleClick}</span><span class="kw">&gt;</span>update name<span class="kw">&lt;/button&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">"text"</span><span class="kw">&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/main&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="text_input.png" class="img-fluid figure-img" width="457"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Just as we created the <code>handleClick</code> even on <code>click</code> we want to create another input event tracker here that updates whenever the user types. We’ll call this function <code>handleInput</code></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">"text"</span> <span class="er">on:input</span><span class="ot">=</span><span class="st">{handleInput}</span><span class="kw">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that we are not invoking the function <code>handleInput()</code> as that would call the function when the page is loaded. Rather we want to call this function as a reference, only being called when the event occurs.</p>
+<p>Now let’s write the function logic. We want <code>handleInput</code> to take the value of the input and assign it to <code>name</code>. We can do this by giving the function the event parameter as an argument <code>e</code> which lets us access the target element (the <code>input</code>).</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> name <span class="op">=</span> <span class="st">'Maya'</span><span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> handleClick <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>      name <span class="op">=</span> <span class="st">'Gans'</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> handleInput <span class="op">=</span> (e) <span class="kw">=&gt;</span> {</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>     name <span class="op">=</span> e<span class="op">.</span><span class="at">target</span><span class="op">.</span><span class="at">value</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, everytime the user inputs text it is going to run the function and update the name in real time!</p>
+<p><img src="typing.gif" class="img-fluid"></p>
+<p>…This is really cool but the binding is currently only one way. If we press the button and change <code>name</code> to <code>Gans</code>, the input text will not change to <code>Gans</code> (it remains <code>Maya</code> as pictured above)</p>
+<p><img src="one-way.gif" class="img-fluid"></p>
+</section>
+<section id="step-8-two-way-binding" class="level2">
+<h2 class="anchored" data-anchor-id="step-8-two-way-binding">Step 8: Two way binding</h2>
+<p>We can add a <code>value</code> property to our input to set it to the <code>name</code> variable so whenever <code>name</code> changes, the input value will be updated to reflect that</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">"text"</span> <span class="er">on:input</span><span class="ot">=</span><span class="st">{handleInput}</span> <span class="er">value</span><span class="ot">=</span><span class="st">{name}</span><span class="kw">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="two-way.gif" class="img-fluid"></p>
+<section id="a-shortcut" class="level4">
+<h4 class="anchored" data-anchor-id="a-shortcut">A Shortcut</h4>
+<p>Rather than writing the input element as we have, there is a Svelte shortcut for two way binding: we can use <code>bind</code> element to <code>name</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">"text"</span> <span class="er">bind:value</span><span class="ot">=</span><span class="st">{name}</span><span class="kw">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And there you have it! A first contact introduction to Svelte. This was inspired by the <a href="https://www.youtube.com/watch?v=QJJjXRIg7kI&amp;list=PL4cUxeGkcC9hlbrVO_2QFVqVPhlZmz7tO&amp;index=5">The Net Ninja’s Tutorials</a> which you can follow along with here. I’ve also included this code in a <a href="https://github.com/MayaGans/svelteproj">repo here</a>.</p>
+<p>I put these skills to the test (and more!) by making a website to keep track of the Phish broadcasts entitled <a href="bit.ly/phishdaam">Dinner and a Movie</a>. You can check out the repo <a href="https://github.com/MayaGans/DaaM">here</a> <br> <br></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

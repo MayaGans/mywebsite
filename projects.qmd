@@ -3,7 +3,7 @@ listing:
   template: templates/projects.ejs
   contents:
     - title: projects
-      byline: test
+      byline: Libraries, Packages, and Visualizations I've worked on in Open Source
       projects:
         - name: tidyblocks
           href: https://www.quarto.org

@@ -2,8 +2,18 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/posts/exploring-networks-through-concerts/index.html",
-      "/posts/why-would-i-settimeout0/index.html"
+      "/posts/moving-dom-elements/index.html",
+      "/posts/skip-links/index.html",
+      "/posts/recursion-again-and-again-and-again/index.html",
+      "/posts/r-functions-i-took-for-granted/index.html",
+      "/posts/d3-to-r-to-d3/index.html",
+      "/posts/being-trendy-learning-svelte/index.html",
+      "/posts/gsap-xaringan/index.html",
+      "/posts/custom-shiny-input/index.html",
+      "/posts/live-coding-interview/index.html",
+      "/posts/why-would-i-settimeout0/index.html",
+      "/posts/javascript-statements/index.html",
+      "/posts/wtf-is-a-prototype/index.html"
     ]
   },
   {

@@ -1,7 +1,7 @@
 ---
 title: "Why Would I setTimeout(0)?"
 author: "Maya Gans"
-date: '2019-07-01'
+date: '2019-08-14'
 description: "Trying to understand the weird world of async javascript"
 categories: [JavaScript]
 image: "featured.png"
@@ -12,7 +12,7 @@ format:
       text: <script src="./script.js"></script>
 ---
 
-
+<div class="table-container">
 ```{r}
 #| echo: false
 
@@ -21,7 +21,9 @@ htmltools::tags$table(border=1,
     htmltools::tags$td(
       htmltools::tags$button(
         id ="do",
-        "Do long calc - No Time Out"
+        class="examplebtn",
+        "Do long calc - No Time Out",
+         onclick="doBtn()"
       )
     ),
     htmltools::tags$td(
@@ -35,7 +37,9 @@ htmltools::tags$table(border=1,
     htmltools::tags$td(
       htmltools::tags$button(
         id ="do_ok",
-        "Do long calc - Time Out"
+        class="examplebtn",
+        "Do long calc - Time Out",
+        onClick="doOkBtn()"
       )
     ),
     htmltools::tags$td(
@@ -47,6 +51,7 @@ htmltools::tags$table(border=1,
   )
 )
 ```
+</div>
 
 Along with the hands-on skills I've been learning during my internship with RStudio, I've also been bolstering my theoretical understandings of programming concepts. This brought me to a common trick `setTimeout(0)`, which defers the execution of a function, giving something else a chance to run. 
 
@@ -100,7 +105,7 @@ htmltools::tags$table(border=1,
 ## CREATE LONG FUNCTION
 Create a function that takes a "long time" to run. When the function is done, it prints "Done!" to the div
 
-```
+```js
 function long_running(statusId) {
   var result = 0;
   for (var i = 0; i < 1000; i++) {
@@ -116,7 +121,7 @@ function long_running(statusId) {
 
 ## CREATE STATUS UPDATE FUNCTION
 
-```
+```js
 function status_update(statusId, message) {
   document.getElementById(statusId).innerHTML = message;
 }
@@ -125,7 +130,7 @@ function status_update(statusId, message) {
 ## PUT IT ALL TOGETHER
 Update the div by using an Event Listener. When clicking the button run our long calculation and the status update.
 
-```
+```js
 document.getElementById("do").addEventListener("click", function() {
   long_running("status");
   status_update("status", "calculating...");
@@ -140,7 +145,7 @@ Without using `setTimeout(0)` the queue of tasks that the button fires off are d
 
 Using `setTimeout(0)` is a nifty trick to defer the actual long calculations until `status_update` has been executed. By setting a timeout if 0, you are queuing asynchronous code until the engine executes the current call stack.
 
-```
+```js
 document.getElementById("do_ok").addEventListener("click", function() {
   setTimeout(function() {
     long_running("status_ok");

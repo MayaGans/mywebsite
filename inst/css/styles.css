@@ -23,6 +23,18 @@
   padding-right: 0em !important;
 }
 
+.quarto-category {
+  background: var(--accent-pink) !important;
+    color: white !important;
+    border-radius: 45px !important;
+    padding: 3px 8px !important;
+    text-align: center !important;
+    width: max-content !important;
+    display: inline !important;
+    margin-right: 8px !important;
+    border: 0px solid white !important;
+}
+
 .navbar-collapse {
   background: #fffff7;
 }
@@ -251,4 +263,38 @@ a:hover {
 p > a:hover::before {
   visibility: visible;
   transform: scaleX(1);
+}
+
+.twitter {
+    padding: 15px;
+    background: #69bf8b;
+    border-radius: 15px;
+    border: solid 3px var(--blue);
+    margin: 10px 20px;
+}
+
+.twitter p {
+  margin-bottom: 0px;
+}
+
+div.sourceCode {
+    background-color: rgba(213, 36, 87,0.2);
+    border: 1px solid rgba(213, 36, 87,0.25);
+    border-radius: 0.25rem;
+}
+
+code span.fu {
+    color: var(--accent-pink);
+}
+
+code span.st {
+    color:white;
+}
+
+code span.at {
+    color: purple;
+}
+
+code span.cn {
+    color: var(--background-pink);
 }

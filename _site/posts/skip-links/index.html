@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
+<meta name="generator" content="quarto-1.0.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,6 +18,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -154,72 +217,188 @@ ul.task-list{list-style: none;}
 <p>I took Jon Kuperman’s amazing accessibility intro course on Frontend Masters and one of the coolest things he demonstrated was how to create a skip link. <strong>Skip links allow a keyboard only user to tab directly to the content of a page, rather than first tab through the page’s entire menu.</strong> In this post, I wanted to share what I learned as it applies to Shiny!</p>
 <p>I like to demonstrate where we’re going before I break it down. In the navbar below you see a link with the text “Skip to Main Content”. Clicking this link directs us to the button with the text “Tab Skip to Here!” [visible by the focus ring around the button]. In this post we’re going to create and style the skip link!</p>
 <p><br> <br></p>
-<p><code>{#r, echo=FALSE} shiny::tagList( shiny::tags$a(id="skiplink-pre", "Skip to Main Content", href="#first-button-pre"),     shiny::navbarPage("App Title",                       shiny::tabPanel("Plot"),                       shiny::tabPanel("Summary"),                       shiny::tabPanel("Table")     ),     shiny::tags$button(id="first-button-pre", "Tab Skip to Here!") )</code></p>
+<a id="skiplink-pre" href="#first-button-pre">Skip to Main Content</a>
+<div class="container-fluid">
+<div class="navbar-header">
+<p><span class="navbar-brand">App Title</span></p>
+</div>
+<ul class="nav navbar-nav-2" data-tabsetid="2330">
+<li class="active">
+<a href="#tab-2330-1" data-toggle="tab" data-value="Plot">Plot</a>
+</li>
+<li>
+<a href="#tab-2330-2" data-toggle="tab" data-value="Summary">Summary</a>
+</li>
+<li>
+<a href="#tab-2330-3" data-toggle="tab" data-value="Table">Table</a>
+</li>
+</ul>
+</div>
+<style>
+.container-fluid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background: #fffff7;
+    padding: 5px 10px;
+}
+
+.navbar-nav-2 {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    gap: 10px;
+}
+
+skiplink-pre {
+    transform: translateY(0%);
+    background-color: lightyellow;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.article-style .section a {
+    color: #e14675;
+}
+</style>
 <p><br> <br></p>
 <section id="nav-bar" class="level2">
 <h2 class="anchored" data-anchor-id="nav-bar">Nav Bar</h2>
 <p>In Shiny, when we create a navigation bar, we get a <code>&lt;nav&gt;</code> element with the ARIA role “navigation”. The navbar contains a tabbable list with <code>data-values</code> set to the tab’s titles.</p>
-<pre id="r"><code>shiny::navbarPage("App Title",
-  shiny::tabPanel("Plot"),
-  shiny::tabPanel("Summary"),
-  shiny::tabPanel("Table")
-)</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">navbarPage</span>(<span class="st">"App Title"</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">tabPanel</span>(<span class="st">"Plot"</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">tabPanel</span>(<span class="st">"Summary"</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">tabPanel</span>(<span class="st">"Table"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="container-fluid">
+<div class="navbar-header">
+<p><span class="navbar-brand">App Title</span></p>
+</div>
+<ul class="nav navbar-nav-2" data-tabsetid="2330">
+<li class="active">
+<a href="#tab-2330-1" data-toggle="tab" data-value="Plot">Plot</a>
+</li>
+<li>
+<a href="#tab-2330-2" data-toggle="tab" data-value="Summary">Summary</a>
+</li>
+<li>
+<a href="#tab-2330-3" data-toggle="tab" data-value="Table">Table</a>
+</li>
+</ul>
+</div>
 <p><br> <br></p>
-<pre id="r"><code>&lt;nav class="navbar navbar-default navbar-static-top" role="navigation"&gt;
-  &lt;div class="container-fluid"&gt;
-    &lt;div class="navbar-header"&gt;
-      &lt;span class="navbar-brand"&gt;App Title&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;ul class="nav navbar-nav" data-tabsetid="8029"&gt;
-      &lt;li class="active"&gt;
-        &lt;a href="#tab-8029-1" data-toggle="tab" data-value="Plot"&gt;Plot&lt;/a&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;a href="#tab-8029-2" data-toggle="tab" data-value="Summary"&gt;Summary&lt;/a&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;a href="#tab-8029-3" data-toggle="tab" data-value="Table"&gt;Table&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-&lt;/nav&gt;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;nav</span> <span class="er">class</span><span class="ot">=</span><span class="st">"navbar navbar-default navbar-static-top"</span> <span class="er">role</span><span class="ot">=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">"container-fluid"</span><span class="kw">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">"navbar-header"</span><span class="kw">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">"navbar-brand"</span><span class="kw">&gt;</span>App Title<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;ul</span> <span class="er">class</span><span class="ot">=</span><span class="st">"nav navbar-nav"</span> <span class="er">data-tabsetid</span><span class="ot">=</span><span class="st">"8029"</span><span class="kw">&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;li</span> <span class="er">class</span><span class="ot">=</span><span class="st">"active"</span><span class="kw">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"#tab-8029-1"</span> <span class="er">data-toggle</span><span class="ot">=</span><span class="st">"tab"</span> <span class="er">data-value</span><span class="ot">=</span><span class="st">"Plot"</span><span class="kw">&gt;</span>Plot<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;/li&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;li&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"#tab-8029-2"</span> <span class="er">data-toggle</span><span class="ot">=</span><span class="st">"tab"</span> <span class="er">data-value</span><span class="ot">=</span><span class="st">"Summary"</span><span class="kw">&gt;</span>Summary<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;/li&gt;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;li&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"#tab-8029-3"</span> <span class="er">data-toggle</span><span class="ot">=</span><span class="st">"tab"</span> <span class="er">data-value</span><span class="ot">=</span><span class="st">"Table"</span><span class="kw">&gt;</span>Table<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;/li&gt;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/ul&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/nav&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, let’s imagine your navbar has some drop down menues. If the navbar has 20 tabbable items, the user is going to need to tab through to number 21 in order to get to the links on the page they are browsing!</p>
 </section>
 <section id="create-a-link" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-link">Create a link</h2>
 <p>The first step in creating a skip link is to create the link itself. Before our navbar let’s pre-append a link with the <code>id=skiplink</code>.</p>
-<p><code>{#r, eval=FALSE} shiny::tags$a(id="skiplink", "Skip to Main Content")</code></p>
-<p><code>{#r, eval=FALSE} &lt;a id="skiplink"&gt;Skip to Main Content&lt;/a&gt;</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">id=</span><span class="st">"skiplink"</span>, <span class="st">"Skip to Main Content"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>a id<span class="ot">=</span><span class="st">"skiplink"</span><span class="sc">&gt;</span>Skip to Main Content<span class="sc">&lt;</span><span class="er">/</span>a<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="styling" class="level2">
 <h2 class="anchored" data-anchor-id="styling">Styling</h2>
 <p>Now let’s style the link as hidden when it’s not being tabbed/focused. We will do this by positioning the link out of frame using a <code>transform</code>.</p>
 <p>We’ll also use the css pseudo class <code>focus</code> so that when the link is tabbed over it is put back in frame and made obvious to the user:</p>
-<pre id="css"><code>#skiplink {
-  position: absolute;
-  transform: translateY(-100%);
-}
-
-#skiplink:focus {
-  transform: translateY(0%);
-  background-color: lightyellow;
-  padding: 20px;
-  z-index: 9999;
-}</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#skiplink</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">position</span>: <span class="dv">absolute</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">transform</span>: translateY(<span class="dv">-100</span><span class="dt">%</span>)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#skiplink</span><span class="in">:focus</span> {</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">transform</span>: translateY(<span class="dv">0</span><span class="dt">%</span>)<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background-color</span>: <span class="cn">lightyellow</span><span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">padding</span>: <span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">z-index</span>: <span class="dv">9999</span><span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="link-re-direct" class="level2">
 <h2 class="anchored" data-anchor-id="link-re-direct">Link Re-direct</h2>
 <p>The last step is to make our link go where we want it - to the first tabbable element on our page (“first-button”). We can do this by making the <code>href</code> of the link match the id of the first tabbable element:</p>
-<p><code>{#r, eval=FALSE} shiny::tags$a(id="skiplink", "Skip to Main Content", href="first-button")</code></p>
-<p><code>{#r, eval=FALSE} &lt;a id="skiplink" href="#first-button"&gt;Skip to Main Content&lt;/a&gt;</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">id=</span><span class="st">"skiplink"</span>, <span class="st">"Skip to Main Content"</span>, <span class="at">href=</span><span class="st">"first-button"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>a id<span class="ot">=</span><span class="st">"skiplink"</span> href<span class="ot">=</span><span class="st">"#first-button"</span><span class="sc">&gt;</span>Skip to Main Content<span class="sc">&lt;</span><span class="er">/</span>a<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="putting-it-all-together" class="level2">
 <h2 class="anchored" data-anchor-id="putting-it-all-together">Putting it all together</h2>
 <p>Now we have a link before our navbar, followed by the content of our page and the <code>css</code> needed to style our link:</p>
-<p><code>{#r, eval=FALSE} shinyApp(   ui = basicPage(     tags$a(id="skiplink", "Skip to Main Content", href="#first-button"),     shiny::navbarPage("App Title",                       shiny::tabPanel("Plot"),                       shiny::tabPanel("Summary"),                       shiny::tabPanel("Table")     ),     tags$button(id="first-button", "Tab Skip to Here!"),     tags$style(HTML("       #skiplink {         position: absolute;         transform: translateY(-100%);       }       #skiplink:focus {       transform: translateY(0%);       background-color: lightyellow;       padding: 20px;       z-index: 9999;       }"))   ),   server = function(input, output) {   } )</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">ui =</span> <span class="fu">basicPage</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">id=</span><span class="st">"skiplink"</span>, <span class="st">"Skip to Main Content"</span>, <span class="at">href=</span><span class="st">"#first-button"</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">navbarPage</span>(<span class="st">"App Title"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                      shiny<span class="sc">::</span><span class="fu">tabPanel</span>(<span class="st">"Plot"</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                      shiny<span class="sc">::</span><span class="fu">tabPanel</span>(<span class="st">"Summary"</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                      shiny<span class="sc">::</span><span class="fu">tabPanel</span>(<span class="st">"Table"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    tags<span class="sc">$</span><span class="fu">button</span>(<span class="at">id=</span><span class="st">"first-button"</span>, <span class="st">"Tab Skip to Here!"</span>),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    tags<span class="sc">$</span><span class="fu">style</span>(<span class="fu">HTML</span>(<span class="st">"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="st">      #skiplink {</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="st">        position: absolute;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="st">        transform: translateY(-100%);</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="st">      #skiplink:focus {</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="st">      transform: translateY(0%);</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="st">      background-color: lightyellow;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="st">      padding: 20px;</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="st">      z-index: 9999;</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="st">      }"</span>))</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">server =</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><br></p>
 <p>By clicking tab to go forwards (or shift tab to go backwards), you should now be able to only see the skip link when it’s being focused on:</p>
-<p><code>{#r, echo=FALSE} shiny::tagList( shiny::tags$a(id="skiplink", "Skip to Main Content", href="#first-button"),     shiny::navbarPage("App Title",                       shiny::tabPanel("Plot"),                       shiny::tabPanel("Summary"),                       shiny::tabPanel("Table")     ),     shiny::tags$button(id="first-button", "Tab Skip to Here!") )</code></p>
+<br><br> <a id="skiplink-pre" href="#first-button-pre">Skip to Main Content</a>
+<div class="container-fluid">
+<div class="navbar-header">
+<p><span class="navbar-brand">App Title</span></p>
+</div>
+<ul class="nav navbar-nav-2" data-tabsetid="2330">
+<li class="active">
+<a href="#tab-2330-1" data-toggle="tab" data-value="Plot">Plot</a>
+</li>
+<li>
+<a href="#tab-2330-2" data-toggle="tab" data-value="Summary">Summary</a>
+</li>
+<li>
+<a href="#tab-2330-3" data-toggle="tab" data-value="Table">Table</a>
+</li>
+</ul>
+</div>
+<button id="first-button">
+Tab Skip to Here!
+</button>
 <style>
 #skiplink {
         position: absolute;

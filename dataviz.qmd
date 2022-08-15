@@ -37,20 +37,3 @@ format:
     include-in-header:
       text: "<script src='inst/libs/isotope.js'></script>"
 ---
-
-<script>
-window.addEventListener('load', function () {
-  // external js: isotope.pkgd.js
-
-// init Isotope
-var iso = new Isotope( '.gallery', {
-  itemSelector: '.thumbnails',
-  percentPosition: true,
-  layoutMode: 'masonry',
-  masonry: { 
-            percentPosition: true,
-            gutter: 15
-        }
-  });
-})
-</script>

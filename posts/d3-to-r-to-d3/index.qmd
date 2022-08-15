@@ -1,0 +1,151 @@
+---
+title: "D3 to R to D3"
+author: "Maya Gans"
+date: '2021-08-30'
+description: "Documenting using D3 in R (without Observable)"
+categories: [JavaScript, R]
+image: "featured.png"
+---
+
+I can't tell you how many times I've tried to "learn" d3.js. I end up making it *maybe* a third of the way through a book before giving up and just looking through [bl.ocks](https://bl.ocks.org/) or [Observable Notebooks](https://observablehq.com/) because I want to make a plot *now*, not once I've read a text book.
+
+I'm writing this blog post because I am absolutely in LOVE with [Amelia Wattenberger's Fullstack Data Visualization with D3](https://www.amazon.com/Fullstack-Data-Visualization-beautiful-visualizations/dp/0991344650). I'm one chapter in and we already made a plot!
+                                                                   
+Amelia breaks down chart creation into 7 parts:
+                                                                   
+1. Access data
+2. Create chart
+3. Draw canvas
+4. Create scales
+5. Draw data
+6. Draw peripherals
+. Set up interactions [not in this chapter]
+                                                                 
+This is interesting to contrast with R where we have step 1, and make the call to the function `ggplot2` for step 2, but then can fastworward straight to step 5, and let ggplot figure out steps 3,4, and 6 for us! 
+                                                                   
+`d3.js` requires us to create the entire universe our plot lives in, and the axes for the plot seperately. You need to answer questions like how big is the area for your plot + axes and legend (peripherals) and then how do you want to scale your data to the pixel size of that plot since it wont be 1 to 1! 
+                                                                   
+## Our Plot
+                                                                   
+The plot in Chapter 1 is a line chart of weather data, with a shaded area to denote temperatures below freezing. One of the ways (maybe the only?) `D3` is similar to `ggplot2` is that once you have the code it's pretty easy to just drop in different `data`, `x`, and `y` values.
+
+For that reason, rather than just copy the book, I wanted to make the plot my own - which means Phish data and using the package `{ R2D3 }`. 
+
+I'm going to plot the song length of every time the band Phish played the song "Tweezer" live, and my shaded area will be around the mean.
+                                                                 
+## Step 1: Import the Data 
+                                                                 
+`d3.js` expects a JSON object as the data input, but the `R2D3` package lets us use data in our comfort zone! The `R2D3` function takes on two main arguments: the data, and a `javascript` file containing our `d3` code. That's one less new step we need to learn!
+
+We can use the `phish.in` API wrapper I created to grab the data:
+
+```{r, include=FALSE}
+key <- "cd8494027beeddc26559721ae464a25b8635a1073fb7eb0da0b5082ed1ce72a30e21e2a9dfecd311fc9bf163848a2bd6"
+```
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(dplyr)
+(
+  tweezer <- phishr::pi_get_songs(key, "Tweezer") %>%
+  select(date, duration)
+)
+```
+
+...But now we're going to have to head over into JavaScript world and create `tweezer.js` for steps 2-6.
+
+## Step 2 Create the Chart
+                                                                 
+I'm not going to re-explain the concepts in the book, you should read the book for that! I only want to talk about the differences in the code when translating it from the book to R.
+
+I had to change the width of the plot to a static number because the book sets the width of the plot based on the browser and I'm not entirely sure how R2D3 works but this was problematic...
+                                                                 
+```js
+let dimensions = {
+  width: 600, height: 400,
+  margin: {
+   top: 15,
+   right: 15,
+   bottom: 40,
+   left: 60,
+}, }
+```
+                                                                 
+## Step 3 Draw a Canvass
+                                                                 
+The biggest change in the code is that in the book we bind the visualization to a `<div>` called wrapper then append an `svg` but it seems that R2D3 takes care of this part for us and makes available an object called `svg`
+                                                                 
+```js
+const wrapper = d3.select("#wrapper") 
+    .append("svg")
+    .attr("width", dimensions.width)
+    .attr("height", dimensions.height)
+```
+                                                                 
+Becomes 
+                                                                 
+```js
+// svg just exists for us! 
+const wrapper = svg
+    .attr("width", dimensions.width)
+    .attr("height", dimensions.height)
+```
+                                                                 
+I'd like to dig into my mental model a bit deeper for this but I think the magic of R2D3 is that instead of a `div` called wrapper markdown automatically creates an output div with an id, and R2D3 "knows" to bind the svg object to that created `div`... I think?
+
+## Step 4 Create Scales
+
+The code doesn't change here but I wanted to plot my shaded area around the mean song length, rather than a box that starts at zero so I changed the code a little. If you don't change this code you'll still get the box from `0` to `32` on the y-axis.
+        
+```js                                                      
+const meanSongPlacement = yScale(d3.mean(data, yAccessor))
+meanSong = bounds.append("rect")
+    .attr("x", 0)
+    .attr("width", dimensions.boundedWidth)
+    // we want the line to start 10 above the mean
+    .attr("y", meanSongPlacement + 10)
+    // placeholder and end 10 below
+    .attr("height", 20)
+    .attr("fill", "#e0f3f3")
+```
+
+## Step 5 Draw Data
+                                                                 
+The only change here is that R2D3 expects our data to be called `data` and in the book it was `dataset`
+
+## Step 6 Draw Peripherals
+                                                                 
+In the book we moved the x-axis to the bottom of the svg using the `style` call. But this does not work in R2D3
+                                                                 
+[Nick Strayer](https://twitter.com/NicholasStrayer) proposed this could be due to
+
+> css-based transforms of svg elements are either new enough to not work in the web-view of RStudio or they dont' work in virtual dom like r2d3 uses.
+
+So I changed the call from `.style` to `.attr` and it worked!
+
+```js
+.style("transform", `translateY(${ dimensions.boundedHeight} px)`)
+```
+
+Becomes 
+
+```js
+.attr("transform", `translate(0, ${dimensions.boundedHeight})`)
+```
+
+## Put it together in R2D3
+
+You can find the JS code all together in my [repo here](https://github.com/MayaGans/BayesianBabe/blob/master/content/post/2020-08-27-d3-to-r-to-d3/tweezer.js) but now all we need to do is specify our data and our js file!
+
+**I added an argument to the `options` so my plot has the background color of my blog instead of a default white background**
+
+```{r}
+r2d3::r2d3(data = tweezer, 
+           "tweezer.js",
+           options = list("background", "#fadadd"))
+```
+
+:::twitter
+It looks like we can use the `elementId` argument in `r2d3` to render our graphic to a specific div - I assume this is the same as declaring `<div id="wrapper"></div>` in the book!
+:::
+
+And that's it! I think a great workflow for creating these viz in the future will be making the plots in `Observable`, then making these small tweaks so I can use real data in R.

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
+<meta name="generator" content="quarto-1.0.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,6 +18,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -161,15 +224,15 @@ ul.task-list{list-style: none;}
 <section id="if" class="level2">
 <h2 class="anchored" data-anchor-id="if">If</h2>
 <p>We can use the <code>if</code> statement to run a function when an argument is true</p>
-<pre><code>var happy = TRUE
-var knowIt = TRUE
-
-if (happy == TRUE &amp;&amp; knowIt == TRUE) {
-  clapYourHands = TRUE
-}
-
-console.log(clapYourHands)</code></pre>
-<pre><code>TRUE</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> happy <span class="op">=</span> TRUE</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> knowIt <span class="op">=</span> TRUE</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (happy <span class="op">==</span> TRUE <span class="op">&amp;&amp;</span> knowIt <span class="op">==</span> TRUE) {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  clapYourHands <span class="op">=</span> TRUE</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(clapYourHands)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you’re Happy AND you know it, clapYourHands == TRUE.</p>
 </section>
 <section id="then" class="level2">
@@ -179,70 +242,70 @@ console.log(clapYourHands)</code></pre>
 <section id="else" class="level2">
 <h2 class="anchored" data-anchor-id="else">Else</h2>
 <p>But what if I want to set clapYourHands to <code>false</code> if you’re not happy? <code>else</code> gives us the ability to assign a different argument to <code>clapYourHands</code> if it fails the <code>then</code> test [here <code>(happy == TRUE &amp;&amp; knowIt == TRUE)</code>]</p>
-<pre><code>var happy = false
-var knowIt = true
-
-if (happy === true &amp;&amp; knowIt === true) {
-  clapYourHands = true
-} else {
-  clapYourHands = false
-}
-
-console.log(clapYourHands)</code></pre>
-<pre><code>TRUE</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> happy <span class="op">=</span> <span class="kw">false</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> knowIt <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (happy <span class="op">===</span> <span class="kw">true</span> <span class="op">&amp;&amp;</span> knowIt <span class="op">===</span> <span class="kw">true</span>) {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  clapYourHands <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  clapYourHands <span class="op">=</span> <span class="kw">false</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(clapYourHands)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="switch---case---break" class="level2">
 <h2 class="anchored" data-anchor-id="switch---case---break">Switch - Case - Break</h2>
 <p>In the example above <code>happy</code> and <code>knowIt</code> are binary, but the human gamut of emotions is far more complex than happy or not. This is where <code>switch</code> comes in. Rather than writing a long chain of {<code>if</code> this <code>else if</code> this other thing <code>else if</code> even more stuff <code>else</code> the default} we can just invoke a <code>switch</code> statement with multiple <code>cases</code>!</p>
-<pre><code>var emotion = "disinterested"
-var clapYourHands = []
-
-switch(emotion) {
-  case 'happy':
-    clapYourHands = true
-    break;
-  case 'sad':
-    clapYourHands = false
-    break;
-    // default = what to do when no cases match
-  default:
-    clapYourHands = "Can't be sure"
-}
-
-console.log(clapYourHands)</code></pre>
-<pre><code>"Can't be sure"</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> emotion <span class="op">=</span> <span class="st">"disinterested"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> clapYourHands <span class="op">=</span> []</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(emotion) {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="st">'happy'</span><span class="op">:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    clapYourHands <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="st">'sad'</span><span class="op">:</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    clapYourHands <span class="op">=</span> <span class="kw">false</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// default = what to do when no cases match</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    clapYourHands <span class="op">=</span> <span class="st">"Can't be sure"</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(clapYourHands)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="st">"Can't be sure"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>switch</code> statement goes through all the cases, trying to find a match for <code>emotion</code>. Once it finds a matching <code>case</code>, it applies the associated argument [here <code>case = default</code>;<code>clapYourHands = "Can't be sure"</code>].</p>
 <p>I also snuck in the <code>break</code> keyword because this is what gets us out of the <code>switch</code> block. By using <code>break</code> we’re saying - <em>if this <code>case</code> is a match just use it, be done with the <code>switch</code> and move on with your life</em>. Note that we don’t need to <code>break</code> the last statement in a <code>switch</code>, the computer knows it’s exhausted all options at that point.</p>
 </section>
 <section id="for" class="level2">
 <h2 class="anchored" data-anchor-id="for">For</h2>
 <p>No one ever wanted to be that solitary person clapping. Instead of using <code>switch</code> to evaluate a single <code>emotion</code>, we can use a <code>for</code> loop to assess all the emotions of our friends in the room, then gauge how many people are clapping.</p>
-<pre><code>// create an array to capture the emotions in the room
-var emotions = ["disinterested", "happy", "sad", "happy", "dispondent", "happy"]
-
-// this empty array will store the loop values
-var whosClapping = []
-
-for (i = 0; i &lt; emotions.length; i++) { 
-
-  switch(emotions[i]) {
-    case 'happy':
-      var clapYourHands = true
-      break;
-    case 'sad':
-      clapYourHands = false
-      break;
-    default:
-      clapYourHands = "Can't be sure"
-    }
-
-  whosClapping[i] = clapYourHands
-
-}
-
-console.log(whosClapping)
-console.log(whosClapping == true)</code></pre>
-<pre><code>[ 'Can't be sure', true, false, true, 'Can't be sure', true ]</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// create an array to capture the emotions in the room</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> emotions <span class="op">=</span> [<span class="st">"disinterested"</span><span class="op">,</span> <span class="st">"happy"</span><span class="op">,</span> <span class="st">"sad"</span><span class="op">,</span> <span class="st">"happy"</span><span class="op">,</span> <span class="st">"dispondent"</span><span class="op">,</span> <span class="st">"happy"</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">// this empty array will store the loop values</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> whosClapping <span class="op">=</span> []</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> emotions<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) { </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(emotions[i]) {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'happy'</span><span class="op">:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> clapYourHands <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'sad'</span><span class="op">:</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>      clapYourHands <span class="op">=</span> <span class="kw">false</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      clapYourHands <span class="op">=</span> <span class="st">"Can't be sure"</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  whosClapping[i] <span class="op">=</span> clapYourHands</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(whosClapping)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(whosClapping <span class="op">==</span> <span class="kw">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>[ <span class="st">'Can'</span>t be sure<span class="st">', true, false, true, '</span>Can<span class="st">'t be sure'</span><span class="op">,</span> <span class="kw">true</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>a <code>for</code> loop begins with a counter, we’re calling it <code>i</code> and setting it to zero. The next argument is how many times you want the computer to run through the loop. Rather than count up the number of elements in our array in our heads and provide <code>6</code>, we make the computer do the work for us! <code>array.length</code> gives back the number of elements in an array. <code>i++</code> is shorthand to increment <code>i</code> by 1 as we progress through the loop.</p>
 <p>The only difference in our switch within the loop is rather than reference <code>emotion</code>, we reference <code>emotions[i]</code>. For each turn through the loop the computer will evaluate the switch on the <code>i</code>th value within <code>emotions</code></p>
 <p>Before we let the computer move onto the next loop, we store the current iteration’s value for <code>clapYourHands</code> within the <code>whosClapping</code> array. <code>whosClapping[0]</code> will be the <code>clapYourHands</code> value for <code>emotions[0]</code> until the computer makes it through all 6 values within <code>emotion</code>.</p>
@@ -251,77 +314,77 @@ console.log(whosClapping == true)</code></pre>
 <h2 class="anchored" data-anchor-id="while">While</h2>
 <p>If your friends aren’t responding when you ask them if you’re happy, we can make all 6 of them clap using a <code>while</code> loop.</p>
 <p>Like the <code>for</code> loop, a <code>while</code> loop also repeats until a condition changes. Unlike a <code>for</code> loop, we set a condition and loop through until the condition is no longer met [the opposite is true of a <code>for</code> loop where each time it runs the condition is looked for.]</p>
-<pre><code>var happy = 0
-
-while(happy &lt; 6) {
-  console.log("clap your hands")
-  i++
-}</code></pre>
-<pre><code>clap your hands
-clap your hands
-clap your hands
-clap your hands
-clap your hands
-clap your hands</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> happy <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(happy <span class="op">&lt;</span> <span class="dv">6</span>) {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"clap your hands"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  i<span class="op">++</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>clap your hands</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>clap your hands</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>clap your hands</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>clap your hands</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>clap your hands</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>clap your hands</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We set our iterator to zero outside of the loop, then use the condition <code>happy &lt; 6</code> to run our loop 6 times.</p>
 </section>
 <section id="do" class="level2">
 <h2 class="anchored" data-anchor-id="do">Do</h2>
 <p>The <code>do</code> loop is like the <code>while</code> loop but backwards. First the loop is executed, and the condition comes after the body</p>
-<pre><code>var happy = 0
-
-do { 
-  console.log("clap your hands")
-  happy ++
-} while(happy &lt; 6);</code></pre>
-<pre><code>clap your hands
-clap your hands
-clap your hands
-clap your hands
-clap your hands
-clap your hands</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> happy <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span> { </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"clap your hands"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  happy <span class="op">++</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">while</span>(happy <span class="op">&lt;</span> <span class="dv">6</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>clap your hands</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>clap your hands</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>clap your hands</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>clap your hands</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>clap your hands</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>clap your hands</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Within our <code>do</code> statement which gets everyone to clap, we also increment happy. The loop is executed until we reach happy == 6</p>
 </section>
 <section id="return" class="level2">
 <h2 class="anchored" data-anchor-id="return">Return</h2>
 <p>When you write a function, <code>return</code> stops the function execution and returns the value</p>
-<pre><code>function clapping(name) {
-  return name + " is happy, and knows it";
-}
-
-var maya = clapping("Maya")
-console.log(maya)</code></pre>
-<pre><code>Maya is happy, and knows it</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">clapping</span>(name) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> name <span class="op">+</span> <span class="st">" is happy, and knows it"</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> maya <span class="op">=</span> <span class="fu">clapping</span>(<span class="st">"Maya"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(maya)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Maya is happy<span class="op">,</span> and knows it</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We save the results of the function <code>clapping('Maya')</code> within a new variable, <code>maya</code> which is stored in memory, then use <code>console.log</code> to print the new variable. <em>If we didn’t print <code>maya</code> to the console we’d only know the code ran because we didn’t get an error (silence is golden).</em></p>
 </section>
 <section id="throw" class="level2">
 <h2 class="anchored" data-anchor-id="throw">Throw</h2>
 <p>The <code>throw</code> statement looks at an input and if it is wrong, creates a custom error message.</p>
-<pre><code>function getClappers(i) {
-
-  if (i &gt; 0) {
-    return "Someone is happy";
-  } else {
-    throw 'No one is happy';
-  }
-}
-
-console.log(getClappers(0))</code></pre>
-<pre><code>No one is happy</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getClappers</span>(i) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Someone is happy"</span><span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">throw</span> <span class="st">'No one is happy'</span><span class="op">;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="fu">getClappers</span>(<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>No one is happy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="try---catch" class="level2">
 <h2 class="anchored" data-anchor-id="try---catch">Try - Catch</h2>
 <p><code>try...catch</code> statements are used to catch errors, an inevitable part of programming that should be embraced early. We’ll demonstrate this using our <code>getClappers</code> function where rather than have the code stop running because no one is clapping, we’ll use <code>catch</code> to create a string stored in the variable <code>happy</code>.</p>
-<pre><code>var happy = []
-try {
-  happy = getClappers(0)
-}
- catch {
- happy = 'No one is clapping'
-}
-
-console.log(happy)</code></pre>
-<pre><code>No one is clapping</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> happy <span class="op">=</span> []</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span> {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  happy <span class="op">=</span> <span class="fu">getClappers</span>(<span class="dv">0</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a> <span class="cf">catch</span> {</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a> happy <span class="op">=</span> <span class="st">'No one is clapping'</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(happy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>No one is clapping</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>By setting our clapper number to zero, our <code>try...catch</code> statement returned the exception. When a script stops running due to an error we can leverage the code do something more than just dying.</p>
 </section>
 <section id="summary" class="level2">

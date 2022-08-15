@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Maya Gans">
+<meta name="dcterms.date" content="2019-08-27">
+<meta name="description" content="I tanked my first live coding interview but that still made me want to find answers to all their questions">
+
+<title>Maya Gans</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../inst/css/styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">maya<br>gans</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dataviz.html">dataviz</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html">projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html">resume</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">My First Live Coding Interview</h1>
+                  <div>
+        <div class="description">
+          I tanked my first live coding interview but that still made me want to find answers to all their questions
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Maya Gans </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 27, 2019</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#the-r-way" id="toc-the-r-way" class="nav-link" data-scroll-target="#the-r-way">The R Way</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
+  <ul class="collapse">
+  <li><a href="#summarize-the-diamonds-data-set" id="toc-summarize-the-diamonds-data-set" class="nav-link" data-scroll-target="#summarize-the-diamonds-data-set">Summarize the diamonds data set</a></li>
+  </ul></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Yesterday I interviewed for a position maintaining and creating ShinyApps. To call that a JOB is crazy to me. I love developing reactive web applications, the fact that you can get paid to do that is still mind blowing. I’m realizing that having fun at work is actually a possibility!</p>
+<p>That said, the data scientist position usually includes a live coding portion. I went into it trying to treat my first one as practice, but every second I didn’t spend typing spanned an eternity. It was horrifying… but thinking about how to solve these questions was also kind of really fun?</p>
+<p>I’m fairly certain I won’t get the job. But I’m also certain it was an experience to learn and grow. The interview was so intense that it was pretty easy to recall the questions almost verbatim. I wanted to explore the questions again on my own with no pressure. And I’d love input on how to answer these more elegantly!</p>
+<div class="twitter">
+<p>Before we begin, I’ve updated this post to include asides provided from the wonderful world of <code>#rstats</code> twitter. If you have any suggestions on tidying the code feel free to contact me or <a href="https://github.com/MayaGans/BayesianBabe/tree/master/content/post/2019-08-27-live-coding-interview">submit a PR to my blog repo!</a></p>
+</div>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>Create a for loop for n iterations where every third iteration prints “buzz” and every fifth iteration prints “fizz”. Every combination prints “buzz-fizz”. Print the iterator for all other values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">30</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">%%</span> <span class="dv">15</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(i,<span class="st">"buzz-fizz"</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (i <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="fu">paste</span>(i, <span class="st">"buzz"</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (i <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="fu">paste</span>(i, <span class="st">"fizz"</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] "3 buzz"
+[1] 3
+[1] 4
+[1] "5 fizz"
+[1] 5
+[1] "6 buzz"
+[1] 6
+[1] 7
+[1] 8
+[1] "9 buzz"
+[1] 9
+[1] "10 fizz"
+[1] 10
+[1] 11
+[1] "12 buzz"
+[1] 12
+[1] 13
+[1] 14
+[1] "15 buzz-fizz"
+[1] 15
+[1] 16
+[1] 17
+[1] "18 buzz"
+[1] 18
+[1] 19
+[1] "20 fizz"
+[1] 20
+[1] "21 buzz"
+[1] 21
+[1] 22
+[1] 23
+[1] "24 buzz"
+[1] 24
+[1] "25 fizz"
+[1] 25
+[1] 26
+[1] "27 buzz"
+[1] 27
+[1] 28
+[1] 29
+[1] "30 buzz-fizz"
+[1] 30</code></pre>
+</div>
+</div>
+<p>My first attempt answering the question revealed a gap in my mental model. I first attempted to construct the loop using an if statement with logical arguments in the same order as the question: <code>(i %% 3 == 0)</code>, then <code>(i %% 5 == 0)</code> and lastly <code>(i %% 15 == 0)</code>. I was operating under the idea that the arguments within a loop are circular. However, these arguments are inside an <code>if</code> statement, not the loop itself, so of course order matters! By putting <code>(i %% 15 == 0)</code> first you ensure the numbers divisible by both 3 and 5 are assigned to <code>buzz-feed</code> prior to <code>buzz</code> or <code>feed</code> assignment.</p>
+</section>
+<section id="the-r-way" class="level2 twitter">
+<h2 class="anchored" data-anchor-id="the-r-way">The R Way</h2>
+<p>R’s strength is in dealing with vectors, so leverage that in the approach! <a href="https://twitter.com/JonTheGeek">Jon Harmon</a> suggested a better approach for this problem.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">=</span> <span class="dv">15</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">iteration =</span> <span class="fu">seq_len</span>(n),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">output =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    iteration <span class="sc">%%</span> <span class="dv">15</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"buzz-fizz"</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    iteration <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"buzz"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    iteration <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"fizz"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(iteration)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 x 2
+   iteration output   
+       &lt;int&gt; &lt;chr&gt;    
+ 1         1 1        
+ 2         2 2        
+ 3         3 buzz     
+ 4         4 4        
+ 5         5 fizz     
+ 6         6 buzz     
+ 7         7 7        
+ 8         8 8        
+ 9         9 buzz     
+10        10 fizz     
+11        11 11       
+12        12 buzz     
+13        13 13       
+14        14 14       
+15        15 buzz-fizz</code></pre>
+</div>
+</div>
+<p>In fact, this same question is the first example within the <code>dplyr::case_when</code> documentation!</p>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<section id="summarize-the-diamonds-data-set" class="level3">
+<h3 class="anchored" data-anchor-id="summarize-the-diamonds-data-set">Summarize the diamonds data set</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ggplot2<span class="sc">::</span>diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     carat               cut        color        clarity          depth      
+ Min.   :0.2000   Fair     : 1610   D: 6775   SI1    :13065   Min.   :43.00  
+ 1st Qu.:0.4000   Good     : 4906   E: 9797   VS2    :12258   1st Qu.:61.00  
+ Median :0.7000   Very Good:12082   F: 9542   SI2    : 9194   Median :61.80  
+ Mean   :0.7979   Premium  :13791   G:11292   VS1    : 8171   Mean   :61.75  
+ 3rd Qu.:1.0400   Ideal    :21551   H: 8304   VVS2   : 5066   3rd Qu.:62.50  
+ Max.   :5.0100                     I: 5422   VVS1   : 3655   Max.   :79.00  
+                                    J: 2808   (Other): 2531                  
+     table           price             x                y         
+ Min.   :43.00   Min.   :  326   Min.   : 0.000   Min.   : 0.000  
+ 1st Qu.:56.00   1st Qu.:  950   1st Qu.: 4.710   1st Qu.: 4.720  
+ Median :57.00   Median : 2401   Median : 5.700   Median : 5.710  
+ Mean   :57.46   Mean   : 3933   Mean   : 5.731   Mean   : 5.735  
+ 3rd Qu.:59.00   3rd Qu.: 5324   3rd Qu.: 6.540   3rd Qu.: 6.540  
+ Max.   :95.00   Max.   :18823   Max.   :10.740   Max.   :58.900  
+                                                                  
+       z         
+ Min.   : 0.000  
+ 1st Qu.: 2.910  
+ Median : 3.530  
+ Mean   : 3.539  
+ 3rd Qu.: 4.040  
+ Max.   :31.800  
+                 </code></pre>
+</div>
+</div>
+<p>In an attempt to over-complicate this question and to flex my <code>tidyverse</code> skills, I was quick to type <code>diamonds %&gt;% summarise(mean =....)</code> but the instructor asked “Are you going to write the name of every column?” I panicked. I skipped this question finally remembered the <code>summary</code> function. (Clearly, base R functions are currently in the dark recesses of my mind. Use it or lose it…)</p>
+<section id="find-the-maximum-diamond-price" class="level4">
+<h4 class="anchored" data-anchor-id="find-the-maximum-diamond-price">Find the maximum diamond price</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(price <span class="sc">==</span> <span class="fu">max</span>(price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 10
+  carat cut     color clarity depth table price     x     y     z
+  &lt;dbl&gt; &lt;ord&gt;   &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  2.29 Premium I     VS2      60.8    60 18823   8.5  8.47  5.16</code></pre>
+</div>
+</div>
+<p>I was quick to type <code>max(diamonds$price)</code> and smugly said ‘Done!’ The interviewer responded, okay but I wanted to know everything else about that diamond. This meant I needed to print the whole row. I’m not sure the function I’m using is the most efficient, but I like it?</p>
+</section>
+<section id="calculate-the-mean-median-standard-deviation-of-the-price-for-each-diamond-cut" class="level4">
+<h4 class="anchored" data-anchor-id="calculate-the-mean-median-standard-deviation-of-the-price-for-each-diamond-cut">Calculate the mean, median, standard deviation of the price for each diamond cut</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cut) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(price),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">med =</span> <span class="fu">median</span>(price),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">std =</span> <span class="fu">sd</span>(price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 x 4
+  cut        mean   med   std
+  &lt;ord&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Fair      4359. 3282  3560.
+2 Good      3929. 3050. 3682.
+3 Very Good 3982. 2648  3936.
+4 Premium   4584. 3185  4349.
+5 Ideal     3458. 1810  3808.</code></pre>
+</div>
+</div>
+<p>Finally a question I felt comfortable answering! My TidyBlocks focus of the past couple months made me feel quite comfortable with this one.</p>
+</section>
+</section>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>Using the MTCars data set, create a linear model to see the affect of mpg on disp and explain the output of the model</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>m<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(mtcars<span class="sc">$</span>mpg <span class="sc">~</span> mtcars<span class="sc">$</span>disp)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mtcars$mpg ~ mtcars$disp)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.8922 -2.2022 -0.9631  1.6272  7.2305 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***
+mtcars$disp -0.041215   0.004712  -8.747 9.38e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.251 on 30 degrees of freedom
+Multiple R-squared:  0.7183,    Adjusted R-squared:  0.709 
+F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10</code></pre>
+</div>
+</div>
+<p>Honestly, I could write this simple code from memory, but what I said as an explanation is an embarrassing blur. I think I can only attribute floundering over the output of a linear model with a single predictor to nerves.</p>
+<p>I’m taking the time here to break the output of the model summary down line for line because every aspiring data scientist should be so comfortable the <code>lm</code> output that even nerves shouldn’t matter.</p>
+<ul>
+<li><code>The call</code> is an R feature that shows the function and its parameters</li>
+<li><code>The residuals</code> are the difference between the model predicted and actual values of <code>disp</code></li>
+<li><code>The coefficents</code> are the weights that minimize the sum of the square of the errors
+<ul>
+<li>Since <code>mpg</code> never equals zero, there’s no intrinsic meaning to the intercept</li>
+<li>The negative sign of <code>disp</code> means as <code>mpg</code> increases, <code>disp</code> decreases</li>
+</ul></li>
+<li><code>Residual standard error</code> is the standard deviation of the error where the SD is the square root of the variance</li>
+<li><code>Multiple R squared</code> is a measurement of how well the model fits your data
+<ul>
+<li>An R = 0.7 is pretty good?</li>
+</ul></li>
+<li><code>Adjusted R squared</code> takes the amount of variables you add to the model into account as that will inevitably produce a better fit. Because we only have one predictor this number is only very slightly different from our R squared.</li>
+<li><code>F-Statistic</code> a global statistic to check if at least one coefficient is non-zero.</li>
+</ul>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>Create a function that separates a list into two lists, one of unique values and the second containing the duplicates</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">100</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">100</span>)), <span class="dv">1</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>seperated <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  dup <span class="ot">&lt;-</span> <span class="fu">unique</span>(input[[<span class="dv">1</span>]][<span class="fu">duplicated</span>(input[[<span class="dv">1</span>]])])</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  unq <span class="ot">&lt;-</span> input[[<span class="dv">1</span>]][<span class="sc">!</span>input[[<span class="dv">1</span>]] <span class="sc">%in%</span> input[[<span class="dv">1</span>]][<span class="fu">duplicated</span>(input[[<span class="dv">1</span>]])]]</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(dup, unq))</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">seperated</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+ [1] 46 94 91 74 39 83 64 97  4 26 51 68 98 69 14 72  1 38  0 78 56  9 21 93 33
+[26] 52 62
+
+[[2]]
+ [1] 29 13 66 71 12 47 90 99 95  8 45 84 81 61 44 43 96 89 35 40 75 17 76 57 85
+[26] 19 27 24 22 48 20 58 16 36 65 23 31 67 73</code></pre>
+</div>
+</div>
+<p>To get there, I made a dummy data set to play with, a list with 6 numbers, only one of which is a duplicate. This helped to highlight the workflow (1) find the duplicates for the first list, then (2) find the unique values, but remove the duplicates</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># find duplicates</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>test[[<span class="dv">1</span>]][<span class="fu">duplicated</span>(test[[<span class="dv">1</span>]])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I thought of another case -</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># if we have muliple duplicates (three 3s)</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to wrap this function in unique()</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(test2[[<span class="dv">1</span>]][<span class="fu">duplicated</span>(test2[[<span class="dv">1</span>]])])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove duplicates from unique values</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>test[[<span class="dv">1</span>]][<span class="sc">!</span>test[[<span class="dv">1</span>]] <span class="sc">%in%</span> test[[<span class="dv">1</span>]][<span class="fu">duplicated</span>(test[[<span class="dv">1</span>]])]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 4 5</code></pre>
+</div>
+</div>
+<p>Obtaining the data from inside a list, especially nested lists, is a skill I know I need to build. This answer does not look elegant to me but it gets the job done? I’m going to play with “better”, cleaner solutions.</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>I left the interview feeling exhausted and deflated. I found myself asking: <em>if I can’t answer these questions, what am I doing trying to become a data scientist?</em> But now that I’ve spent a day to reflect, the interview was an incredible learning experience. It pinpointed concrete areas where I can grow and I honestly had fun thinking about these problems. I’m not sure I’ll ever perform smoothly under pressure, but at the very least I now have a function to separate duplicates from unique values!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

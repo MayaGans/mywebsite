@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
+<meta name="generator" content="quarto-1.0.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Maya Gans">
-<meta name="dcterms.date" content="2019-07-01">
+<meta name="dcterms.date" content="2019-08-14">
 <meta name="description" content="Trying to understand the weird world of async javascript">
 
 <title>Maya Gans</title>
@@ -18,6 +18,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -56,9 +119,11 @@ ul.task-list{list-style: none;}
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="./script.js"></script>
 
 
 <link rel="stylesheet" href="../../inst/css/styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="nav-fixed">
@@ -122,7 +187,7 @@ ul.task-list{list-style: none;}
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 1, 2019</p>
+        <p class="date">August 14, 2019</p>
       </div>
     </div>
       
@@ -152,122 +217,112 @@ ul.task-list{list-style: none;}
 
 
 
-
+<div class="table-container">
+<div class="cell">
+<div class="cell-output-display">
 
 <table border="1">
-<tbody>
-<tr>
+<tbody><tr>
 <td>
-<button id="do">
-Do long calc - No Time Out
-</button>
+<button id="do" class="examplebtn" onclick="doBtn()">Do long calc - No Time Out</button>
 </td>
 <td>
-<div id="status">
-Not Calculating yet.
-</div>
+<div id="status">Not Calculating yet.</div>
 </td>
 </tr>
 <tr>
 <td>
-<button id="do_ok">
-Do long calc - Set Time Out 0
-</button>
+<button id="do_ok" class="examplebtn" onclick="doOkBtn()">Do long calc - Time Out</button>
 </td>
 <td>
-<div id="status_ok">
-Not Calculating yet.
-</div>
+<div id="status_ok">Not Calculating yet.</div>
 </td>
 </tr>
-</tbody>
-
-</table>
-<script>
-function long_running(statusId) {var result = 0;
-for (var i = 0; i < 1000; i++) {
-for (var j = 0; j < 700; j++) {
-for (var k = 0; k < 300; k++) {
-result = result + i + j + k;
-}
-}
-}
-status_update(statusId, `Done!`);
-}
-function status_update(statusId, message) {document.getElementById(statusId).innerHTML = message;
-}
-document.getElementById("do").addEventListener("click", function() {
-long_running("status");
-status_update("status", "calculating...");
-});
- document.getElementById("do_ok").addEventListener("click", function() {
-setTimeout(function() {
-long_running("status_ok");
-}, 0);
-status_update("status_ok", "calculating....");
-});
-</script>
-
-<p><br><br></p>
+</tbody></table>
+</div>
+</div>
+</div>
 <p>Along with the hands-on skills I’ve been learning during my internship with RStudio, I’ve also been bolstering my theoretical understandings of programming concepts. This brought me to a common trick <code>setTimeout(0)</code>, which defers the execution of a function, giving something else a chance to run.</p>
 <p>This concept was described using a concrete example in a <a href="https://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful">StackOverflow post</a> that I wanted to explore in more detail (both visually and without using JQuery):</p>
 <p><img src="img1.png" class="img-fluid"></p>
 <p>You want to create a button on your website with two tasks (1) perform a long calculation (2) and to print “Calculating…” in a div until “Done!” can be printed.</p>
 <section id="create-button-in-html" class="level2">
 <h2 class="anchored" data-anchor-id="create-button-in-html">CREATE BUTTON IN HTML</h2>
-<p>First we’ll create two buttons with small divs to see the status of the calculation</p>
-<pre><code>&lt;table border=1&gt;
-  // our 'do' button will not use setTimeout
-  &lt;tr&gt;&lt;td&gt;&lt;button id='do'&gt;Do long calc - No Time Out&lt;/button&gt;&lt;/td&gt;
-  // the default value in the div is 'Not Calculating yet'
-      &lt;td&gt;&lt;div id='status'&gt;Not Calculating yet.&lt;/div&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;&lt;button id='do_ok'&gt;Do long calc - Set Time Out 0&lt;/button&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;div id='status_ok'&gt;Not Calculating yet.&lt;/div&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;</code></pre>
+<p>First we’ll create two buttons with <code>div</code> outputs to see the status of the calculation</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">table</span>(<span class="at">border=</span><span class="dv">1</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">tr</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">td</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">button</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">id =</span><span class="st">"do"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Do long calc - No Time Out"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">td</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">div</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">id =</span><span class="st">"status"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Not Calculating yet."</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">tr</span>(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">td</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">button</span>(</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">id =</span><span class="st">"do_ok"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Do long calc - Time Out"</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">td</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">div</span>(</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">id =</span><span class="st">"status_ok"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Not Calculating yet."</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><img src="img3.png" class="img-fluid"></p>
 </section>
 <section id="create-long-function" class="level2">
 <h2 class="anchored" data-anchor-id="create-long-function">CREATE LONG FUNCTION</h2>
 <p>Create a function that takes a “long time” to run. When the function is done, it prints “Done!” to the div</p>
-<pre><code>function long_running(statusId) {
-        var result = 0;
-        for (var i = 0; i &lt; 1000; i++) {
-          for (var j = 0; j &lt; 700; j++) {
-            for (var k = 0; k &lt; 300; k++) {
-              result = result + i + j + k;
-            }
-          }
-        }
-        status_update(statusId, `Done!`);
-      }</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">long_running</span>(statusId) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> result <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">1000</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">var</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">700</span><span class="op">;</span> j<span class="op">++</span>) {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> <span class="dv">300</span><span class="op">;</span> k<span class="op">++</span>) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> result <span class="op">+</span> i <span class="op">+</span> j <span class="op">+</span> k<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">status_update</span>(statusId<span class="op">,</span> <span class="vs">`Done!`</span>)<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="create-status-update-function" class="level2">
 <h2 class="anchored" data-anchor-id="create-status-update-function">CREATE STATUS UPDATE FUNCTION</h2>
-<pre><code>function status_update(statusId, message) {
-  document.getElementById(statusId).innerHTML = message;
-}</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">status_update</span>(statusId<span class="op">,</span> message) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(statusId)<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> message<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="put-it-all-together" class="level2">
 <h2 class="anchored" data-anchor-id="put-it-all-together">PUT IT ALL TOGETHER</h2>
 <p>Update the div by using an Event Listener. When clicking the button run our long calculation and the status update.</p>
-<pre><code>document.getElementById("do").addEventListener("click", function() {
-  long_running("status");
-  status_update("status", "calculating...");
-});</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"do"</span>)<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"click"</span><span class="op">,</span> <span class="kw">function</span>() {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">long_running</span>(<span class="st">"status"</span>)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">status_update</span>(<span class="st">"status"</span><span class="op">,</span> <span class="st">"calculating..."</span>)<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="fail" class="level2">
 <h2 class="anchored" data-anchor-id="fail">FAIL</h2>
 <p>Without using <code>setTimeout(0)</code> the queue of tasks that the button fires off are done serially: the long calculation “locks” the thread; the text <em>is</em> quickly set to “Done!” but the <code>status_update</code> function overwrites it with <code>calculating...</code></p>
 <p><img src="img2.png" class="img-fluid"></p>
 <p>Using <code>setTimeout(0)</code> is a nifty trick to defer the actual long calculations until <code>status_update</code> has been executed. By setting a timeout if 0, you are queuing asynchronous code until the engine executes the current call stack.</p>
-<pre><code>document.getElementById("do_ok").addEventListener("click", function() {
-  setTimeout(function() {
-    long_running("status_ok");
-  }, 0);
-    status_update("status_ok", "calculating....");
-});</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"do_ok"</span>)<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"click"</span><span class="op">,</span> <span class="kw">function</span>() {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="pp">setTimeout</span>(<span class="kw">function</span>() {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">long_running</span>(<span class="st">"status_ok"</span>)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">status_update</span>(<span class="st">"status_ok"</span><span class="op">,</span> <span class="st">"calculating...."</span>)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>In the code chunk above the button text “Not calculating yet” will change to “Calculating….” and THEN “Done!”</strong></p>
 </section>
 <section id="conclusion" class="level2">

@@ -1,0 +1,13 @@
+.split-container {
+   width: 100%;
+   display: flex;
+}
+
+.left, .right {
+  width: 50%;
+  padding: 5px;
+}
+
+.right h4 {
+    margin: 0;
+}

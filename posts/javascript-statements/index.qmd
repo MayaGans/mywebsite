@@ -1,0 +1,248 @@
+---
+title: "JavaScript Statements"
+author: "Maya Gans"
+date: '2019-08-02'
+description: "Statements aren't functions? Explaining the different and walking through some different JavaScript statements."
+categories: [JavaScript]
+image: "featured.png"
+---
+
+Computers are awesome for their ability to execute instructions. I mean, do you want to perform repetitive, error prone, menial tasks? Personally, I don't want to spend time processing data, I just want to analyze it and eventually make pretty graphs. To do this though, the computer needs instructions, and these instructions come in the form of a list of **statements**. In this post I want to go over the grammar of JavaScript statements. Only by familiarizing ourselves with the entire toolbox of statement options can we efficiently boss the computer around exactly how we intend to.
+
+## If
+
+We can use the `if` statement to run a function when an argument is true
+
+```js
+var happy = TRUE
+var knowIt = TRUE
+
+if (happy == TRUE && knowIt == TRUE) {
+  clapYourHands = TRUE
+}
+
+console.log(clapYourHands)
+```
+
+```js
+true
+```
+
+If you're Happy AND you know it, clapYourHands == TRUE.
+
+
+## Then
+
+In the code block above the curly brackets could be understood as `then`. Translating the block above into plain English: if `happy` and `knowIt` are both true `then` set clapYourHands to true.
+
+## Else
+
+But what if I want to set clapYourHands to `false` if you're not happy? `else` gives us the ability to assign a different argument to `clapYourHands` if it fails the `then` test [here `(happy == TRUE && knowIt == TRUE)`]
+
+```js
+var happy = false
+var knowIt = true
+
+if (happy === true && knowIt === true) {
+  clapYourHands = true
+} else {
+  clapYourHands = false
+}
+
+console.log(clapYourHands)
+```
+
+```js
+true
+```
+
+## Switch - Case - Break
+
+In the example above `happy` and `knowIt` are binary, but the human gamut of emotions is far more complex than happy or not. This is where `switch` comes in. Rather than writing a long chain of {`if` this `else if` this other thing `else if` even more stuff `else` the default} we can just invoke a `switch` statement with multiple `cases`!
+
+```js
+var emotion = "disinterested"
+var clapYourHands = []
+
+switch(emotion) {
+  case 'happy':
+    clapYourHands = true
+    break;
+  case 'sad':
+    clapYourHands = false
+    break;
+    // default = what to do when no cases match
+  default:
+    clapYourHands = "Can't be sure"
+}
+
+console.log(clapYourHands)
+```
+
+```js
+"Can't be sure"
+```
+
+The `switch` statement goes through all the cases, trying to find a match for `emotion`. Once it finds a matching `case`, it applies the associated argument [here `case = default`;`clapYourHands = "Can't be sure"`]. 
+
+I also snuck in the `break` keyword because this is what gets us out of the `switch` block. By using `break` we're saying - *if this `case` is a match just use it, be done with the `switch` and move on with your life*. Note that we don't need to `break` the last statement in a `switch`, the computer knows it's exhausted all options at that point.
+
+## For
+
+No one ever wanted to be that solitary person clapping. Instead of using `switch` to evaluate a single `emotion`, we can use a `for` loop to assess all the emotions of our friends in the room, then gauge how many people are clapping.
+
+
+```js
+// create an array to capture the emotions in the room
+var emotions = ["disinterested", "happy", "sad", "happy", "dispondent", "happy"]
+
+// this empty array will store the loop values
+var whosClapping = []
+
+for (i = 0; i < emotions.length; i++) { 
+
+  switch(emotions[i]) {
+    case 'happy':
+      var clapYourHands = true
+      break;
+    case 'sad':
+      clapYourHands = false
+      break;
+    default:
+      clapYourHands = "Can't be sure"
+    }
+
+  whosClapping[i] = clapYourHands
+
+}
+
+console.log(whosClapping)
+console.log(whosClapping == true)
+```
+
+```js
+[ 'Can't be sure', true, false, true, 'Can't be sure', true ]
+```
+
+a `for` loop begins with a counter, we're calling it `i` and setting it to zero. The next argument is how many times you want the computer to run through the loop. Rather than count up the number of elements in our array in our heads and provide `6`, we make the computer do the work for us! `array.length` gives back the number of elements in an array. `i++` is shorthand to increment `i` by 1 as we progress through the loop.
+
+The only difference in our switch within the loop is rather than reference `emotion`, we reference `emotions[i]`. For each turn through the loop the computer will evaluate the switch on the `i`th value within `emotions`
+
+Before we let the computer move onto the next loop, we store the current iteration's value for `clapYourHands` within the `whosClapping` array. `whosClapping[0]` will be the `clapYourHands` value for `emotions[0]` until the computer makes it through all 6 values within `emotion`.
+
+## While
+
+If your friends aren't responding when you ask them if you're happy, we can make all 6 of them clap using a `while` loop.
+
+Like the `for` loop, a `while` loop also repeats until a condition changes. Unlike a `for` loop, we set a condition and loop through until the condition is no longer met [the opposite is true of a `for` loop where each time it runs the condition is looked for.]
+
+```js
+var happy = 0
+
+while(happy < 6) {
+  console.log("clap your hands")
+  i++
+}
+```
+
+```js
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+```
+
+We set our iterator to zero outside of the loop, then use the condition `happy < 6` to run our loop 6 times.
+
+## Do
+
+The `do` loop is like the `while` loop but backwards. First the loop is executed, and the condition comes after the body
+
+```js
+var happy = 0
+
+do { 
+  console.log("clap your hands")
+  happy ++
+} while(happy < 6);
+```
+
+```js
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+```
+
+Within our `do` statement which gets everyone to clap, we also increment happy. The loop is executed until we reach happy == 6
+
+## Return
+
+When you write a function, `return` stops the function execution and returns the value 
+
+```js
+function clapping(name) {
+  return name + " is happy, and knows it";
+}
+
+var maya = clapping("Maya")
+console.log(maya)
+```
+
+```js
+Maya is happy, and knows it
+```
+
+We save the results of the function `clapping('Maya')` within a new variable, `maya` which is stored in memory, then use `console.log` to print the new variable. *If we didn't print `maya` to the console we'd only know the code ran because we didn't get an error (silence is golden).*
+
+## Throw
+
+The `throw` statement looks at an input and if it is wrong, creates a custom error message.
+
+```js
+function getClappers(i) {
+
+  if (i > 0) {
+    return "Someone is happy";
+  } else {
+    throw 'No one is happy';
+  }
+}
+
+console.log(getClappers(0))
+```
+
+```js
+No one is happy
+```
+
+## Try - Catch 
+
+`try...catch` statements are used to catch errors, an inevitable part of programming that should be embraced early. We'll demonstrate this using our `getClappers` function where rather than have the code stop running because no one is clapping, we'll use `catch` to create a string stored in the variable `happy`.
+
+```js
+var happy = []
+try {
+  happy = getClappers(0)
+}
+ catch {
+ happy = 'No one is clapping'
+}
+
+console.log(happy)
+```
+
+```js
+No one is clapping
+```
+
+By setting our clapper number to zero, our `try...catch` statement returned the exception. When a script stops running due to an error we can leverage the code do something more than just dying.
+
+## Summary
+
+We can use JavaScript statements to write programs to boss around the computer. We've covered some foundational statements here and I encourage you to play with them beyond our silly example. Beginning to grasp these statements makes me happy though, and we all deserve some claps for that.
+
