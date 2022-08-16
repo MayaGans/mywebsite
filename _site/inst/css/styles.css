@@ -75,10 +75,11 @@
   width: 30px;
 }
 
-@media (max-width: 1220px)
+@media (max-width: 1220px) {
 .icon {
     grid-area: icon;
     margin-right: 0px !important;
+}
 }
 
 .quarto-category {

@@ -1,15 +1,15 @@
 {
     "dialog-state": {
-        "query": "mysite",
+        "query": "blog-page",
         "path": "",
         "regex": false,
         "caseSensitive": false,
         "wholeWord": false,
         "filePatterns": [],
-        "useGitGrep": false,
+        "useGitGrep": true,
         "excludeGitIgnore": true,
         "excludeFilePatterns": [],
-        "resultsCount": 4,
+        "resultsCount": 0,
         "errorCount": 0,
         "replaceErrors": "",
         "projectRelative": true

@@ -19,14 +19,14 @@ body {
   grid-template-columns: 1fr 5fr;
   gap: 100px;
   margin: 50px 80px;
+  width: 100vw;
 }
 
 @media screen and (max-width: 1199px) {
 .blog-page {
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-    margin: 50px 80px;
+    display: block;
+    padding: 0px;
+    margin: 0px;
   }
 }
 
@@ -96,4 +96,44 @@ img {
 
 .date {
   font-size: 0.65rem;
+}
+
+@media only screen and (max-width: 600px) {
+.blurb {
+    width: 90%;
+    margin-top: 100px;
+    margin: 100px 10px 20px 20px;
+}
+
+.blurb p {
+  width: 80%;
+}
+
+img {
+    max-height: 100px;
+    height: auto;
+    object-fit: cover;
+}
+
+.blogpost {
+    margin: 40px auto;
+    max-width: fit-content;
+    padding: 5px;
+}
+
+.postinfo {
+  margin-right: 0px;
+}
+
+.meta span {
+  display: block;
+}
+
+.all-posts {
+    margin: 20px;
+}
+
+.postlink h3 {
+  font-size: 1.3rem;
+}
 }

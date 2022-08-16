@@ -5,6 +5,12 @@
     height: 100% !important;
 }
 
+@media only screen and (max-width: 600px) {
+h1 {
+  font-size: 1.8rem;
+}
+}
+
 .all-projects {
     display: grid;
     grid-template-columns: 1fr 5fr;

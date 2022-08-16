@@ -1,6 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
   
+  
+@media only screen and (max-width: 600px) {
+.grid-container {
+  width: 100%;
+}
+
+.cell-output-display:not(.no-overflow-x) {
+    overflow-x: hidden;
+}
+
+.fancy-card {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+section.experience.section {
+    margin-bottom: -10px;
+}
+}
+
 .anchorjs-link {
   display: none;
 }

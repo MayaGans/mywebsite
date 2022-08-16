@@ -12,6 +12,17 @@
   margin: 50px 80px;
 }
 
+@media only screen and (max-width: 600px) {
+.gallery {
+  width: 100%;
+}
+
+.thumbnails {
+  width: 100% !important;
+  margin: 20px auto;
+}
+}
+    
 @media screen and (max-width: 1199px) {
 .dataviz-page {
     display: flex;
