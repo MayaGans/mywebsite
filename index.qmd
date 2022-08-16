@@ -8,7 +8,7 @@ format:
 
 <div class="img-bio">
   <img class="author-photo" src="assets/mayagans.png" alt="photo of Maya Gans"/>
-  <h2 style='font-size:2.7rem;font-weight:500!important;text-align:center!important;margin:0!important;padding:0!important;'>Maya Gans</h2>
+  <h2 style='font-weight:500!important;text-align:center!important;'>Maya Gans</h2>
   <h3 style="margin:0!important;padding:0!important;">Data Visualization Engineer</h3>
   <div class="social">
 ```{r, echo=FALSE}

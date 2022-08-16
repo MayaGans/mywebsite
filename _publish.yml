@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 588999ac-1090-4903-b2be-b0519d6919d7
+      url: 'https://inspiring-cuchufli-9bd80e.netlify.app'

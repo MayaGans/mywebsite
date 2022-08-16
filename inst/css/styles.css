@@ -23,6 +23,64 @@
   padding-right: 0em !important;
 }
 
+@media only screen and (max-width: 600px) {
+.img-bio {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.icon {
+    margin-right: 0px;
+}
+
+.bio {
+    line-height: 1.7rem;
+    margin-right: 30px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.bio h1 {
+  font-size: 1.8rem;
+}
+
+.author-photo {
+  width: 80%;
+}
+
+.img-bio h2 {
+  font-size: 2rem;
+}
+}
+
+.social .cell-output-display:not(.no-overflow-x) {
+    overflow-x: hidden !important;
+}
+
+.social .cell {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social {
+  margin-top: 10px;
+}
+
+.icon {
+  margin: 0px !important;
+  height: 30px;
+  width: 30px;
+}
+
+@media (max-width: 1220px)
+.icon {
+    grid-area: icon;
+    margin-right: 0px !important;
+}
+
 .quarto-category {
   background: var(--accent-pink) !important;
     color: white !important;

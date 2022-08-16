@@ -160,3 +160,7 @@ img {
     justify-content: center;
     margin-top: 20px;
 }
+
+.img-bio h2 {
+  font-size: 2.3rem !important;
+}

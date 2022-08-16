@@ -1,5 +1,13 @@
 [
   {
+    "listing": "/projects.html",
+    "items": []
+  },
+  {
+    "listing": "/dataviz.html",
+    "items": []
+  },
+  {
     "listing": "/blog.html",
     "items": [
       "/posts/moving-dom-elements/index.html",
@@ -15,13 +23,5 @@
       "/posts/javascript-statements/index.html",
       "/posts/wtf-is-a-prototype/index.html"
     ]
-  },
-  {
-    "listing": "/projects.html",
-    "items": []
-  },
-  {
-    "listing": "/dataviz.html",
-    "items": []
   }
 ]
