@@ -137,4 +137,14 @@ img {
 .postlink h3 {
   font-size: 1.3rem;
 }
+
+.social svg {
+    height: 30px;
+    width: 30px;
+    fill: var(--accent-pink);
+}
+
+.social svg:hover {
+    fill: var(--blue);
+}
 }
