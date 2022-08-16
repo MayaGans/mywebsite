@@ -99,7 +99,8 @@ body .page-columns {
 
 .author-photo {
  border-radius: 50% !important;
- margin-bottom: 20px;
+ margin-bottom: 0px;
+ margin-top: 50px;
 }
 
 .activity {
