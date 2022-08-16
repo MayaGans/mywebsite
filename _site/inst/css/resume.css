@@ -23,6 +23,10 @@ section.experience.section {
 }
 }
 
+section.social.section {
+    margin-top: 0px;
+}
+
 .anchorjs-link {
   display: none;
 }

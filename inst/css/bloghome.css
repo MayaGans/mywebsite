@@ -14,6 +14,10 @@ body {
   font-family: Raleway;
 }
 
+.all-posts {
+    width: 80%;
+}
+
 .blog-page {
   display: grid;
   grid-template-columns: 1fr 5fr;
@@ -25,7 +29,7 @@ body {
 @media screen and (max-width: 1199px) {
 .blog-page {
     display: block;
-    padding: 0px;
+    padding: 40px;
     margin: 0px;
   }
 }
@@ -138,13 +142,4 @@ img {
   font-size: 1.3rem;
 }
 
-.social svg {
-    height: 30px;
-    width: 30px;
-    fill: var(--accent-pink);
-}
-
-.social svg:hover {
-    fill: var(--blue);
-}
 }

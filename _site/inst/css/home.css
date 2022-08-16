@@ -48,9 +48,15 @@ section {
   color: var(--accent-pink);
 }
   
-  .icon {
+.icon {
   grid-area: icon;
   margin-right: 20px;
+  fill: var(--accent-pink);
+}
+
+
+.icon:hover {
+  fill: var(--blue);
 }
 
 .degree {
@@ -117,6 +123,12 @@ i {
 .icon {
   grid-area: icon;
   margin-right: 20px;
+  fill: var(--accent-pink);
+}
+
+
+.icon:hover {
+  fill: var(--blue);
 }
 
 .degree {
@@ -145,7 +157,6 @@ img {
 
 .social svg {
     height: 30px;
-    width: 30px;
     fill: var(--accent-pink)
 }
 

@@ -31,7 +31,14 @@
 }
 
 .icon {
-    margin-right: 0px;
+    margin: 0px !important;
+    height: 30px;
+    width: 30px;
+    fill: var(--accent-pink) !important;
+}
+
+.icon:hover {
+  fill: var(--blue);
 }
 
 .bio {
