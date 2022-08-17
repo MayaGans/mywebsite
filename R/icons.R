@@ -150,3 +150,33 @@ personal <- function(href) {
     )
   )
 }
+
+email <- function(href) {
+  htmltools::tags$a(
+    href = href,
+    htmltools::tags$svg(
+      version="1.1",
+      height="50px", 
+      width="50px",
+      class="icon", 
+      fill="pink",
+      id="Capa_1",
+      xmlns="http://www.w3.org/2000/svg",
+      `xmlns:xlink`="http://www.w3.org/1999/xlink",
+      x="0px",
+      y="0px",
+      viewBox="0 0 330 330",
+      style="enable-background:new 0 0 477.73 477.73;",
+      `xml:space`="preserve",
+      htmltools::tags$g(
+        htmltools::tags$g(
+          htmltools::tags$path(
+            d="M173.87 177.1a14.98 14.98 0 0 1-17.74 0L30 84.6l-30-22V275a15 15 0 0 0 15 15h300a15 15 0 0 0 15-15V62.6l-30 22-126.13 92.5z"
+          ),
+          htmltools::tags$path(
+            d="M165 146.4 310.09 40H19.91z"
+        )
+      )
+    )
+  ))
+}

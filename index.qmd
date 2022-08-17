@@ -15,7 +15,7 @@ format:
 source("R/icons.R")
 twitter("https://twitter.com/Mayacelium")
 linkedin("https://www.linkedin.com/in/mayagans/")
-github("https://github.com/mayagans/")
+email("./contact.qmd")
 ```
   </div>
 </div>
