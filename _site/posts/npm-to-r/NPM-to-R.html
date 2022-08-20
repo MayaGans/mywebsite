@@ -122,7 +122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 <script type="ojs-define">
-{"contents":[{"name":"r_array","value":[17,18,21,20,18]}]}
+{"contents":[{"name":"r_array","value":[21,21,21,20,21]}]}
 </script>
 
 
@@ -317,84 +317,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="step-6-bundle">Step 6: Bundle!</h2>
 <p>This was the most intimidating step for me because bundling and compiling JS code gives me a lot of imposter syndrome! Here’s an attempt to explain:</p>
 <p>In order to use all the functions in the library within index.js we need to bundle all our code. This example has code in three files so far, <code>replaceDuplicates.js</code>, <code>pluck.js</code> and it’s collated in <code>index.js</code>. A bundler will take all the code and put it in one file for you!</p>
-<p><code>esbuild</code> is the new hotness let’s use this in the terminal to send our bundled output into a file called <code>out.js</code></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>npm install esbuild</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">./</span>node_modules<span class="op">/.</span><span class="at">bin</span><span class="op">/</span>esbuild index<span class="op">.</span><span class="at">js</span> <span class="op">--</span>bundle <span class="op">--</span>outfile<span class="op">=</span>out<span class="op">.</span><span class="at">js</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>esbuild</code> is the new hotness let’s use the library by typing this in the terminal</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>npm install esbuild</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and we can call our builder within our <code>package.json</code> script to take the code inside <code>index.js</code> and bundle it to <code>out.js</code></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="er">"scripts":</span> <span class="fu">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"build"</span><span class="fu">:</span> <span class="st">"esbuild index.js --bundle --outfile=out.js"</span><span class="fu">,</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"test"</span><span class="fu">:</span> <span class="st">"echo </span><span class="ch">\"</span><span class="st">Error: no test specified</span><span class="ch">\"</span><span class="st"> &amp;&amp; exit 1"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>./node_modules/.bin/esbuild index.js --bundle --outfile=out.js</code></pre>
 <p>to bundle our code we run <code>npm run build</code> and you’ll see a file <code>out.js</code> is generated!</p>
 </section>
 <section id="step-7-test-your-function" class="level2">
 <h2 class="anchored" data-anchor-id="step-7-test-your-function">Step 7 Test your function</h2>
 <p>We’re going to use the mocha library for testing our functions since I really like that it looks and feels like <code>{testthat}</code></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>npm install <span class="op">--</span><span class="bu">global</span> mocha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>npm install <span class="op">--</span><span class="bu">global</span> mocha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We’ll also use this helper library <code>mocha-esbuild</code> to be able to use modules inside our tests, grabbing the functions from their original files.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>npm i <span class="op">--</span>save<span class="op">-</span>dev @rtvision<span class="op">/</span>mocha<span class="op">-</span>esbuild</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>npm i <span class="op">--</span>save<span class="op">-</span>dev @rtvision<span class="op">/</span>mocha<span class="op">-</span>esbuild</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Back in your <code>package.json</code> you want to change the script so that when we run <code>npm test</code> it runs the mocha function from <code>mocha-esbuild</code> and builds all the testing files inside our testing folder:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="st">"scripts"</span><span class="op">:</span> {</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"test"</span><span class="op">:</span> <span class="st">"npx mocha-esbuild </span><span class="sc">\"</span><span class="st">test/**.js</span><span class="sc">\"</span><span class="st">"</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="st">"scripts"</span><span class="op">:</span> {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"test"</span><span class="op">:</span> <span class="st">"npx mocha-esbuild </span><span class="sc">\"</span><span class="st">test/**.js</span><span class="sc">\"</span><span class="st">"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We’re also going to use <code>chai</code> because Node has built in <code>assert</code> functionality but we want to be able to use that in a more extensible way:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>npm i <span class="op">--</span>save<span class="op">-</span>dev chai</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>npm i <span class="op">--</span>save<span class="op">-</span>dev chai</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Within a folder called test we’ll make a file called <code>test_removeDuplicates</code> and another called <code>test_pluck</code>. This is to demonstrate testing in multiple files but we could have just as well combined the tests in a single file!</p>
 <p>Here’s <code>test_removeDuplicates</code></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="st">'use strict'</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> assert <span class="op">=</span> <span class="pp">require</span>(<span class="st">'chai'</span>)<span class="op">.</span><span class="at">assert</span><span class="op">;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> removeDuplicates <span class="im">from</span> <span class="st">"../src/removeDuplicates.js"</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(<span class="st">'suite of utility functions inside removeDuplicates'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>(<span class="st">'removing array duplicates'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">it</span>(<span class="st">'should return unique values'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> myNums <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span>]<span class="op">;</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        assert<span class="op">.</span><span class="fu">deepEqual</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span> <span class="fu">removeDuplicates</span>(myNums))<span class="op">;</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>And here is <code>test_pluck</code></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="st">'use strict'</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> assert <span class="op">=</span> <span class="pp">require</span>(<span class="st">'chai'</span>)<span class="op">.</span><span class="at">assert</span><span class="op">;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pluck <span class="im">from</span> <span class="st">"../src/pluck.js"</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(<span class="st">'suite of utility functions inside pluck'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>(<span class="st">'get all values in array of objects given a key'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">it</span>(<span class="st">'should return unique values'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> myObj <span class="op">=</span> [{<span class="dt">name</span><span class="op">:</span> <span class="st">'Maya'</span>}<span class="op">,</span> {<span class="dt">name</span><span class="op">:</span> <span class="st">'Jordan'</span>}]<span class="op">;</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        assert<span class="op">.</span><span class="fu">deepEqual</span>([<span class="st">'Maya'</span><span class="op">,</span> <span class="st">'Jordan'</span>]<span class="op">,</span> <span class="fu">pluck</span>(<span class="st">'name'</span><span class="op">,</span> myObj))<span class="op">;</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now you can run <code>npm test</code> in the terminal you should see this output:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> npx mocha<span class="op">-</span>esbuild <span class="st">"test/**.js"</span></span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="st">'use strict'</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Config processed<span class="op">,</span> starting esbuild</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>Build was successful<span class="op">,</span> running tests</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> assert <span class="op">=</span> <span class="pp">require</span>(<span class="st">'chai'</span>)<span class="op">.</span><span class="at">assert</span><span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> removeDuplicates <span class="im">from</span> <span class="st">"../src/removeDuplicates.js"</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  suite <span class="kw">of</span> utility functions inside pluck</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    get all values <span class="kw">in</span> array <span class="kw">of</span> objects given a key</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>      ✔ should <span class="cf">return</span> unique values</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  suite <span class="kw">of</span> utility functions inside removeDuplicates</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    removing array duplicates</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>      ✔ should <span class="cf">return</span> unique values</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="fu">passing</span> (<span class="dv">5</span><span class="er">ms</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(<span class="st">'suite of utility functions inside removeDuplicates'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>(<span class="st">'removing array duplicates'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">it</span>(<span class="st">'should return unique values'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> myNums <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span>]<span class="op">;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        assert<span class="op">.</span><span class="fu">deepEqual</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span> <span class="fu">removeDuplicates</span>(myNums))<span class="op">;</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And here is <code>test_pluck</code></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="st">'use strict'</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> assert <span class="op">=</span> <span class="pp">require</span>(<span class="st">'chai'</span>)<span class="op">.</span><span class="at">assert</span><span class="op">;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pluck <span class="im">from</span> <span class="st">"../src/pluck.js"</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(<span class="st">'suite of utility functions inside pluck'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>(<span class="st">'get all values in array of objects given a key'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">it</span>(<span class="st">'should return unique values'</span><span class="op">,</span> <span class="kw">function</span> () {</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> myObj <span class="op">=</span> [{<span class="dt">name</span><span class="op">:</span> <span class="st">'Maya'</span>}<span class="op">,</span> {<span class="dt">name</span><span class="op">:</span> <span class="st">'Jordan'</span>}]<span class="op">;</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        assert<span class="op">.</span><span class="fu">deepEqual</span>([<span class="st">'Maya'</span><span class="op">,</span> <span class="st">'Jordan'</span>]<span class="op">,</span> <span class="fu">pluck</span>(<span class="st">'name'</span><span class="op">,</span> myObj))<span class="op">;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now you can run <code>npm test</code> in the terminal you should see this output:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> npx mocha<span class="op">-</span>esbuild <span class="st">"test/**.js"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>Config processed<span class="op">,</span> starting esbuild</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>Build was successful<span class="op">,</span> running tests</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  suite <span class="kw">of</span> utility functions inside pluck</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    get all values <span class="kw">in</span> array <span class="kw">of</span> objects given a key</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>      ✔ should <span class="cf">return</span> unique values</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  suite <span class="kw">of</span> utility functions inside removeDuplicates</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    removing array duplicates</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>      ✔ should <span class="cf">return</span> unique values</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="fu">passing</span> (<span class="dv">5</span><span class="er">ms</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Woohoo our tests passed!</p>
 </section>
 <section id="step-7-publish-your-package-to-the-npm-registry" class="level2">
 <h2 class="anchored" data-anchor-id="step-7-publish-your-package-to-the-npm-registry">Step 7: Publish your package to the NPM registry</h2>
 <p>Login to npm using the command in the terminal</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>npm login</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>npm login</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Follow the prompts to enter your username, password, email, and two factor identification. Then register using:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>npm register</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>npm register</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You should get a notification in the terminal as well as an email confirming the success of your build.</p>
 </section>
 <section id="step-8-use-in-observable-and-r" class="level2">
 <h2 class="anchored" data-anchor-id="step-8-use-in-observable-and-r">Step 8: Use in Observable! And R!</h2>
 <p>Now for the fun part! We can import our module into an Observable chunk using the following Skypack code. I knew to do this from <a href="https://observablehq.com/@observablehq/module-require-debugger">this incredible notebook</a> where you can input an NPM library (<code>maya_utils</code>) it shows you all your options for importing into Observable!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19" data-startfrom="247" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 246;"><span id="cb19-247"><a href="#cb19-247" aria-hidden="true" tabindex="-1"></a>maya_utils <span class="op">=</span> <span class="im">import</span>(<span class="st">'https://unpkg.com/maya_utils@1.1.0/index.js?module'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21" data-startfrom="261" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 260;"><span id="cb21-261"><a href="#cb21-261" aria-hidden="true" tabindex="-1"></a>maya_utils <span class="op">=</span> <span class="im">import</span>(<span class="st">'https://unpkg.com/maya_utils@1.1.0/index.js?module'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -406,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Now we can access the <code>removeDuplicates</code> function and <code>pluck</code> function by prefixing with the library name (kind of like <code>maya_utils::function_name</code>)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20" data-startfrom="257" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 256;"><span id="cb20-257"><a href="#cb20-257" aria-hidden="true" tabindex="-1"></a>maya_utils<span class="op">.</span><span class="fu">removeDuplicates</span>([<span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span><span class="dv">6</span><span class="op">,</span><span class="dv">6</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22" data-startfrom="271" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 270;"><span id="cb22-271"><a href="#cb22-271" aria-hidden="true" tabindex="-1"></a>maya_utils<span class="op">.</span><span class="fu">removeDuplicates</span>([<span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span><span class="dv">6</span><span class="op">,</span><span class="dv">6</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="expression">
 
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21" data-startfrom="261" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 260;"><span id="cb21-261"><a href="#cb21-261" aria-hidden="true" tabindex="-1"></a>maya_utils<span class="op">.</span><span class="fu">pluck</span>(<span class="st">'name'</span><span class="op">,</span> [{<span class="dt">name</span><span class="op">:</span> <span class="st">'Batman'</span>}<span class="op">,</span> {<span class="dt">name</span><span class="op">:</span> <span class="st">'Robin'</span>}])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23" data-startfrom="275" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 274;"><span id="cb23-275"><a href="#cb23-275" aria-hidden="true" tabindex="-1"></a>maya_utils<span class="op">.</span><span class="fu">pluck</span>(<span class="st">'name'</span><span class="op">,</span> [{<span class="dt">name</span><span class="op">:</span> <span class="st">'Batman'</span>}<span class="op">,</span> {<span class="dt">name</span><span class="op">:</span> <span class="st">'Robin'</span>}])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-3" data-nodetype="expression">
 
@@ -423,11 +428,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>But the coolest part? With Quarto I can pass in R DATA INTO MY JAVASCRIPT LIBRARY?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>r_array <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">20</span>))</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ojs_define</span>(r_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>r_array <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">20</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ojs_define</span>(r_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23" data-startfrom="272" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 271;"><span id="cb23-272"><a href="#cb23-272" aria-hidden="true" tabindex="-1"></a>maya_utils<span class="op">.</span><span class="fu">removeDuplicates</span>(r_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25" data-startfrom="286" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 285;"><span id="cb25-286"><a href="#cb25-286" aria-hidden="true" tabindex="-1"></a>maya_utils<span class="op">.</span><span class="fu">removeDuplicates</span>(r_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-4" data-nodetype="expression">
 

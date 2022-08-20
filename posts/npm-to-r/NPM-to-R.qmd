@@ -128,10 +128,22 @@ This was the most intimidating step for me because bundling and compiling JS cod
 
 In order to use all the functions in the library within index.js we need to bundle all our code. This example has code in three files so far, `replaceDuplicates.js`, `pluck.js` and it's collated in `index.js`. A bundler will take all the code and put it in one file for you! 
 
-`esbuild` is the new hotness let's use this in the terminal to send our bundled output into a file called `out.js`
+`esbuild` is the new hotness let's use the library by typing this in the terminal
 
 ```js
 npm install esbuild
+```
+
+and we can call our builder within our `package.json` script to take the code inside `index.js` and bundle it to `out.js`
+
+```json
+"scripts": {
+  "build": "esbuild index.js --bundle --outfile=out.js",
+  "test": "echo \"Error: no test specified\" && exit 1"
+}
+```
+
+```
 ./node_modules/.bin/esbuild index.js --bundle --outfile=out.js
 ```
 
@@ -152,6 +164,7 @@ npm i --save-dev @rtvision/mocha-esbuild
 ```
 
 Back in your `package.json` you want to change the script so that when we run `npm test` it runs the mocha function from `mocha-esbuild` and builds all the testing files inside our testing folder: 
+
 ```js
 "scripts": {
   "test": "npx mocha-esbuild \"test/**.js\""
@@ -167,6 +180,7 @@ npm i --save-dev chai
 Within a folder called test we'll make a file called `test_removeDuplicates` and another called `test_pluck`. This is to demonstrate testing in multiple files but we could have just as well combined the tests in a single file!
 
 Here's `test_removeDuplicates`
+
 ```js
 'use strict'
 
