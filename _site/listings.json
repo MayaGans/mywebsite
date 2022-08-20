@@ -10,6 +10,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/npm-to-r/NPM-to-R.html",
       "/posts/moving-dom-elements/index.html",
       "/posts/skip-links/index.html",
       "/posts/recursion-again-and-again-and-again/index.html",

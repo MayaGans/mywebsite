@@ -1,0 +1,278 @@
+---
+title: "NPM to R!"
+author: "Maya Gans"
+date: '2022-08-19'
+description: "Making my first NPM library to use in Observable (and R!)"
+categories: [JavaScript, R]
+image: "featured.png"
+---
+
+I've seen for people to import stuff into Observable notebooks using the notation: 
+
+```js
+let maya_utils = require("maya_utils")
+```
+
+Which I've essentially learned means `library("maya_utils")` in R notation. I've made lots of `R` packages, but I've always wanted to learn how to make a JS library and publish it on `NPM` (basically JS's `CRAN` but without any review), and then use the library in Observable (and now R via Quarto!)
+
+## Steps:
+
+1. Create an NPM registry account
+2. Write some code
+3. Export your module
+4. Write some more code
+5. Combine functions in index.js
+6. Bundle
+7. Test with `mocha`
+8. Publish the library
+9. Use in Observable (And R!)
+
+## Step 1 Create an NPM registry account 
+[Make an NPM account](https://www.npmjs.com/) by signing up!
+
+## Step 2 Write some code
+
+I created a folder called `maya_utils`, opened VSCode (sorry RStudio) and navigated to the terminal to initialize my `package.json` with the defaults (you can totally change these later):
+
+```js
+npm init -y
+```
+
+Open the package.json file: 
+
+```js
+{
+  "name": "maya_utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+
+The file named in the main key, `index.js` in this case, will be the entry point in to your package after a user installs it. **It will be what you export from this file that will give the user functionality once they have installed the package.**
+
+Now create a folder called `src` and within it a file called `removeDuplicates.js` and we'll put a single function in there, the code to remove duplicates:
+
+```js
+let uniqueArr = []
+function removeDuplicates(arr){
+
+  // Accepts an array from which the duplicates
+  // will be removed
+  if (!Array.isArray(arr)){
+    arr = []
+  }
+
+  let theSet = new Set(arr)
+  let uniqueArr = [...theSet]
+
+  return uniqueArr
+}
+```
+
+Now we're going to add another file called `index.js` inside the `src` folder with the code:
+
+```js
+import removeDuplicates from './removeArrayDuplicates';
+
+export{
+  removeDuplicates
+}
+```
+
+## Step 3 Export functions
+
+In `R` we need to `source(file_name)` in a script to expose that script to another file. In JavaScript we do this using ES6 module notation. In order to use the function `removeDuplicates` in other files we need to `export` it:
+
+```js
+export default function removeDuplicates(arr) {
+```
+
+## Step 4: A second function!
+
+In our `src` folder create a function called pluck to get the values for a key: 
+
+```js
+export default function pluck(key, array) {
+  return array.reduce((values, current) => {
+    values.push(current[key]);
+
+    return values;
+  }, [])
+}
+```
+
+## Step 5 Combine functions in index.js
+
+Now we can create a file called `index.js` at the root level of our folder structure and within in export all the functions we want exposed to users. We can use the `import` function to grab the functions from their respective files. By exporting them here we're essentially doing the same thing as a roxygen `@export`, exposing the functions to end users.
+
+```js
+import removeDuplicates from "./src/removeDuplicates"
+import pluck from "./src/pluck"
+
+export {
+  removeDuplicates,
+  pluck
+}
+```
+
+## Step 6: Bundle!
+
+This was the most intimidating step for me because bundling and compiling JS code gives me a lot of imposter syndrome! Here's an attempt to explain:
+
+In order to use all the functions in the library within index.js we need to bundle all our code. This example has code in three files so far, `replaceDuplicates.js`, `pluck.js` and it's collated in `index.js`. A bundler will take all the code and put it in one file for you! 
+
+`esbuild` is the new hotness let's use this in the terminal to send our bundled output into a file called `out.js`
+
+```js
+npm install esbuild
+./node_modules/.bin/esbuild index.js --bundle --outfile=out.js
+```
+
+to bundle our code we run `npm run build` and you'll see a file `out.js` is generated!
+
+## Step 7 Test your function
+
+We're going to use the mocha library for testing our functions since I really like that it looks and feels like `{testthat}`
+
+```js
+npm install --global mocha
+```
+
+We'll also use this helper library `mocha-esbuild` to be able to use modules inside our tests, grabbing the functions from their original files.
+
+```js
+npm i --save-dev @rtvision/mocha-esbuild
+```
+
+Back in your `package.json` you want to change the script so that when we run `npm test` it runs the mocha function from `mocha-esbuild` and builds all the testing files inside our testing folder: 
+```js
+"scripts": {
+  "test": "npx mocha-esbuild \"test/**.js\""
+}
+```
+
+We're also going to use `chai` because Node has built in `assert` functionality but we want to be able to use that in a more extensible way:
+
+```js
+npm i --save-dev chai
+```
+
+Within a folder called test we'll make a file called `test_removeDuplicates` and another called `test_pluck`. This is to demonstrate testing in multiple files but we could have just as well combined the tests in a single file!
+
+Here's `test_removeDuplicates`
+```js
+'use strict'
+
+var assert = require('chai').assert;
+import removeDuplicates from "../src/removeDuplicates.js"
+
+describe('suite of utility functions inside removeDuplicates', function () {
+  describe('removing array duplicates', function () {
+    it('should return unique values', function () {
+        let myNums = [1,2,3,1,4,1,2,5,3,4];
+        assert.deepEqual([1, 2, 3, 4, 5], removeDuplicates(myNums));
+      });
+  });
+})
+```
+
+And here is `test_pluck`
+
+```js
+'use strict'
+
+var assert = require('chai').assert;
+import pluck from "../src/pluck.js"
+
+describe('suite of utility functions inside pluck', function () {
+  describe('get all values in array of objects given a key', function () {
+    it('should return unique values', function () {
+        let myObj = [{name: 'Maya'}, {name: 'Jordan'}];
+        assert.deepEqual(['Maya', 'Jordan'], pluck('name', myObj));
+      });
+  });
+})
+```
+
+Now you can run `npm test` in the terminal you should see this output:
+
+```js
+> npx mocha-esbuild "test/**.js"
+
+Config processed, starting esbuild
+Build was successful, running tests
+
+
+  suite of utility functions inside pluck
+    get all values in array of objects given a key
+      ✔ should return unique values
+
+  suite of utility functions inside removeDuplicates
+    removing array duplicates
+      ✔ should return unique values
+
+
+  2 passing (5ms)
+```
+
+Woohoo our tests passed!
+
+## Step 7: Publish your package to the NPM registry
+
+Login to npm using the command in the terminal 
+
+```js
+npm login
+```
+
+Follow the prompts to enter your username, password, email, and two factor identification. Then register using:
+
+```js
+npm register
+```
+
+You should get a notification in the terminal as well as an email confirming the success of your build.
+
+## Step 8: Use in Observable! And R!
+
+Now for the fun part! We can import our module into an Observable chunk using the following Skypack code. I knew to do this from [this incredible notebook](https://observablehq.com/@observablehq/module-require-debugger) where you can input an NPM library (`maya_utils`) it shows you all your options for importing into Observable!
+
+```{ojs}
+maya_utils = import('https://unpkg.com/maya_utils@1.1.0/index.js?module')
+```
+
+:::twitter
+Note my version is 1.1.0, I made a lot of mistakes and edits before finally getting this published!!
+:::
+
+Now we can access the `removeDuplicates` function and `pluck` function by prefixing with the library name (kind of like `maya_utils::function_name`)
+
+```{ojs}
+maya_utils.removeDuplicates([1,2,2,3,4,5,6,6])
+```
+
+```{ojs}
+maya_utils.pluck('name', [{name: 'Batman'}, {name: 'Robin'}])
+```
+
+But the coolest part? With Quarto I can pass in R DATA INTO MY JAVASCRIPT LIBRARY?
+
+```{r}
+r_array <- round(rnorm(5, 20))
+ojs_define(r_array)
+```
+
+```{ojs}
+maya_utils.removeDuplicates(r_array)
+```
+
+WOULD YOU LOOK AT THAT?! ITS A THING OF BEAUTY! From JS to Observable to R! And we can even pass a `reactive` to our function when the Quarto document is of type Shiny! 
+
+It's probably helpful to see the whole thing all together. Here's [my repo of utility functions](https://github.com/MayaGans/maya_utils), and a [link to NPM](https://www.npmjs.com/package/maya_utils)!

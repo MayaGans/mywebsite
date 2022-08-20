@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact Me",
+    "section": "",
+    "text": "Your email:  \n Your message:\n\n\n\n\nSend"
+  },
+  {
     "objectID": "resume.html",
     "href": "resume.html",
     "title": "maya gans",
@@ -131,6 +138,83 @@
     "title": "JavaScript Statements",
     "section": "Summary",
     "text": "Summary\nWe can use JavaScript statements to write programs to boss around the computer. We’ve covered some foundational statements here and I encourage you to play with them beyond our silly example. Beginning to grasp these statements makes me happy though, and we all deserve some claps for that."
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html",
+    "href": "posts/npm-to-r/NPM-to-R.html",
+    "title": "NPM to R!",
+    "section": "",
+    "text": "I’ve seen for people to import stuff into Observable notebooks using the notation:\nWhich I’ve essentially learned means library(\"maya_utils\") in R notation. I’ve made lots of R packages, but I’ve always wanted to learn how to make a JS library and publish it on NPM (basically JS’s CRAN but without any review), and then use the library in Observable (and now R via Quarto!)"
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html#steps",
+    "href": "posts/npm-to-r/NPM-to-R.html#steps",
+    "title": "NPM to R!",
+    "section": "Steps:",
+    "text": "Steps:\n\nCreate an NPM registry account\nWrite some code\nExport your module\nWrite some more code\nCombine functions in index.js\nBundle\nTest with mocha\nPublish the library\nUse in Observable (And R!)"
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html#step-1-create-an-npm-registry-account",
+    "href": "posts/npm-to-r/NPM-to-R.html#step-1-create-an-npm-registry-account",
+    "title": "NPM to R!",
+    "section": "Step 1 Create an NPM registry account",
+    "text": "Step 1 Create an NPM registry account\nMake an NPM account by signing up!"
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html#step-2-write-some-code",
+    "href": "posts/npm-to-r/NPM-to-R.html#step-2-write-some-code",
+    "title": "NPM to R!",
+    "section": "Step 2 Write some code",
+    "text": "Step 2 Write some code\nI created a folder called maya_utils, opened VSCode (sorry RStudio) and navigated to the terminal to initialize my package.json with the defaults (you can totally change these later):\nnpm init -y\nOpen the package.json file:\n{\n  \"name\": \"maya_utils\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\nThe file named in the main key, index.js in this case, will be the entry point in to your package after a user installs it. It will be what you export from this file that will give the user functionality once they have installed the package.\nNow create a folder called src and within it a file called removeDuplicates.js and we’ll put a single function in there, the code to remove duplicates:\nlet uniqueArr = []\nfunction removeDuplicates(arr){\n\n  // Accepts an array from which the duplicates\n  // will be removed\n  if (!Array.isArray(arr)){\n    arr = []\n  }\n\n  let theSet = new Set(arr)\n  let uniqueArr = [...theSet]\n\n  return uniqueArr\n}\nNow we’re going to add another file called index.js inside the src folder with the code:\nimport removeDuplicates from './removeArrayDuplicates';\n\nexport{\n  removeDuplicates\n}"
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html#step-3-export-functions",
+    "href": "posts/npm-to-r/NPM-to-R.html#step-3-export-functions",
+    "title": "NPM to R!",
+    "section": "Step 3 Export functions",
+    "text": "Step 3 Export functions\nIn R we need to source(file_name) in a script to expose that script to another file. In JavaScript we do this using ES6 module notation. In order to use the function removeDuplicates in other files we need to export it:\nexport default function removeDuplicates(arr) {"
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html#step-4-a-second-function",
+    "href": "posts/npm-to-r/NPM-to-R.html#step-4-a-second-function",
+    "title": "NPM to R!",
+    "section": "Step 4: A second function!",
+    "text": "Step 4: A second function!\nIn our src folder create a function called pluck to get the values for a key:\nexport default function pluck(key, array) {\n  return array.reduce((values, current) => {\n    values.push(current[key]);\n\n    return values;\n  }, [])\n}"
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html#step-5-combine-functions-in-index.js",
+    "href": "posts/npm-to-r/NPM-to-R.html#step-5-combine-functions-in-index.js",
+    "title": "NPM to R!",
+    "section": "Step 5 Combine functions in index.js",
+    "text": "Step 5 Combine functions in index.js\nNow we can create a file called index.js at the root level of our folder structure and within in export all the functions we want exposed to users. We can use the import function to grab the functions from their respective files. By exporting them here we’re essentially doing the same thing as a roxygen @export, exposing the functions to end users.\nimport removeDuplicates from \"./src/removeDuplicates\"\nimport pluck from \"./src/pluck\"\n\nexport {\n  removeDuplicates,\n  pluck\n}"
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html#step-6-bundle",
+    "href": "posts/npm-to-r/NPM-to-R.html#step-6-bundle",
+    "title": "NPM to R!",
+    "section": "Step 6: Bundle!",
+    "text": "Step 6: Bundle!\nThis was the most intimidating step for me because bundling and compiling JS code gives me a lot of imposter syndrome! Here’s an attempt to explain:\nIn order to use all the functions in the library within index.js we need to bundle all our code. This example has code in three files so far, replaceDuplicates.js, pluck.js and it’s collated in index.js. A bundler will take all the code and put it in one file for you!\nesbuild is the new hotness let’s use this in the terminal to send our bundled output into a file called out.js\nnpm install esbuild\n./node_modules/.bin/esbuild index.js --bundle --outfile=out.js\nto bundle our code we run npm run build and you’ll see a file out.js is generated!"
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html#step-7-test-your-function",
+    "href": "posts/npm-to-r/NPM-to-R.html#step-7-test-your-function",
+    "title": "NPM to R!",
+    "section": "Step 7 Test your function",
+    "text": "Step 7 Test your function\nWe’re going to use the mocha library for testing our functions since I really like that it looks and feels like {testthat}\nnpm install --global mocha\nWe’ll also use this helper library mocha-esbuild to be able to use modules inside our tests, grabbing the functions from their original files.\nnpm i --save-dev @rtvision/mocha-esbuild\nBack in your package.json you want to change the script so that when we run npm test it runs the mocha function from mocha-esbuild and builds all the testing files inside our testing folder:\n\"scripts\": {\n  \"test\": \"npx mocha-esbuild \\\"test/**.js\\\"\"\n}\nWe’re also going to use chai because Node has built in assert functionality but we want to be able to use that in a more extensible way:\nnpm i --save-dev chai\nWithin a folder called test we’ll make a file called test_removeDuplicates and another called test_pluck. This is to demonstrate testing in multiple files but we could have just as well combined the tests in a single file!\nHere’s test_removeDuplicates\n'use strict'\n\nvar assert = require('chai').assert;\nimport removeDuplicates from \"../src/removeDuplicates.js\"\n\ndescribe('suite of utility functions inside removeDuplicates', function () {\n  describe('removing array duplicates', function () {\n    it('should return unique values', function () {\n        let myNums = [1,2,3,1,4,1,2,5,3,4];\n        assert.deepEqual([1, 2, 3, 4, 5], removeDuplicates(myNums));\n      });\n  });\n})\nAnd here is test_pluck\n'use strict'\n\nvar assert = require('chai').assert;\nimport pluck from \"../src/pluck.js\"\n\ndescribe('suite of utility functions inside pluck', function () {\n  describe('get all values in array of objects given a key', function () {\n    it('should return unique values', function () {\n        let myObj = [{name: 'Maya'}, {name: 'Jordan'}];\n        assert.deepEqual(['Maya', 'Jordan'], pluck('name', myObj));\n      });\n  });\n})\nNow you can run npm test in the terminal you should see this output:\n> npx mocha-esbuild \"test/**.js\"\n\nConfig processed, starting esbuild\nBuild was successful, running tests\n\n\n  suite of utility functions inside pluck\n    get all values in array of objects given a key\n      ✔ should return unique values\n\n  suite of utility functions inside removeDuplicates\n    removing array duplicates\n      ✔ should return unique values\n\n\n  2 passing (5ms)\nWoohoo our tests passed!"
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html#step-7-publish-your-package-to-the-npm-registry",
+    "href": "posts/npm-to-r/NPM-to-R.html#step-7-publish-your-package-to-the-npm-registry",
+    "title": "NPM to R!",
+    "section": "Step 7: Publish your package to the NPM registry",
+    "text": "Step 7: Publish your package to the NPM registry\nLogin to npm using the command in the terminal\nnpm login\nFollow the prompts to enter your username, password, email, and two factor identification. Then register using:\nnpm register\nYou should get a notification in the terminal as well as an email confirming the success of your build."
+  },
+  {
+    "objectID": "posts/npm-to-r/NPM-to-R.html#step-8-use-in-observable-and-r",
+    "href": "posts/npm-to-r/NPM-to-R.html#step-8-use-in-observable-and-r",
+    "title": "NPM to R!",
+    "section": "Step 8: Use in Observable! And R!",
+    "text": "Step 8: Use in Observable! And R!\nNow for the fun part! We can import our module into an Observable chunk using the following Skypack code. I knew to do this from this incredible notebook where you can input an NPM library (maya_utils) it shows you all your options for importing into Observable!\n\nmaya_utils = import('https://unpkg.com/maya_utils@1.1.0/index.js?module')\n\n\n\n\n\n\n\nNote my version is 1.1.0, I made a lot of mistakes and edits before finally getting this published!!\n\nNow we can access the removeDuplicates function and pluck function by prefixing with the library name (kind of like maya_utils::function_name)\n\nmaya_utils.removeDuplicates([1,2,2,3,4,5,6,6])\n\n\n\n\n\n\n\nmaya_utils.pluck('name', [{name: 'Batman'}, {name: 'Robin'}])\n\n\n\n\n\n\nBut the coolest part? With Quarto I can pass in R DATA INTO MY JAVASCRIPT LIBRARY?\n\nr_array <- round(rnorm(5, 20))\nojs_define(r_array)\n\n\nmaya_utils.removeDuplicates(r_array)\n\n\n\n\n\n\nWOULD YOU LOOK AT THAT?! ITS A THING OF BEAUTY! From JS to Observable to R! And we can even pass a reactive to our function when the Quarto document is of type Shiny!\nIt’s probably helpful to see the whole thing all together. Here’s my repo of utility functions, and a link to NPM!"
   },
   {
     "objectID": "posts/moving-dom-elements/index.html",
@@ -571,13 +655,6 @@
     "href": "blog.html",
     "title": "maya gans",
     "section": "",
-    "text": "explaining techinical concepts to myself\n\n\n\n\n\n    \n        \n          R\n        \n        \n          4 min read\n        \n  \n  \n  A datatable case study to move around DOM elements in Shiny.\n  Feb 15, 2022\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          5 min read\n        \n  \n  \n  Creating a Skip Link in Shiny apps!\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Trying to understand recursion by explaining it.\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  An ongoing list of functions I took for granted in R as I learn JavaScript\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          11 min read\n        \n  \n  \n  Documenting using D3 in R (without Observable)\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          6 min read\n        \n  \n  \n  Documenting my first foray into the Svelte JavaScript frontend framework\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Using the GSAP animation library in Xaringan slides\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          4 min read\n        \n  \n  \n  Creating a custom Shiny Input\n  Aug 14, 2020\n\n\n\n\n\n\n\n\n\n    \n        \n          R\n        \n        \n          6 min read\n        \n  \n  \n  I tanked my first live coding interview but that still made me want to find answers to all their questions\n  Aug 27, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          4 min read\n        \n  \n  \n  Trying to understand the weird world of async javascript\n  Aug 14, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          6 min read\n        \n  \n  \n  Statements aren't functions? Explaining the different and walking through some different JavaScript statements.\n  Aug 2, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Walking through what JavaScript prototypes are so I can better understand them myself\n  Jul 22, 2019\n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "contact.html",
-    "href": "contact.html",
-    "title": "Contact Me",
-    "section": "",
-    "text": "Your email:  \n Your message:\n\n\n\n\nSend"
+    "text": "explaining techinical concepts to myself\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          6 min read\n        \n  \n  \n  Making my first NPM library to use in Observable (and R!)\n  Aug 19, 2022\n\n\n\n\n\n\n\n\n\n    \n        \n          R\n        \n        \n          4 min read\n        \n  \n  \n  A datatable case study to move around DOM elements in Shiny.\n  Feb 15, 2022\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          5 min read\n        \n  \n  \n  Creating a Skip Link in Shiny apps!\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Trying to understand recursion by explaining it.\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  An ongoing list of functions I took for granted in R as I learn JavaScript\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          11 min read\n        \n  \n  \n  Documenting using D3 in R (without Observable)\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          6 min read\n        \n  \n  \n  Documenting my first foray into the Svelte JavaScript frontend framework\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Using the GSAP animation library in Xaringan slides\n  Aug 30, 2021\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          4 min read\n        \n  \n  \n  Creating a custom Shiny Input\n  Aug 14, 2020\n\n\n\n\n\n\n\n\n\n    \n        \n          R\n        \n        \n          6 min read\n        \n  \n  \n  I tanked my first live coding interview but that still made me want to find answers to all their questions\n  Aug 27, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          4 min read\n        \n  \n  \n  Trying to understand the weird world of async javascript\n  Aug 14, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          6 min read\n        \n  \n  \n  Statements aren't functions? Explaining the different and walking through some different JavaScript statements.\n  Aug 2, 2019\n\n\n\n\n\n\n\n\n\n    \n        \n          JavaScript\n        \n        \n          3 min read\n        \n  \n  \n  Walking through what JavaScript prototypes are so I can better understand them myself\n  Jul 22, 2019\n\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

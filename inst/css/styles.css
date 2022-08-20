@@ -336,7 +336,7 @@ p > a:hover::before {
     background: #69bf8b;
     border-radius: 15px;
     border: solid 3px var(--blue);
-    margin: 10px 20px;
+    margin: 50px 20px;
 }
 
 .twitter p {
