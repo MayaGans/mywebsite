@@ -6,37 +6,37 @@ listing:
       byline: Libraries, Packages, and Visualizations I've worked on in Open Source
       projects:
         - name: tidyblocks
-          href: https://www.quarto.org
+          href: https://www.rstudio.com/resources/rstudioconf-2020/tidyblocks-using-the-language-of-the-tidyverse-in-a-blocks-based-interface/
           img: inst/img/projects/tidyblocks.png
           description: a block based coding language to learn R programming
           project: javascript
         - name: shinybody
-          href: https://www.rstudio.org
+          href: https://maya-gans.shinyapps.io/human_body_app/
           description: a custom shiny input boinding to click on body parts
           img: inst/img/projects/shinybody.png
           project: shiny
         - name: mastering shiny solutions manual
-          href: https://www.quarto.org
+          href: https://mastering-shiny-solutions.org/
           description: the solution manual to Hadley Wickham's Mastering Shiny
           img: inst/img/projects/masteringshiny.png
           project: shiny
         - name: dinner and a movie
-          href: https://www.quarto.org
+          href: https://phishdinnerandamovie.netlify.app/
           description: a svelte application to look at Phish statistics 
           img: inst/img/projects/daam.png
           project: javascript
         - name: github calendar
-          href: https://www.quarto.org
+          href: https://github.com/MayaGans/githubCalendar
           description: a custom htmlwidget of a github calendar using d3.js
           img: inst/img/projects/github.png
           project: shiny
         - name: phishr
-          href: https://www.quarto.org
+          href: https://github.com/MayaGans/phishr
           description: a wrapper package around the phish.net API
           img: inst/img/projects/phishr.png
           project: r
         - name: tidycdisc
-          href: https://www.quarto.org
+          href: https://github.com/Biogen-Inc/tidyCDISC
           description: a table generating GUI for clinical trial data
           img: inst/img/projects/tidycdisc.png
           project: shiny

@@ -8,7 +8,7 @@
     ],
     "includes": {
       "include-in-header": [
-        "<script type=\"ojs-define\">\n{\"contents\":[{\"name\":\"r_array\",\"value\":[21,21,21,20,21]}]}\n</script>\n"
+        "<script type=\"ojs-define\">\n{\"contents\":[{\"name\":\"r_array\",\"value\":[22,19,20,18,22]}]}\n</script>\n"
       ]
     },
     "engineDependencies": {},
