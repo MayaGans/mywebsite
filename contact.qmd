@@ -5,7 +5,7 @@ title: "Contact Me"
 <div class="email-container">
 <!-- modify this form HTML and place wherever you want your form -->
 <form
-  action="https://formspree.io/f/jaffe.maya@gmail.com"
+  action="https://formspree.io/f/mjvzydaa"
   method="POST"
 >
 
